@@ -97,7 +97,44 @@ const AlertPage = () => {
                                                 <TableCell component="th" scope="row">
                                                     {row.name}
                                                 </TableCell>
-                                                <TableCell align="right"><button>Edit</button></TableCell>
+                                                <TableCell align="right"><button>Delete</button></TableCell>
+
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
+                    >
+                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                            Car
+                        </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 650 }} aria-label="caption table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Calories</TableCell>
+                                            <TableCell align="right">Change</TableCell>
+
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <TableRow key={row.name}>
+                                                <TableCell component="th" scope="row">
+                                                    {row.name}
+                                                </TableCell>
+                                                <TableCell align="right"><button>Delete</button></TableCell>
 
                                             </TableRow>
                                         ))}
@@ -114,10 +151,10 @@ const AlertPage = () => {
                         id="panel2bh-header"
                     >
                         <Typography sx={{ width: '33%', flexShrink: 0 }}>Home</Typography>
-                       
+
                     </AccordionSummary>
                     <AccordionDetails>
-                    <Typography>
+                        <Typography>
                             <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 650 }} aria-label="caption table">
                                     <TableHead>
@@ -133,7 +170,7 @@ const AlertPage = () => {
                                                 <TableCell component="th" scope="row">
                                                     {row.name}
                                                 </TableCell>
-                                                <TableCell align="right"><button>Edit</button></TableCell>
+                                                <TableCell align="right"><button>Delete</button></TableCell>
 
                                             </TableRow>
                                         ))}
@@ -143,41 +180,7 @@ const AlertPage = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel3bh-content"
-                        id="panel3bh-header"
-                    >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            Advanced settings
-                        </Typography>
-                        <Typography sx={{ color: 'text.secondary' }}>
-                            Filtering has been entirely disabled for whole web server
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-                            amet egestas eros, vitae egestas augue. Duis vel est augue.
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel4bh-content"
-                        id="panel4bh-header"
-                    >
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-                            amet egestas eros, vitae egestas augue. Duis vel est augue.
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
+                
             </div>
 
         </Box>

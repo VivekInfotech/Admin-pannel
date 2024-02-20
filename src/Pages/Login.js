@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'; // Import useState hook
 import { Box, CssBaseline, Container, Stack, Typography, Card, CardContent, FormControl, FormLabel, TextField, OutlinedInput, InputAdornment, IconButton, Checkbox, Button, Grid } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import axios from 'axios';
+// import axios from 'axios';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Login = () => {
@@ -17,21 +17,21 @@ const Login = () => {
 
     let history = useHistory()
 
-    const submit = (event) => {
-        event.preventDefault(); // Prevent default form submission
+    // const submit = (event) => {
+    //     event.preventDefault(); // Prevent default form submission
 
-        let value = { email: email, password: password }
+    //     let value = { email: email, password: password }
 
-        axios.post('http://localhost:3001/admin/login', value)
-            .then((res) => {
-                console.log(res.data.data);
-                history.push('/')
-            })
-            .catch((error) => {
-                console.log(error.response.data.message);
-            })
+    //     axios.post('http://localhost:3001/admin/login', value)
+    //         .then((res) => {
+    //             console.log(res.data.data);
+    //             history.push('/')
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.response.data.message);
+    //         })
 
-    };
+    // };
 
     return (
         <Box className="color">
@@ -70,7 +70,7 @@ const Login = () => {
                                     Enter your email & password to login
                                 </Typography>
                                 <Stack spacing={2}>
-                                    <form onSubmit={submit}> {/* Wrap the form around the input fields */}
+                                    {/* <form onSubmit={submit}> Wrap the form around the input fields */}
                                         <FormControl fullWidth>
                                             <FormLabel sx={{ color: "#000", marginBottom: "8px" }} >Email</FormLabel>
                                             <TextField type='text' size='small' value={email} onChange={handleChangeEmail} />
@@ -106,7 +106,7 @@ const Login = () => {
                                         <Button variant="contained" type='submit' sx={{ textTransform: "capitalize", fontSize: "16px", backgroundColor: "#0d6efd" }}>
                                             Login
                                         </Button>
-                                    </form>
+                                    {/* </form> */}
                                     <Typography>
                                         Don't have account?
                                         <Typography component="a" href='#ff' color="#4154f1" sx={{ textDecoration: "none" }}> Create an account</Typography>

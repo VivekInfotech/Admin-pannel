@@ -31,7 +31,7 @@ import Stack from '@mui/material/Stack';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-
+import Category from '../Pages/Category';
 import { BsMenuButtonWide, BsJournalText, BsReverseLayoutTextWindowReverse, BsBarChart, BsGem, BsPerson, BsQuestionCircle, BsEnvelope, BsCardList, BsBoxArrowInRight, BsDashCircle, BsGrid, BsExclamationCircle, BsXCircle } from "react-icons/bs";
 
 import CircleIcon from '@mui/icons-material/Circle';
@@ -297,7 +297,7 @@ const Mainbody = () => {
     {
       path: "/Icons/interface-Icon",
       page: "Interface icon"
-    },
+    }
   ];
   const Tables = ["General Tables", "Data Tables"];
   const Charts = ["Chart.js", "ApexCharts", "ECharts"];
@@ -514,7 +514,6 @@ const Mainbody = () => {
                   </ListItemIcon>
                   <ListItemText primary="Dashboard" />
                 </ListItemButton>
-
               </ListItem>
 
               <ListItem sx={{ padding: "0px 20px" }}>
@@ -537,22 +536,18 @@ const Mainbody = () => {
                         <ListItemText primary={component.page} />
                       </ListItemButton>
                     </ListItem>
-
                   ))}
-
                 </List>
               </Collapse>
-
-
-
-
-
-
-
-
-
+              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/Category") }}>
+                <ListItemButton >
+                  <ListItemIcon sx={{ minWidth: "30px" }}>
+                    <BsGrid />
+                  </ListItemIcon>
+                  <ListItemText primary="Category" />
+                </ListItemButton>
+              </ListItem>
             </List>
-
             <List subheader={
               <ListSubheader component="div">
                 PAGES
@@ -587,6 +582,9 @@ const Mainbody = () => {
             </Route>
             <Route path="/Icons/interface-Icon">
               <Interface />
+            </Route>
+            <Route path="/Category">
+              <Category />
             </Route>
 
             <Route path="/page/contact">

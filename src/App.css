@@ -80,6 +80,7 @@
 
 .css-1xtiwv4,.css-4546ys ,.color  {
   background-color: #B6C4B6 !important;
+  min-height: 100vh;
 }
 .css-eaq2tq-MuiPaper-root,.css-zrntp1-MuiPaper-root-MuiCard-root,.css-1t1j96h-MuiPaper-root-MuiDialog-paper,.css-quj9j6-MuiTable-root,.css-qrqyu6-MuiPaper-root{
   background-color: #f3f6efcc !important;
@@ -90,9 +91,9 @@
 .css-1xnkmu4-MuiTypography-root,.css-25csp6-MuiTypography-root{
   color: #000 !important;
 }
-.css-1xtiwv4{
-  max-height: 100vh !important; 
-  height: 100vh !important;
+.css-1xtiwv4,.css-4546ys ,.css-1xtiwv4{
+  min-height: 100vh !important; 
+
 }
 /* @media (max-width : "400px")
 {
