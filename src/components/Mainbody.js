@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import ListSubheader from '@mui/material/ListSubheader';  
+import ListSubheader from '@mui/material/ListSubheader';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -69,7 +69,7 @@ const drawerWidth = 300;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
-    flexGrow: 1, 
+    flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -116,7 +116,7 @@ const Mainbody = () => {
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  let history = useHistory(); 
+  let history = useHistory();
   // console.log("history", history)
 
 
@@ -229,14 +229,14 @@ const Mainbody = () => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      <MenuItem onClick={(event) => {   
+      <MenuItem onClick={(event) => {
         event.stopPropagation();
-        
+
         handleMenuClose();
-        }} >
-        
+      }} >
+
       </MenuItem>
-      
+
       <MenuItem onClick={handleMenuClose}>
         <ListItemIcon>
           <Logout fontSize="small" />
@@ -247,7 +247,7 @@ const Mainbody = () => {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  
+
 
   const darkTheme = createTheme({
     palette: {
@@ -262,8 +262,7 @@ const Mainbody = () => {
   const openNotify = Boolean(notifyMenu);
 
 
-  function handleNotifyClick(event)
-  {
+  function handleNotifyClick(event) {
     setNotifyMenu(event.currentTarget);
   }
 
@@ -281,7 +280,7 @@ const Mainbody = () => {
   // }
 
 
-  
+
 
 
 
@@ -293,11 +292,11 @@ const Mainbody = () => {
     },
     {
       path: "/Icons/Animated-Icon",
-      page:  "Animated Icon"
+      page: "Animated Icon"
     },
     {
       path: "/Icons/interface-Icon",
-      page:  "Interface icon"
+      page: "Interface icon"
     },
   ];
   const Tables = ["General Tables", "Data Tables"];
@@ -310,22 +309,22 @@ const Mainbody = () => {
 
     {
       page: "Contact",
-       icon : <BsEnvelope />,
+      icon: <BsEnvelope />,
       path: "/page/contact"
     },
     {
       page: "Register",
-      icon : <BsCardList />,
+      icon: <BsCardList />,
       path: "/register"
     },
     {
       page: "Login",
-      icon : <BsBoxArrowInRight />,
+      icon: <BsBoxArrowInRight />,
       path: "/login"
     },
     {
       page: "Error 404",
-      icon :  <BsDashCircle />,
+      icon: <BsDashCircle />,
       path: ""
     }
   ]
@@ -357,10 +356,10 @@ const Mainbody = () => {
             <Toolbar >
 
               <Stack spacing={1} direction="row" alignItems="center" sx={{ width: "20%" }}>
-                
+
                 <Typography
                   variant="h6"
-                  noWrap  
+                  noWrap
                   component="a"
                   href="#app-bar-with-responsive-menu"
 
@@ -404,7 +403,7 @@ const Mainbody = () => {
               </Search>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                
+
 
                 <IconButton
                   size="large"
@@ -449,7 +448,7 @@ const Mainbody = () => {
               </Box>
             </Toolbar>
           </AppBar>
-          
+
 
         </ThemeProvider>
       </Box>
@@ -475,7 +474,7 @@ const Mainbody = () => {
           <Hidden lgUp>
             <DrawerHeader  >
               <Stack spacing={1} direction="row" justifyContent="center" alignItems="center" sx={{ width: "100%" }}>
-                
+
                 <Typography
                   variant="h6"
                   noWrap
@@ -518,9 +517,9 @@ const Mainbody = () => {
 
               </ListItem>
 
-              <ListItem  sx={{ padding: "0px 20px" }}>
+              <ListItem sx={{ padding: "0px 20px" }}>
                 <ListItemButton onClick={() => setExpand({ ...expand, 1: !expand[1] })}>
-                <ListItemIcon sx={{ minWidth: "30px" }}>
+                  <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGem />
                   </ListItemIcon>
                   <ListItemText primary="Icons" />
@@ -529,7 +528,7 @@ const Mainbody = () => {
               </ListItem>
               <Collapse in={expand[1]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding dense>
-                   {Components.map((component) => (
+                  {Components.map((component) => (
                     <ListItem key={component.page} disablePadding onClick={() => { history.push(component.path) }}>
                       <ListItemButton sx={{ pl: 4 }}>
                         <ListItemIcon sx={{ minWidth: "20px", marginLeft: "30px" }}>
@@ -544,13 +543,13 @@ const Mainbody = () => {
                 </List>
               </Collapse>
 
-             
-
-              
 
 
 
-              
+
+
+
+
 
             </List>
 
@@ -559,16 +558,16 @@ const Mainbody = () => {
                 PAGES
               </ListSubheader>
             }>
-              { Pages.map((PageEle) => (
-                  <ListItem sx={{ padding: "0px 20px" }}>
-                    <ListItemButton onClick={() => {history.push(PageEle.path)}}>
-                      <ListItemIcon sx={{ minWidth: "30px"}}>
-                          {PageEle.icon}
-                      </ListItemIcon>
-                      <ListItemText primary={PageEle.page} />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
+              {Pages.map((PageEle) => (
+                <ListItem sx={{ padding: "0px 20px" }}>
+                  <ListItemButton onClick={() => { history.push(PageEle.path) }}>
+                    <ListItemIcon sx={{ minWidth: "30px" }}>
+                      {PageEle.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={PageEle.page} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
             </List>
           </Box>
 
@@ -589,15 +588,15 @@ const Mainbody = () => {
             <Route path="/Icons/interface-Icon">
               <Interface />
             </Route>
-           
+
             <Route path="/page/contact">
-              <Contact /> 
+              <Contact />
             </Route>
           </Switch>
 
         </Main>
         {renderMenu}
-      
+
 
 
       </Box>

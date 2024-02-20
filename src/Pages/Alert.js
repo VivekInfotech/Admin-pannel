@@ -34,13 +34,12 @@ function createData(name, calories, fat, carbs, protein) {
 const rows = [
     createData('Frozen yoghurt'),
     createData('Ice cream sandwich'),
+    createData('brijesh'),
     createData('Eclair'),
-    createData('Eclair'),
-    createData('Eclair'),
-    createData('Eclair'),
-    createData('Eclair'),
-    createData('Eclair'),
-    createData('Eclair'),
+    createData('Frozen yoghurt'),
+    createData('Ice cream sandwich'),
+    createData('brijesh'),
+    createData('Eclair')
 ];
 
 const AlertPage = () => {
