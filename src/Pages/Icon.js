@@ -40,7 +40,7 @@ const rows = [
     createData('Frozen yoghurt')
 ];
 
-const AlertPage = () => {
+const Icon = () => {
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -108,7 +108,7 @@ const AlertPage = () => {
 
 
             <Box className="add">
-                <dailog><Dailogicon /></dailog>
+                <Box><Dailogicon /></Box>
             </Box>
 
 
@@ -131,9 +131,8 @@ const AlertPage = () => {
                                         <Table sx={{ minWidth: 650 }} aria-label="caption table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell>Calories</TableCell>
+                                                    <TableCell>Icon</TableCell>
                                                     <TableCell align="right">Change</TableCell>
-
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -142,7 +141,10 @@ const AlertPage = () => {
                                                         <TableCell component="th" scope="row">
                                                             {row.name}
                                                         </TableCell>
-                                                        <TableCell align="right"><button onClick={() => remove(row._id)}>Delete</button></TableCell>
+                                                        <TableCell align="right" sx={{display:'flex'}}>
+                                    <Box sx={{marginLeft:'5px'}}><button onClick={() => remove(row._id)}>Update</button></Box>
+                                    <Box><button onClick={() => remove(row._id)}>Update</button></Box>
+                                </TableCell>
 
                                                     </TableRow>
                                                 ))}
@@ -160,4 +162,4 @@ const AlertPage = () => {
     )
 }
 
-export default AlertPage;
+export default Icon;

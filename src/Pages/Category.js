@@ -64,9 +64,11 @@ function Category() {
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
-                                <TableCell align="right">
-                                    <button onClick={() => remove(row._id)}>Delete</button>
+                                <TableCell align="right" sx={{display:'flex'}}>
+                                    <Box sx={{marginLeft:'5px'}}><button onClick={() => remove(row._id)}>Delete</button></Box>
+                                    <Box><button onClick={() => remove(row._id)}>Update</button></Box>
                                 </TableCell>
+                                
                             </TableRow>
                         ))}
                     </TableBody>

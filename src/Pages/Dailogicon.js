@@ -95,6 +95,10 @@ function Dailogicon() {
                                     onChange={(event) => setName(event.target.value)}
                                 />
                             </Box>
+                            <Box className="name">
+                                <label for="myfile">Tag :</label>
+                                <input type="text" />
+                            </Box>
 
                             <Box className="name">
                                 <label htmlFor="icon">Icon:</label>

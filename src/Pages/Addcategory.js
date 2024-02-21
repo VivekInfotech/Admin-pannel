@@ -18,6 +18,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogActions-root': {
         padding: theme.spacing(1),
     },
+    
 }));
 
 function Addcategory({ addCategory }) {

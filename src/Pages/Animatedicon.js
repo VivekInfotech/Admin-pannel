@@ -9,9 +9,19 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Dialog from '@mui/material/Dialog';
 import Dailodbox from './Dailodbox';
+import axios from 'axios';
 
-  
-
+//api change
+const remove = (id) => {
+  axios.delete(`http://localhost:3001/category/delete/${id}`)
+      .then((res) => {
+          console.log(res.data.data);
+          // getCategory();
+      })
+      .catch((error) => {
+          console.log(error.response.data.message);
+      });
+};
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -31,7 +41,7 @@ const rows = [
 
 
 
-function AccordionPage() {
+function Animatedicon() {
   return (
     <Box>
       <Typography variant="h5"  >
@@ -47,7 +57,7 @@ function AccordionPage() {
 
 
       <Box className="add">
-        <Dialog><Dailodbox /></Dialog>
+        <Box><Dailodbox /></Box>
       </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="caption table">
@@ -56,6 +66,7 @@ function AccordionPage() {
               <TableCell>Name</TableCell>
               <TableCell align="right">Image</TableCell>
               <TableCell align="right">Tags</TableCell>
+              <TableCell align="right">Change</TableCell>
 
             </TableRow>
           </TableHead>
@@ -67,7 +78,10 @@ function AccordionPage() {
                 </TableCell>
                 <TableCell align="right">{row.image}</TableCell>
                 <TableCell align="right">{row.tags}</TableCell>
-
+                <TableCell align="right" sx={{ display: 'flex' }}>
+                  <Box sx={{ marginLeft: '5px' }}><button onClick={() => remove(row._id)}>Delete</button></Box>
+                  <Box><button onClick={() => remove(row._id)}>Update</button></Box>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -79,4 +93,4 @@ function AccordionPage() {
   )
 }
 
-export default AccordionPage;
+export default Animatedicon;

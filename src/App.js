@@ -1,6 +1,5 @@
 import Mainbody from './components/Mainbody';
 import './App.css';
-import Register from './Pages/Register';
 import Login from './Pages/Login';
 import {
   // BrowserRouter as Router,
@@ -13,11 +12,6 @@ function App() {
     <>
 
       <Switch>
-     
-        
-        <Route path="/register">
-          <Register />
-        </Route>
 
         <Route path="/login">
           <Login />

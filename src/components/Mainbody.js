@@ -49,10 +49,9 @@ import Hidden from '@mui/material/Hidden';
 
 //pages
 import Dashboard from './Dashboard';
-import AlertPage from '../Pages/Alert';
-import AccordionPage from '../Pages/Accordion';
+import Icon from '../Pages/Icon';
+import Animatedicon from '../Pages/Animatedicon';
 
-import Contact from '../Pages/Contact';
 
 import {
   // BrowserRouter as Router,
@@ -307,16 +306,6 @@ const Mainbody = () => {
 
   const Pages = [
 
-    {
-      page: "Contact",
-      icon: <BsEnvelope />,
-      path: "/page/contact"
-    },
-    {
-      page: "Register",
-      icon: <BsCardList />,
-      path: "/register"
-    },
     {
       page: "Login",
       icon: <BsBoxArrowInRight />,
@@ -575,10 +564,10 @@ const Mainbody = () => {
               <Dashboard />
             </Route>
             <Route path="/Icons/Icon">
-              <AlertPage />
+              <Icon />
             </Route>
             <Route path="/Icons/Animated-icon">
-              <AccordionPage />
+              <Animatedicon />
             </Route>
             <Route path="/Icons/interface-Icon">
               <Interface />
@@ -587,9 +576,7 @@ const Mainbody = () => {
               <Category />
             </Route>
 
-            <Route path="/page/contact">
-              <Contact />
-            </Route>
+            
           </Switch>
 
         </Main>
