@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -8,8 +8,8 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import { Box, Grid, Paper, Alert, Stack, AlertTitle, Breadcrumbs } from '@mui/material';
-
+import { Box } from '@mui/material';
+import axios from 'axios';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -20,25 +20,55 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-function Addcategory() {
-    const [open, setOpen] = React.useState(false);
+function Addcategory({ addCategory }) {
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState('');
+    const [tag, setTag] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
     };
+
     const handleClose = () => {
         setOpen(false);
     };
 
-  return (
-    <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                ADD CATEGORY
-            </Button>
+    const handleSubmit = () => {
+        const value = { name, tag };
+
+        axios.post('http://localhost:3001/category/create', value)
+            .then((res) => {
+                console.log(res.data.data);
+                addCategory(res.data.data);
+                setName(''); 
+                setTag('');
+                setSubmitted(true);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+
+        handleClose();
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+
+    return (
+        <React.Fragment>
+            {submitted ? null : ( // Conditionally render the category box based on the 'submitted' state
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    ADD CATEGORY
+                </Button>
+            )}
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={open}
+                open={open && !submitted} // Prevent opening the dialog after submission
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                     Add Icons
@@ -59,25 +89,36 @@ function Addcategory() {
                     <Typography gutterBottom>
                         <Box className="details">
                             <Box className="name">
-                                <label for="myfile">Name :</label>
-                                <input type="text" />
+                                <label htmlFor="name">Name :</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    value={name}
+                                    onChange={(event) => setName(event.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                />
                             </Box>
                             <Box className="name">
-                                <label for="myfile">Tag :</label>
-                                <input type="text" />
+                                <label htmlFor="tag">Tag :</label>
+                                <input
+                                    type="text"
+                                    id="tag"
+                                    value={tag}
+                                    onChange={(event) => setTag(event.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                />
                             </Box>
-                            
                         </Box>
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
+                    <Button autoFocus onClick={handleSubmit}>
                         Submit
                     </Button>
                 </DialogActions>
             </BootstrapDialog>
         </React.Fragment>
-  )
+    );
 }
 
-export default Addcategory
+export default Addcategory;

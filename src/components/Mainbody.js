@@ -527,8 +527,8 @@ const Mainbody = () => {
               </ListItem>
               <Collapse in={expand[1]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding dense>
-                  {Components.map((component) => (
-                    <ListItem key={component.page} disablePadding onClick={() => { history.push(component.path) }}>
+                  {Components.map((component,index) => (
+                    <ListItem key={index} disablePadding onClick={() => { history.push(component.path) }}>
                       <ListItemButton sx={{ pl: 4 }}>
                         <ListItemIcon sx={{ minWidth: "20px", marginLeft: "30px" }}>
                           <CircleIcon sx={{ fontSize: "9px" }} />
@@ -553,8 +553,8 @@ const Mainbody = () => {
                 PAGES
               </ListSubheader>
             }>
-              {Pages.map((PageEle) => (
-                <ListItem sx={{ padding: "0px 20px" }}>
+              {Pages.map((PageEle,index) => (
+                <ListItem key={index} sx={{ padding: "0px 20px" }}>
                   <ListItemButton onClick={() => { history.push(PageEle.path) }}>
                     <ListItemIcon sx={{ minWidth: "30px" }}>
                       {PageEle.icon}

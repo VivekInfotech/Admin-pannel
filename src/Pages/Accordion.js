@@ -7,8 +7,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Dialog from '@mui/material/Dialog';
 import Dailodbox from './Dailodbox';
-import Dailogicon from './Dailogicon';
 
   
 
@@ -47,7 +47,7 @@ function AccordionPage() {
 
 
       <Box className="add">
-        <dailog><Dailodbox /></dailog>
+        <Dialog><Dailodbox /></Dialog>
       </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="caption table">

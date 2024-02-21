@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react'; // Import useState hook
+import { useState } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, IconButton, Typography, TextField, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
 
 const top100Films = [
     { label: 'Car' },
@@ -14,7 +15,7 @@ const top100Films = [
 
 function Dailogicon() {
     const [open, setOpen] = useState(false);
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(null);
     const [name, setName] = useState('');
     const [file, setFile] = useState(null);
 
@@ -26,14 +27,35 @@ function Dailogicon() {
         setOpen(false);
     };
 
+    let token = localStorage.getItem('token')
+
     const handleSubmit = (event) => {
-        event.preventDefault(); // Prevent default form submission
-        // Access the values of category, name, and file here and perform further actions
-        console.log('Category:', category);
-        console.log('Name:', name);
-        console.log('File:', file);
+        event.preventDefault();
+
+        const categoryName = category ? category.label : '';
+
+        const formData = new FormData();
+        formData.append('category', categoryName);
+        formData.append('name', name);
+        formData.append('icon', file);
+
+        axios.post('http://localhost:3001/icon/create', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                admintoken: token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            });
+
         handleClose();
     };
+
+
 
     return (
         <React.Fragment>
@@ -49,6 +71,7 @@ function Dailogicon() {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
+
                         <Box className="details">
                             <Box className="selector">
                                 <Autocomplete
@@ -61,6 +84,8 @@ function Dailogicon() {
                                     renderInput={(params) => <TextField {...params} label="Categories" />}
                                 />
                             </Box>
+
+
                             <Box className="name">
                                 <label htmlFor="name">Name :</label>
                                 <input
@@ -73,15 +98,10 @@ function Dailogicon() {
 
                             <Box className="name">
                                 <label htmlFor="icon">Icon:</label>
-                                <input
-                                    type="file"
-                                    id="icon"
-                                    name="icon"
-                                    multiple
-                                    onChange={(event) => setFile(event.target.files[0])}
-                                />
+                                <input type="file" onChange={(event) => setFile(event.target.files[0])} />
                             </Box>
                         </Box>
+
                     </Typography>
                 </DialogContent>
                 <DialogActions>

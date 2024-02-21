@@ -1,67 +1,79 @@
-import { Box, Typography, Grid, styled, Paper, Accordion, AccordionActions, AccordionSummary, AccordionDetails, Button, Breadcrumbs } from '@mui/material';
-import React from 'react'
-import { Link } from "react-router-dom";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Dailodbox from './Dailodbox';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Breadcrumbs, Link } from '@mui/material';
 import Addcategory from './Addcategory';
+import axios from 'axios';
 
 function Category() {
-    function createData(name, image, tags) {
-        return { name, image, tags };
-      }
-      
-      const rows = [
-        createData('car', ),
-        createData('Home', ),
-        createData('Nation', ),
-      ];
-  return (
-    <Box>
-        <Typography variant="h5"  >
-        Category
-      </Typography>
-      <Breadcrumbs aria-label="breadcrumb" marginBottom="30px">
-        <Link className="Breadcrumb" style={{ color: "#899bbd", fontSize: "14px", textDecoration: "none" }} to="/">
-          Home
-        </Link>
-        <Typography color="#273246" fontSize="14px">Category</Typography>
-      </Breadcrumbs>
+    const [data, setData] = useState([]);
 
+    const getCategory = () => {
+        axios.get('http://localhost:3001/category/find')
+            .then((res) => {
+                console.log(res.data.data);
+                setData(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
 
-      <Box className="add">
-        <dailog><Addcategory /></dailog>
-      </Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="caption table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Change</TableCell>
+    const remove = (id) => {
+        axios.delete(`http://localhost:3001/category/delete/${id}`)
+            .then((res) => {
+                console.log(res.data.data);
+                getCategory();
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
 
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                
-                <TableCell align="right"><button>Delete</button></TableCell>
+    const addCategory = (category) => {
+        setData([...data, category]);
+    };
 
+    useEffect(() => {
+        getCategory();
+    }, []);
 
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
-  )
+    return (
+        <Box>
+            <Typography variant="h5">
+                Category
+            </Typography>
+            <Breadcrumbs aria-label="breadcrumb" marginBottom="30px">
+                <Link className="Breadcrumb" style={{ color: "#899bbd", fontSize: "14px", textDecoration: "none" }} to="/">
+                    Home
+                </Link>
+                <Typography color="#273246" fontSize="14px">Category</Typography>
+            </Breadcrumbs>
+            <Box className="add">
+                <Addcategory addCategory={addCategory} />
+            </Box>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="caption table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">Change</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {data.map((row, index) => (
+                            <TableRow key={index}>
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">
+                                    <button onClick={() => remove(row._id)}>Delete</button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
+    );
 }
 
-export default Category
+export default Category;

@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Dailodbox from './Dailodbox';
-import Dailogicon from './Dailogicon';
+import Dialog from '@mui/material/Dialog';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -44,7 +44,7 @@ function Interface() {
 
 
     <Box className="add">
-      <dailog><Dailodbox /></dailog>
+      <Dialog><Dailodbox /></Dialog>
     </Box>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
