@@ -1,0 +1,112 @@
+// Icon.js
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from 'axios';
+import Dailogicon from './Dailogicon';
+
+const Icon = () => {
+    const [categories, setCategories] = useState([]);
+    const [iconData, setIconData] = useState({});
+
+    useEffect(() => {
+        getCategories();
+    }, []);
+
+    const getCategories = () => {
+        axios.get('http://localhost:3001/category/find')
+            .then((res) => {
+                console.log(res.data.data);
+                setCategories(res.data.data);
+                getCategoryIcons(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+
+    const removeIcon = (id) => {
+        const token = localStorage.getItem('token');
+        axios.delete(`http://localhost:3001/icon/delete/${id}`, {
+            headers: { admintoken: token }
+        })
+            .then((res) => {
+                console.log(res.data.data);
+                getCategories(); // Refresh categories after removing icon
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+
+    const getCategoryIcons = (categories) => {
+        const iconPromises = categories.map(category => {
+            return axios.get(`http://localhost:3001/icon/findOne/${category.name}`)
+                .then((res) => {
+                    return { [category.name]: res.data.data };
+                })
+                .catch((error) => {
+                    console.log(error.response.data);
+                    return { [category.name]: [] };
+                });
+        });
+
+        Promise.all(iconPromises)
+            .then(iconDataArray => {
+                const iconDataObject = iconDataArray.reduce((acc, curr) => {
+                    return { ...acc, ...curr };
+                }, {});
+                setIconData(iconDataObject);
+            });
+    };
+
+    return (
+        <Box>
+            <Typography variant="h5" marginBottom="5px">
+                Icon
+            </Typography>
+
+            <Box className="add">
+                <Box><Dailogicon refreshCategories={getCategories} /></Box>
+            </Box>
+
+            <div>
+                {categories && categories.map((category, index) => (
+                    <Accordion key={index}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls={`panel-${index}-content`}
+                            id={`panel-${index}-header`}
+                        >
+                            <Typography>{category.name}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <TableContainer component={Box}>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Icon</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {iconData[category.name] && iconData[category.name].map((icon, iconIndex) => (
+                                            <TableRow key={iconIndex}>
+                                                <TableCell>{icon.name}</TableCell>
+                                                <TableCell align="right">
+                                                    <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </AccordionDetails>
+                    </Accordion>
+                ))}
+            </div>
+        </Box>
+    );
+};
+
+export default Icon;

@@ -1,23 +1,32 @@
-import * as React from 'react';
-import { useState } from 'react';
+// Dailogicon.js
+import React, { useState, useEffect } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, IconButton, Typography, TextField, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 
-const top100Films = [
-    { label: 'Car' },
-    { label: 'Home' },
-    { label: 'Laptop' },
-    { label: 'Institute' },
-    { label: 'Other' },
-];
+function Dailogicon({ refreshCategories }) {
 
-function Dailogicon() {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState(null);
     const [name, setName] = useState('');
     const [file, setFile] = useState(null);
+    const [suggestedCategories, setSuggestedCategories] = useState([]);
+
+    useEffect(() => {
+        fetchSuggestedCategories();
+    }, []);
+
+    const fetchSuggestedCategories = () => {
+        axios.get('http://localhost:3001/category/find')
+            .then((res) => {
+                const categories = res.data.data.map(category => ({ label: category.name, id: category._id }));
+                setSuggestedCategories(categories);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            });
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -27,35 +36,36 @@ function Dailogicon() {
         setOpen(false);
     };
 
-    let token = localStorage.getItem('token')
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const categoryName = category ? category.label : '';
+        if (!category || !name) {
+            console.log('Please select a category and enter a name');
+            return;
+        }
 
         const formData = new FormData();
-        formData.append('category', categoryName);
+        formData.append('category', category.label); // Pass category id instead of label
         formData.append('name', name);
         formData.append('icon', file);
 
-        axios.post('http://localhost:3001/icon/create', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                admintoken: token
-            }
-        })
-            .then((res) => {
-                console.log(res.data.data);
-            })
-            .catch((error) => {
-                console.log(error.response.data);
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await axios.post('http://localhost:3001/icon/create', formData, {
+                headers: {
+                    admintoken: token
+                }
             });
+
+            console.log('Response:', response.data.data);
+            refreshCategories(); // Refresh categories after successful submission
+        } catch (error) {
+            console.error('Error:', error);
+        }
 
         handleClose();
     };
-
-
 
     return (
         <React.Fragment>
@@ -71,21 +81,19 @@ function Dailogicon() {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-
                         <Box className="details">
                             <Box className="selector">
                                 <Autocomplete
                                     disablePortal
                                     id="combo-box-demo"
-                                    options={top100Films}
+                                    options={suggestedCategories}
                                     value={category}
                                     onChange={(event, newValue) => setCategory(newValue)}
+                                    getOptionLabel={(option) => option.label}
                                     sx={{ width: 300 }}
                                     renderInput={(params) => <TextField {...params} label="Categories" />}
                                 />
                             </Box>
-
-
                             <Box className="name">
                                 <label htmlFor="name">Name :</label>
                                 <input
@@ -96,16 +104,14 @@ function Dailogicon() {
                                 />
                             </Box>
                             <Box className="name">
-                                <label for="myfile">Tag :</label>
+                                <label htmlFor="myfile">Tag :</label>
                                 <input type="text" />
                             </Box>
-
                             <Box className="name">
                                 <label htmlFor="icon">Icon:</label>
                                 <input type="file" onChange={(event) => setFile(event.target.files[0])} />
                             </Box>
                         </Box>
-
                     </Typography>
                 </DialogContent>
                 <DialogActions>

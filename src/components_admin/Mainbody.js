@@ -31,7 +31,7 @@ import Stack from '@mui/material/Stack';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import Category from '../Pages/Category';
+import Category from '../Pages_admin/Category';
 import { BsMenuButtonWide, BsJournalText, BsReverseLayoutTextWindowReverse, BsBarChart, BsGem, BsPerson, BsQuestionCircle, BsEnvelope, BsCardList, BsBoxArrowInRight, BsDashCircle, BsGrid, BsExclamationCircle, BsXCircle } from "react-icons/bs";
 
 import CircleIcon from '@mui/icons-material/Circle';
@@ -49,19 +49,19 @@ import Hidden from '@mui/material/Hidden';
 
 //pages
 import Dashboard from './Dashboard';
-import Icon from '../Pages/Icon';
-import Animatedicon from '../Pages/Animatedicon';
+import Icon from '../Pages_admin/Icon';
+import Animatedicon from '../Pages_admin/Animatedicon';
 
 
 import {
-  // BrowserRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 
 
 import { useHistory } from "react-router-dom";
-import Interface from '../Pages/Interface';
+import Interface from '../Pages_admin/Interface';
 
 
 const drawerWidth = 300;
@@ -286,15 +286,15 @@ const Mainbody = () => {
   // Dropdown Pages 
   const Components = [
     {
-      path: "/Icons/Icon",
+      path: "/mainbody/Icons/Icon",
       page: "Icon"
     },
     {
-      path: "/Icons/Animated-Icon",
+      path: "/mainbody/Icons/Animated-Icon",
       page: "Animated Icon"
     },
     {
-      path: "/Icons/interface-Icon",
+      path: "/mainbody/Icons/interface-Icon",
       page: "Interface icon"
     }
   ];
@@ -309,7 +309,7 @@ const Mainbody = () => {
     {
       page: "Login",
       icon: <BsBoxArrowInRight />,
-      path: "/login"
+      path: "/mainbody/login"
     },
     {
       page: "Error 404",
@@ -496,7 +496,7 @@ const Mainbody = () => {
 
           <Box sx={{ padding: "20px 0px 70px" }}>
             <List >
-              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/") }}>
+              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/mainbody/dashboard") }}>
                 <ListItemButton >
                   <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGrid />
@@ -528,7 +528,7 @@ const Mainbody = () => {
                   ))}
                 </List>
               </Collapse>
-              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/Category") }}>
+              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/mainbody/Category") }}>
                 <ListItemButton >
                   <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGrid />
@@ -559,25 +559,27 @@ const Mainbody = () => {
         </Drawer>
         <Main open={open} sx={{ maxWidth: "100%", backgroundColor: "#f6f9ff" }}>
 
-          <Switch>
-            <Route exact path="/" >
+        <Router>
+        <Switch>
+            <Route path="/mainbody/dashboard" >
               <Dashboard />
             </Route>
-            <Route path="/Icons/Icon">
+            <Route path="/mainbody/Icons/Icon">
               <Icon />
             </Route>
-            <Route path="/Icons/Animated-icon">
+            <Route path="/mainbody/Icons/Animated-icon">
               <Animatedicon />
             </Route>
-            <Route path="/Icons/interface-Icon">
+            <Route path="/mainbody/Icons/interface-Icon">
               <Interface />
             </Route>
-            <Route path="/Category">
+            <Route path="/mainbody/Category">
               <Category />
             </Route>
 
             
           </Switch>
+        </Router>
 
         </Main>
         {renderMenu}

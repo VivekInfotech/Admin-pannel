@@ -1,3 +1,4 @@
+// Addcategory.js
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -21,7 +22,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     
 }));
 
-function Addcategory({ addCategory }) {
+function Addcategory({ addCategory, setShowAddButton, showAddButton }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [tag, setTag] = useState('');
@@ -41,16 +42,13 @@ function Addcategory({ addCategory }) {
         axios.post('http://localhost:3001/category/create', value)
             .then((res) => {
                 console.log(res.data.data);
-                addCategory(res.data.data);
-                setName(''); 
-                setTag('');
+                addCategory(); // Refresh categories after successful submission
                 setSubmitted(true);
+                handleClose();
             })
             .catch((error) => {
                 console.log(error.response.data.message);
             });
-
-        handleClose();
     };
 
     const handleKeyDown = (event) => {
@@ -61,7 +59,7 @@ function Addcategory({ addCategory }) {
 
     return (
         <React.Fragment>
-            {submitted ? null : ( // Conditionally render the category box based on the 'submitted' state
+            {showAddButton && (
                 <Button variant="outlined" onClick={handleClickOpen}>
                     ADD CATEGORY
                 </Button>
