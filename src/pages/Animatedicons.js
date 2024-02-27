@@ -328,7 +328,7 @@ function Animatedicons() {
       </Grid>
       <Container maxWidth="xl">
 
-        <Grid container xs={12} sx={{ backgroundColor: '#FAFAFC' }}>
+        <Grid container xs={12} sx={{ backgroundColor: '#FAFAFC',padding:{xs:'10px 10px 10px 10px',md:'40px 40px 10px 40px'} }}>
           <Grid xs={12} md={6} >
             <Box className='center' paddingTop={'50px'}>
             <img width={'60%'} src="https://cdn.svgator.com/assets/landing-pages/static/create-animated-svg-icons/59510656-0-Microinteractions.svg" alt="" srcset="" />

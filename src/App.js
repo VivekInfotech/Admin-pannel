@@ -1,65 +1,125 @@
-import Mainbody from './components_admin/Mainbody';
+import Mainbody from './components_admin/AdminLayout';
 import './App.css';
 import Login from './Pages_admin/Login';
 import WebBody from './components/WebBody';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import Authors from './pages/Authors';
 import Icons from './pages/Icons';
 import Interfaceicon from './pages/Interfaceicon';
 import Topicon from './pages/Topicon';
 import Animatedicons from './pages/Animatedicons';
 import Pack from './pages/Pack';
 import Topanimatedicon from './pages/Topanimatedicon';
+
+
+//admin pages
+import AdminLayout from './components_admin/AdminLayout'
+import Dashboard from './components_admin/Dashboard';
+import Icon from './Pages_admin/Icon';
+import Animatedicon from './Pages_admin/Animatedicon';
+import Category from './Pages_admin/Category';
+import Interface from './Pages_admin/Interface';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";    
+} from "react-router-dom";
+import UserLayout from './components/UserLayout';
 
 function App() {
   return (
-    <>
-        <Route path="/login">
-          <Login />
-        </Route>
+    <div>
 
-        <Route path="/mainbody">
-          <Mainbody />
-        </Route>
-        
       <Router>
-        <Navbar />
-        
+
         <Switch >
           <Route exact path='/'>
-            <WebBody />
+            <UserLayout>
+              <WebBody />
+            </UserLayout>
           </Route>
-          <Route  path='/authors'>
-            <Authors />
+          <Route path='/icons'>
+            <UserLayout>
+
+              <Icons />
+            </UserLayout>
+
           </Route>
-          <Route  path='/icons'>
-            <Icons />
+          <Route path='/interface-icons'>
+            <UserLayout>
+
+              <Interfaceicon />
+            </UserLayout>
+
           </Route>
-          <Route  path='/interface-icons'>
-            <Interfaceicon />
-          </Route>
-          <Route  path='/animated-icons'>
-            <Animatedicons />
+          <Route path='/animated-icons'>
+            <UserLayout>
+
+              <Animatedicons />
+            </UserLayout>
+
           </Route>
           <Route path="/most-downloads">
-            <Topicon />
+            <UserLayout>
+
+              <Topicon />
+            </UserLayout>
+
           </Route>
           <Route path="/pack">
-            <Pack />
+            <UserLayout>
+
+              <Pack />
+            </UserLayout>
+
           </Route>
-          <Route path="/Topanimatedicon">
-            <Topanimatedicon />
+          <Route path="/topanimatedicon">
+            <UserLayout>
+
+              <Topanimatedicon />
+            </UserLayout>
+
           </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route exact path="/admin" >
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          </Route>
+
+          <Route path="/admin/icons/icon">
+            <AdminLayout>
+              <Icon />
+            </AdminLayout>
+          </Route>
+
+          <Route path="/admin/icons/animated-icon">
+            <AdminLayout>
+              <Animatedicon />
+            </AdminLayout>
+          </Route>
+
+          <Route path="/admin/icons/interface-Icon">
+            <AdminLayout>
+              <Interface />
+            </AdminLayout>
+          </Route>
+
+          <Route path="/admin/category">
+            <AdminLayout>
+              <Category />
+            </AdminLayout>
+          </Route>
+
         </Switch>
-      <Footer />
+
       </Router>
-    </>
+    </div>
   );
 }
 

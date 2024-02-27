@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -31,7 +31,7 @@ import Stack from '@mui/material/Stack';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import Category from '../Pages_admin/Category';
+
 import { BsMenuButtonWide, BsJournalText, BsReverseLayoutTextWindowReverse, BsBarChart, BsGem, BsPerson, BsQuestionCircle, BsEnvelope, BsCardList, BsBoxArrowInRight, BsDashCircle, BsGrid, BsExclamationCircle, BsXCircle } from "react-icons/bs";
 
 import CircleIcon from '@mui/icons-material/Circle';
@@ -47,21 +47,9 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 import Hidden from '@mui/material/Hidden';
 
-//pages
-import Dashboard from './Dashboard';
-import Icon from '../Pages_admin/Icon';
-import Animatedicon from '../Pages_admin/Animatedicon';
-
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-
 
 import { useHistory } from "react-router-dom";
-import Interface from '../Pages_admin/Interface';
+
 
 
 const drawerWidth = 300;
@@ -111,11 +99,23 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const Mainbody = () => {
-
+const Mainbody = (props) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   let history = useHistory();
+const [token, setToken] = useState('')
+
+useEffect(() => {
+  let token = localStorage.getItem("token")
+  if(!token){
+    return history.push("/login")
+  }
+  setToken(token)
+}, [])
+
+
+
+  
   // console.log("history", history)
 
 
@@ -286,15 +286,15 @@ const Mainbody = () => {
   // Dropdown Pages 
   const Components = [
     {
-      path: "/mainbody/Icons/Icon",
+      path: "/admin/icons/icon",
       page: "Icon"
     },
     {
-      path: "/mainbody/Icons/Animated-Icon",
+      path: "/admin/icons/animated-Icon",
       page: "Animated Icon"
     },
     {
-      path: "/mainbody/Icons/interface-Icon",
+      path: "/admin/icons/interface-Icon",
       page: "Interface icon"
     }
   ];
@@ -309,7 +309,7 @@ const Mainbody = () => {
     {
       page: "Login",
       icon: <BsBoxArrowInRight />,
-      path: "/mainbody/login"
+      path: "/admin/login"
     },
     {
       page: "Error 404",
@@ -334,6 +334,11 @@ const Mainbody = () => {
   // use for screen breakpoint 
   // const isMd = useMediaQuery(theme.breakpoints.up('md'));
   const isLG = useMediaQuery(theme.breakpoints.up('lg'));
+
+
+  if(!token){
+    return <p>Loading...</p>
+  }
 
   return (
     <>
@@ -496,7 +501,7 @@ const Mainbody = () => {
 
           <Box sx={{ padding: "20px 0px 70px" }}>
             <List >
-              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/mainbody/dashboard") }}>
+              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/admin/dashboard") }}>
                 <ListItemButton >
                   <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGrid />
@@ -528,7 +533,7 @@ const Mainbody = () => {
                   ))}
                 </List>
               </Collapse>
-              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/mainbody/Category") }}>
+              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/admin/category") }}>
                 <ListItemButton >
                   <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGrid />
@@ -558,34 +563,9 @@ const Mainbody = () => {
 
         </Drawer>
         <Main open={open} sx={{ maxWidth: "100%", backgroundColor: "#f6f9ff" }}>
-
-        <Router>
-        <Switch>
-            <Route path="/mainbody/dashboard" >
-              <Dashboard />
-            </Route>
-            <Route path="/mainbody/Icons/Icon">
-              <Icon />
-            </Route>
-            <Route path="/mainbody/Icons/Animated-icon">
-              <Animatedicon />
-            </Route>
-            <Route path="/mainbody/Icons/interface-Icon">
-              <Interface />
-            </Route>
-            <Route path="/mainbody/Category">
-              <Category />
-            </Route>
-
-            
-          </Switch>
-        </Router>
-
+                {props.children}
         </Main>
         {renderMenu}
-
-
-
       </Box>
 
     </>

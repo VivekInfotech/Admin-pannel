@@ -17,7 +17,6 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 
 const pages = [
     { name: 'Home', path: '/' },
-    { name: 'Authors', path: '/authors' },
     { name: 'Icons', path: '/icons' },
     { name: 'Interface icons', path: '/interface-icons' },
     { name: 'Animated icons', path: '/animated-icons' },

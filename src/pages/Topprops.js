@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import house from './house.png'
+import house from './brands/house.png'
 import Grid from '@mui/material/Grid';
 
 function Topprops(props) {

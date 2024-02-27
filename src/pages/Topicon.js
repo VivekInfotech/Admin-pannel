@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { FaRegBuilding, FaBookmark, FaBuffer } from "react-icons/fa";
-import house from './house.png'
+import house from './brands/house.png'
 import { BiSolidAdjustAlt } from "react-icons/bi";
 import { PiApertureBold } from "react-icons/pi";
 import { BiSolidAdjust } from "react-icons/bi";
@@ -223,7 +223,7 @@ const Topicon = () => {
 
       <Drawer variant="permanent" open={open}>
 
-        <List sx={{ paddingTop: '65px' }}>
+        <List sx={{ paddingTop: '10px' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -411,11 +411,6 @@ const Topicon = () => {
 
               <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
                   
-              
-
-
-
-
             </Grid>
             <Box sx={{ display: 'flex', justifyContent: 'center' ,padding:'10px 0px'}}>
               <Stack spacing={2}>

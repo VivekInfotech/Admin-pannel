@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom';
 import React from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import backgroundImg from './app-preview-dark.jpg'
-import purple from './purple-big-ball.png'
+import backgroundImg from './brands/app-preview-dark.jpg'
 import banner from './coronavirus-5.png'
 import Cardicon from './Cardicon';
+import business from './brands/budinesss.png'
+import food from './brands/food.png'
+import hospital from './brands/hospital.png'
+import animal from './brands/animal.png'
+import language from './brands/language.png'
+import alert from './brands/alert.png'
+import indian from './brands/indian brands.png'
+import Education from './brands/Education.png'
+
 function Icons() {
 
   return (
@@ -22,12 +30,15 @@ function Icons() {
               <Box sx={{ fontSize: { xs: '10px', sm: '18px', md: '19px', lg: '21px' }, padding: { xs: '10px 0px 0px 0px', sm: '10px 0px 0px 20px' } }}>
                 Discover the extensive repository of vector icons for download, encompassing SVG, EPS, PSD, and BASE 64 formats, making it the most comprehensive database available.
               </Box>
-              <Box sx={{ padding: { xs: '10px 0px 0px 0px', sm: '10px 0px 0px 20px', lg: '30px 0px 50px 20px' } }}>
-                <Box sx={{ fontSize: { xs: '12px', sm: '18px', md: '13px', lg: '21px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block',cursor:'pointer' }}>
-                  See Trending Icon
+              <Link to="/most-downloads">
+                <Box sx={{ padding: { xs: '10px 0px 0px 0px', sm: '10px 0px 0px 20px', lg: '30px 0px 50px 20px' } }}>
+                  <Box sx={{ fontSize: { xs: '12px', sm: '18px', md: '13px', lg: '21px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block', cursor: 'pointer' }}>
+                    See Trending Icon
+                  </Box>
                 </Box>
-              </Box>
-              
+              </Link>
+
+
             </Grid>
             <Grid md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
 
@@ -48,42 +59,42 @@ function Icons() {
         <Grid container sx={{ paddingTop: '50px' }}>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={business} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={food} heading={'Food'} description="Food icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={hospital} heading={'Hospital'} description="Hospital icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={animal} heading={'Animal'} description="Animal icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={language} heading={'Language'} description="Language icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={alert} heading={'Alert'} description="Alert icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={indian} heading={'Indian Brands'} description="Indian icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={Education} heading={'Education'} description="Education icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
@@ -126,7 +137,7 @@ function Icons() {
         </Grid>
       </Box>
 
-      <Box sx={{ padding: {xs:'20px 20px',md:'50px 20px 50px 20px'} }}>
+      <Box sx={{ padding: { xs: '20px 20px', md: '50px 20px 50px 20px' } }}>
         <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
           Poular
         </Box>
@@ -194,7 +205,7 @@ function Icons() {
         </Grid>
       </Box>
 
-      <Box sx={{ padding: {xs:'20px',md:'50px 20px'}}}>
+      <Box sx={{ padding: { xs: '20px', md: '50px 20px' } }}>
         <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
           Top Icon
         </Box>

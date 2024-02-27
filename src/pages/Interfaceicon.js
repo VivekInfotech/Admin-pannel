@@ -22,9 +22,9 @@ function Interfaceicon() {
       <Grid container paddingTop={'46px'}>
         <Grid xs={12} className="backgroundInterface">
           <Box sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', alignItems: 'center', display: 'flex' }}>
-            <Grid md={12} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Grid md={12} sx={{ display: 'flex', alignItems: 'center', padding: '20px' ,justifyContent:'center' }}>
 
-              <img src={camera} width={'100%'} alt="" srcset="" />
+              <img src={camera} width={'60%'} alt="" srcset="" />
 
             </Grid>
             <Grid md={12} sx={{ padding: '20px' }}>
@@ -35,11 +35,13 @@ function Interfaceicon() {
               <Box sx={{ fontSize: { xs: '8px', sm: '14px', md: '18px' }, padding: { md: '10px 0px 0px 20px' }, color: '#fff' }}>
                 Access a vast collection of over 24,000 SVG and web font-optimized vector-based icons designed for web, iOS, and Android applications.
               </Box>
+              <Link to="/most-downloads">
               <Box sx={{ padding: { xs: '9px 0px 50px 0px', md: '30px 0px 50px 20px' } }}>
-                <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block',cursor:'pointer' }}>
-                  See Trending Icon
+                <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block',cursor:'pointer',color:'#272727' }}>
+                  See All Icon
                 </Box>
               </Box>
+              </Link>
 
             </Grid>
 

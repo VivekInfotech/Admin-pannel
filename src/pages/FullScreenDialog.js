@@ -41,7 +41,7 @@ export default function FullScreenDialog({ open, onClose }) {
         <AppBar sx={{ position: 'relative', backgroundColor: '#FFBC06' }}>
           <Toolbar>
 
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="Box">
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" color={'#272727'} fontWeight={'600'} component="Box">
               Sound
             </Typography>
 
@@ -74,7 +74,11 @@ export default function FullScreenDialog({ open, onClose }) {
                 </Box>
               </Box>
               <Box className='center' sx={{ border: '2px solid #888888', borderRadius: '9px', margin: '10px 25px' }}>
-                <IoIosColorPalette className='change' fontSize={'400px'} />
+                <IoIosColorPalette 
+                style={{
+                  color : selectedColor
+                }}
+                 className='change' fontSize={'400px'} />
               </Box>
 
             </Grid>
@@ -111,14 +115,14 @@ export default function FullScreenDialog({ open, onClose }) {
               </Box>
               <Box sx={{ display: 'flex', margin: '24px 25px' }}>
                 <Grid xs={4} marginRight={'10px'}>
-                  <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#198754', color: '#fff', padding: '10px 30px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#ffbc06', color: '#272727', padding: '10px 30px'  }}>
                     <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoMdImages fontSize={'20px'} /></Box>
                     <Tooltip title="Copy PNG to clipboard">Copy PNG</Tooltip>
                   </Box>
 
                 </Grid>
                 <Grid xs={4} marginRight={'10px'}>
-                  <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#0DCAF0', color: '#fff', padding: '10px 30px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#198754', color: '#fff', padding: '10px 30px'}}>
                     <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosDownload fontSize={'20px'} />
                     </Box>
 
@@ -126,7 +130,7 @@ export default function FullScreenDialog({ open, onClose }) {
                   </Box>
                 </Grid>
                 <Grid xs={4}>
-                  <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#63E6BE', color: '#fff', padding: '10px 30px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#272727', color: '#fff', padding: '10px 30px'}}>
                     <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosShareAlt fontSize={'20px'} />
                     </Box>
 
@@ -136,24 +140,24 @@ export default function FullScreenDialog({ open, onClose }) {
               </Box>
               <Box sx={{ display: 'flex', margin: '24px 25px' }}>
                 <Grid xs={3} marginRight={'10px'}>
-                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#BDBDBD', fontWeight: '600', padding: '10px 10px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 10px'   }}>
 
                     <Box>PNG <IoIosArrowDown /></Box>
                   </Box>
 
                 </Grid>
                 <Grid xs={3} marginRight={'10px'}>
-                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#BDBDBD', fontWeight: '600', padding: '10px 30px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px'   }}>
                     SVG
                   </Box>
                 </Grid>
                 <Grid xs={3} marginRight={'10px'}>
-                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#BDBDBD', fontWeight: '600', padding: '10px 30px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px'   }}>
                     Android
                   </Box>
                 </Grid>
                 <Grid xs={3} >
-                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#BDBDBD', fontWeight: '600', padding: '10px 30px', border: '1px solid' }}>
+                  <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px'   }}>
                     iOS
                   </Box>
                 </Grid>
@@ -163,6 +167,11 @@ export default function FullScreenDialog({ open, onClose }) {
                 Begin incorporating this icon into your designs.
               </Box>
             </Grid>
+
+           <Grid xs={12}>
+           <Box paddingBottom={'60px'} justifyContent={'center'} display={'flex'}>
+            </Box>
+           </Grid>
           </Grid>
         </Box>
 

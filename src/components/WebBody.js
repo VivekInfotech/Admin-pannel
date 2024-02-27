@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect}  from 'react'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -27,6 +27,8 @@ import happy from './img/happy.png'
 import sad from './img/sad.png'
 import lineleft from './img/line left.png'
 import lineright from './img/line right.png'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
     BrowserRouter as Router,
     Switch,
@@ -91,7 +93,16 @@ const card3 = (
 // setInterval(autoToggle, 3000);
 
 function WebBody() {
-
+    // useEffect(() => {
+    //     AOS.init();
+    //   }, [])
+    //   AOS.init({
+    //     offset: 200,
+    //     duration: 400,
+    //     easing: 'ease-in-sine',
+    //     delay: 100,
+    //     once: true,
+    //   });
     return (
         <>
             <Box sx={{ width: '100%', paddingTop: '55px' }}>
@@ -106,7 +117,8 @@ function WebBody() {
                                         display: 'flex', width: '70%', flexDirection: 'column', color: '#272727', justifyContent: 'center', paddingTop: '120px', textAlign: 'center', lineHeight: '1',
                                         fontWeight: "700", zIndex: 9, fontSize: { xs: '22px', sm: '32px', md: '45px' }
                                     }}>
-                                        <Box>Take the hassle out of <font color="#ffbc06">icons</font>  </Box>
+                                        {/* data-aos="zoom-in" data-aos-offset="0" */}
+                                        <Box  >Take the hassle out of <font color="#ffbc06">icons</font>  </Box>
                                         <Box>in your website.</Box>
                                     </Grid>
 
@@ -137,7 +149,7 @@ function WebBody() {
                                         />
                                     </Box>
                                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '7px' }}>
-                                        <Box sx={{ border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '5px', padding: '0px 10px',cursor:'pointer' }}>Go</Box>
+                                        <Box sx={{ border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '5px', padding: '0px 10px', cursor: 'pointer' }}>Go</Box>
                                     </Box>
                                 </Search>
                             </Grid>
@@ -155,7 +167,7 @@ function WebBody() {
                                     {/* <CountUp delay={2} end={200} />+ */}
                                 </Box>
                                 <CardActions className='c-white' sx={{ display: 'flex', justifyContent: 'center', paddingBottom: '5px' }}>
-                                    <Button className='center c-white' size="large">Icons</Button>
+                                    <Button data-aos="fade-up" className='center c-white' size="large">Icons</Button>
                                 </CardActions>
                                 <Typography textAlign={'center'} className='c-white' fontSize={'15px'}>
                                     A comprehensive repository of freely available icons suitable for various projects.
@@ -199,7 +211,7 @@ function WebBody() {
                     </Grid>
                 </Box>
 
-                <Box sx={{ marginTop: '70px' }}>
+                <Box sx={{ marginTop: '70px',padding:'0px 24px' }}>
                     <Container maxWidth="xl">
                         <Grid xs={12}>
                             <Typography sx={{ fontSize: '30px', fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
@@ -216,30 +228,31 @@ function WebBody() {
                         <Grid container xs={12} className='center'>
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                    <Link to="/most-downloads">
-                                        <Box sx={{ height: '86px', backgroundColor: '#FFE08A' }}>
+                                    <Box sx={{ height: '86px', backgroundColor: '#FFE08A' }}>
+                                    </Box>
+                                    <Box className='center'>
+                                        <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#FFC62D', alignItems: 'center', borderRadius: '50%' }}>
+                                            <FaRegSmile fontSize={'35px'} />
                                         </Box>
-                                        <Box className='center'>
-                                            <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#FFC62D', alignItems: 'center', borderRadius: '50%' }}>
-                                                <FaRegSmile fontSize={'35px'} />
-                                            </Box>
 
-                                        </Box>
-                                        <Box className='center' fontSize={'18px'} padding={'20px'}>
-                                            Regular
-                                        </Box>
-                                        <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                            "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
-                                        </Box>
-                                        <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                    </Box>
+                                    <Box className='center' fontSize={'18px'} padding={'20px'}>
+                                        Regular
+                                    </Box>
+                                    <Box className='center' padding={'0px 28px'} textAlign={"center"}>
+                                        "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
+                                    </Box>
+
+                                    <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                        <Link to="/most-downloads">
+
                                             <Box sx={{ border: '1px solid #ffbc06', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#FFE08A' }}>Explore</Box>
-                                        </Box>
-                                    </Link>
+                                        </Link>
+                                    </Box>
                                 </Grid>
                             </Box >
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                    <Link to="/most-downloads">
                                         <Box sx={{ height: '86px', backgroundColor: '#AEDBFF' }}>
                                         </Box>
                                         <Box className='center'>
@@ -254,15 +267,15 @@ function WebBody() {
                                         <Box className='center' padding={'0px 28px'} textAlign={"center"}>
                                             "Explore our free solid icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."                                    </Box>
                                         <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                    <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #AEDBFF', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#AEDBFF' }}>Explore</Box>
+                                    </Link>
                                         </Box>
 
-                                    </Link>
                                 </Grid>
                             </Box>
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                    <Link to="/most-downloads">
                                         <Box sx={{ height: '86px', backgroundColor: '#CDBBFF' }}>
                                         </Box>
                                         <Box className='center'>
@@ -278,14 +291,14 @@ function WebBody() {
                                             "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
                                         </Box>
                                         <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                    <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #CDBBFF', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#CDBBFF' }}>Explore</Box>
-                                        </Box>
                                     </Link>
+                                        </Box>
                                 </Grid>
                             </Box>
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                    <Link to="/most-downloads">
                                         <Box sx={{ height: '86px', backgroundColor: '#94FFDE' }}>
                                         </Box>
                                         <Box className='center'>
@@ -301,9 +314,10 @@ function WebBody() {
                                             "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
                                         </Box>
                                         <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                    <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #94FFDE', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#94FFDE' }}>Explore</Box>
-                                        </Box>
                                     </Link>
+                                        </Box>
                                 </Grid>
                             </Box>
                         </Grid>
@@ -341,7 +355,11 @@ function WebBody() {
                                     Explore different categories of animated icons with unique creativity to unlock more productivity.
                                 </Box>
                                 <Box sx={{ paddingTop: '60px' }}>
-                                    <Box sx={{ borderRadius: '7px', display: 'inline-block', padding: '5px 20px', color: '#fff', backgroundColor: '#703DFF',cursor:'pointer' }}>More..!</Box>
+                                    <Box sx={{ borderRadius: '7px', display: 'inline-block', padding: '5px 20px', color: '#fff', backgroundColor: '#703DFF', cursor: 'pointer' }}>
+                                        <Link to="/animated-icons">
+                                            <Box color={'#fff'}>More..!</Box>
+                                        </Link>
+                                        </Box>
                                 </Box>
                             </Grid>
                         </Grid>
@@ -425,7 +443,7 @@ function WebBody() {
                                     }}>
 
                                 </Box>
-                                
+
                                 <Box sx={{ marginLeft: '40px' }}>
                                     <img className='vert-move' src={football} alt="" srcset="" />
                                 </Box>
@@ -477,10 +495,10 @@ function WebBody() {
                 <Box sx={{ marginTop: '70px' }}>
                     <Container maxWidth="xl" sx={{}}>
                         <Grid container xs={12}>
-
+                            <Box sx={{ flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', display: 'flex' }}>
                             <Grid xs={6} padding={'70px 70px 0px 90px'}>
                                 <Box sx={{}}>
-                                    <Box sx={{ fontSize: '54px', marginBottom: '17px', fontWeight: '500', display: 'inline-block', fontFamily: "Rammetto One, sans-serif", color: '#BBFCE9', WebkitTextStroke: '1px #272727' }}>Whats new ?</Box>
+                                    <Box sx={{ fontSize: '54px', marginBottom: '17px', fontWeight: '500', display: 'inline-block', fontFamily: "Rammetto One, sans-serif", color: '#BBFCE9', WebkitTextStroke: '1px #272727',userSelect:'none' }}>Whats new ?</Box>
                                 </Box>
                                 <Box>
                                     <Grid xs={12}>
@@ -496,6 +514,7 @@ function WebBody() {
                             <Grid xs={6} sx={{ paddingLeft: '100px', margin: '0px 0px -7px 0px' }}>
                                 <img src={boy} alt="" srcset="" />
                             </Grid>
+                            </Box>
                         </Grid>
                     </Container>
                 </Box>

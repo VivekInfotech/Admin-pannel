@@ -96,6 +96,14 @@
   min-height: 100vh !important; 
 
 }
+/*menuresponsive */
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+  color: #fff !important;
+}
 /* @media (max-width : "400px")
 {
   .form-lable{
@@ -144,8 +152,8 @@
 .blend0,
 .css-u0quxs-MuiStack-root,
 .css-v4cz06-MuiStack-root,
-.css-i4bv87-MuiSvgIcon-root {
-  color: #fff;
+.css-i4bv87-MuiSvgIcon-root ,.css-1qwzq7g-MuiListItemIcon-root{
+  color: #fff !important;
 }
 
 .home-hero {
@@ -264,7 +272,13 @@
 
   }
 } */
-
+a:-webkit-any-link {
+  color: #272727 !important;
+  font-weight: 500 !important;
+}
+.css-r6ewbb-MuiToolbar-root{
+  padding: 0px 24px ;
+}
 .css-12i7wg6-MuiPaper-root-MuiDrawer-paper,.css-18sg6k4-MuiPaper-root-MuiDrawer-paper {
   z-index: 98 !important;
 }
@@ -520,6 +534,7 @@
   transition: all 0.3s ease-out;
   text-decoration: none;
   padding: 20px 0px;
+
 }
 
 .card3:hover .circle {
@@ -669,7 +684,7 @@
 .code-editor {
   width: 100%;
   background-color: #1d1e22;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5); */
   border-radius: 8px;
   padding: 2px;
 }
@@ -916,4 +931,7 @@ img.vert-move {
     }
     100% { transform: translateY(-30px)rotateX(0deg)rotateY(10deg) rotate(-90deg) ;
     }
+}
+body[data-aos-duration='10000']{
+  transition-duration: 10000ms;
 }

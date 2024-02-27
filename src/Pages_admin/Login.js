@@ -24,9 +24,9 @@ const Login = () => {
 
         axios.post('http://localhost:3001/admin/login', value)
             .then((res) => {
-                console.log(res.data.data);
-                localStorage.setItem('token',res.data.token)
-                history.push('/')
+                console.log(res.data);
+                localStorage.setItem('token', res.data.token)
+                history.push('/admin')
             })
             .catch((error) => {
                 console.log(error.response.data.message);

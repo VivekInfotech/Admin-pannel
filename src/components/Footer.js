@@ -9,7 +9,6 @@ import line from './Line 9.png'
 
 const pages = [
     { name: 'Home', path: '/' },
-    { name: 'Authors', path: '/authors' },
     { name: 'Icons', path: '/icons' },
     { name: 'Interface icons', path: '/interface-icons' },
     { name: 'Animated icons', path: '/animated-icons' },
@@ -122,9 +121,7 @@ function Footer() {
                                 <FaTwitter />
                                 
                             </Box>
-                           <Box sx={{fontSize:'16px',color:'#000', backgroundColor:'#ACD6E2',borderRadius:'5px',display:'flex' ,justifyContent:'center', margin:'20px 0px 30px',padding:'10px'}}>
-                            Sell Your icons
-                            </Box>             
+                                      
                         
                         </Grid>
                         
