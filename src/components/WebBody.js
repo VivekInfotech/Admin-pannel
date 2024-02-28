@@ -8,7 +8,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-// import CountUp from 'react-countup';
+import CountUp from 'react-countup';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import { FaSearch, FaRegSmile } from "react-icons/fa";
@@ -164,10 +164,10 @@ function WebBody() {
                                     {card1}
                                 </Box>
                                 <Box fontWeight={600} fontSize={'30px'} className='center c-white'>
-                                    {/* <CountUp delay={2} end={200} />+ */}
+                                    <CountUp delay={2} end={200} />+
                                 </Box>
                                 <CardActions className='c-white' sx={{ display: 'flex', justifyContent: 'center', paddingBottom: '5px' }}>
-                                    <Button data-aos="fade-up" className='center c-white' size="large">Icons</Button>
+                                    <Button className='center c-white' size="large">Icons</Button>
                                 </CardActions>
                                 <Typography textAlign={'center'} className='c-white' fontSize={'15px'}>
                                     A comprehensive repository of freely available icons suitable for various projects.
@@ -180,7 +180,7 @@ function WebBody() {
                                     {card2}
                                 </Box>
                                 <Box fontWeight={600} fontSize={'30px'} className='center c-white'>
-                                    {/* <CountUp delay={2} end={200} />+ */}
+                                    <CountUp delay={2} end={200} />+
 
                                 </Box>
                                 <CardActions className='c-white' sx={{ display: 'flex', justifyContent: 'center', paddingBottom: '5px' }}>
@@ -197,7 +197,7 @@ function WebBody() {
                                     {card3}
                                 </Box>
                                 <Box fontWeight={600} fontSize={'30px'} className='center c-white'>
-                                    {/* <CountUp delay={2} end={200} />+ */}
+                                    <CountUp delay={2} end={200} />+
 
                                 </Box>
                                 <CardActions className='c-white' sx={{ display: 'flex', justifyContent: 'center', paddingBottom: '5px' }}>
@@ -366,6 +366,10 @@ function WebBody() {
                     </Container>
                 </Box>
 
+
+                {/* responsive */}
+                
+
                 <Box sx={{ marginTop: '50px', position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '52%', zIndex: 9 }}>
                         <img src={lineleft} alt="" srcset="" />
@@ -455,6 +459,10 @@ function WebBody() {
                         </Grid>
                     </Container>
                 </Box>
+
+
+
+             {/* responsive */}
 
                 <Box sx={{ marginTop: '25px', backgroundColor: '#FFE08A' }}>
                     <Container className='bgIcons' maxWidth="xl" sx={{}}>

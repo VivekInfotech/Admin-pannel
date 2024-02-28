@@ -19,14 +19,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogActions-root': {
         padding: theme.spacing(1),
     },
-    
 }));
 
-function Addcategory({ addCategory, setShowAddButton, showAddButton }) {
+function Addcategory({ refreshCategories, updateCategory }) {
     const [open, setOpen] = useState(false);
-    const [name, setName] = useState('');
-    const [tag, setTag] = useState('');
-    const [submitted, setSubmitted] = useState(false);
+    const [name, setName] = useState(updateCategory ? updateCategory.name : '');
+    const [tag, setTag] = useState(updateCategory ? updateCategory.tag : '');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,19 +34,35 @@ function Addcategory({ addCategory, setShowAddButton, showAddButton }) {
         setOpen(false);
     };
 
-    const handleSubmit = () => {
-        const value = { name, tag };
-
-        axios.post('http://localhost:3001/category/create', value)
-            .then((res) => {
-                console.log(res.data.data);
-                addCategory(); // Refresh categories after successful submission
-                setSubmitted(true);
-                handleClose();
-            })
-            .catch((error) => {
-                console.log(error.response.data.message);
-            });
+    const token = localStorage.getItem('token');
+    const handleSubmit = async () => {
+        if (!name || !tag) {
+            console.error("Name and tag are required");
+            return;
+        }
+        try {
+            const value = { name, tag };
+            let response;
+            if (updateCategory) {
+                response = await axios.put(`http://localhost:3001/category/update/${updateCategory._id}`, value, {
+                    headers: {
+                        admintoken: token
+                    }
+                });
+            } else {
+                response = await axios.post('http://localhost:3001/category/create', value, {
+                    headers: {
+                        admintoken: token
+                    }
+                });
+            }
+            console.log(response.data);
+            // refreshCategories();
+            handleClose();
+            window.location.reload();
+        } catch (error) {
+            console.error("Error:", error.response.data.message);
+        }
     };
 
     const handleKeyDown = (event) => {
@@ -59,31 +73,22 @@ function Addcategory({ addCategory, setShowAddButton, showAddButton }) {
 
     return (
         <React.Fragment>
-            {showAddButton && (
+            {updateCategory ? (
                 <Button variant="outlined" onClick={handleClickOpen}>
-                    ADD CATEGORY
+                    Update
+                </Button>
+            ) : (
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Add Icon
                 </Button>
             )}
-            <BootstrapDialog
-                onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
-                open={open && !submitted} // Prevent opening the dialog after submission
-            >
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    Add Icons
+                    {updateCategory ? 'Update category' : 'Add category'}
+                    <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500],}}>
+                        <CloseIcon />
+                    </IconButton>
                 </DialogTitle>
-                <IconButton
-                    aria-label="close"
-                    onClick={handleClose}
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 8,
-                        color: (theme) => theme.palette.grey[500],
-                    }}
-                >
-                    <CloseIcon />
-                </IconButton>
                 <DialogContent dividers>
                     <Typography gutterBottom>
                         <Box className="details">
@@ -112,12 +117,12 @@ function Addcategory({ addCategory, setShowAddButton, showAddButton }) {
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleSubmit}>
-                        Submit
+                        {updateCategory ? 'Update' : 'Submit'}
                     </Button>
                 </DialogActions>
-            </BootstrapDialog>
+            </Dialog>
         </React.Fragment>
     );
 }
 
-export default Addcategory;
+export default Addcategory;

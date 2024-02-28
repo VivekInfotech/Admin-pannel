@@ -113,7 +113,10 @@ useEffect(() => {
   setToken(token)
 }, [])
 
-
+const LogOut = () => {
+  localStorage.removeItem('token')
+  history.push('/login')
+  }
 
   
   // console.log("history", history)
@@ -236,7 +239,7 @@ useEffect(() => {
 
       </MenuItem>
 
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={LogOut}>
         <ListItemIcon>
           <Logout fontSize="small" />
         </ListItemIcon>
@@ -501,7 +504,7 @@ useEffect(() => {
 
           <Box sx={{ padding: "20px 0px 70px" }}>
             <List >
-              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/admin/dashboard") }}>
+              <ListItem sx={{ padding: "0px 20px" }} onClick={() => { history.push("/admin") }}>
                 <ListItemButton >
                   <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGrid />

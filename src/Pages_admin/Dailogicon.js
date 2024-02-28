@@ -5,17 +5,25 @@ import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 
-function Dailogicon({ refreshCategories }) {
-
+function Dailogicon({ refreshCategories, icon }) {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState(null);
     const [name, setName] = useState('');
+    const [tag, setTag] = useState('');
     const [file, setFile] = useState(null);
     const [suggestedCategories, setSuggestedCategories] = useState([]);
 
     useEffect(() => {
         fetchSuggestedCategories();
     }, []);
+
+    useEffect(() => {
+        if (icon) {
+            setCategory({ label: icon.category, id: icon.categoryId });
+            setName(icon.name);
+            setTag(icon.tag);
+        }
+    }, [icon]);
 
     const fetchSuggestedCategories = () => {
         axios.get('http://localhost:3001/category/find')
@@ -39,42 +47,61 @@ function Dailogicon({ refreshCategories }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!category || !name) {
-            console.log('Please select a category and enter a name');
+        if (!category || !name || !tag || !file) {
+            console.log('Please select a category, enter a name, enter a tag, and choose a file');
             return;
         }
 
         const formData = new FormData();
-        formData.append('category', category.label); // Pass category id instead of label
+        formData.append('category', category.label);
         formData.append('name', name);
+        formData.append('tag', tag);
         formData.append('icon', file);
 
         const token = localStorage.getItem('token');
 
         try {
-            const response = await axios.post('http://localhost:3001/icon/create', formData, {
-                headers: {
-                    admintoken: token
-                }
-            });
+            let response;
+            if (icon) {
+                response = await axios.put(`http://localhost:3001/icon/update/${icon._id}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        admintoken: token
+                    }
+                });
+            } else {
+                response = await axios.post('http://localhost:3001/icon/create', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        admintoken: token
+                    }
+                });
+            }
 
             console.log('Response:', response.data.data);
-            refreshCategories(); // Refresh categories after successful submission
+            refreshCategories();
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error:', error.response.data.message);
         }
 
         handleClose();
     };
 
+
     return (
         <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                ADD ICON
-            </Button>
+            {icon ? (
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Update
+                </Button>
+            ) : (
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Add Icon
+                </Button>
+            )}
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    Add Icons
+                    {icon ? 'Update Icon' : 'Add Icon'}
                     <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500], }}>
                         <CloseIcon />
                     </IconButton>
@@ -104,8 +131,13 @@ function Dailogicon({ refreshCategories }) {
                                 />
                             </Box>
                             <Box className="name">
-                                <label htmlFor="myfile">Tag :</label>
-                                <input type="text" />
+                                <label htmlFor="tag">Tag :</label>
+                                <input
+                                    type="text"
+                                    id="tag"
+                                    value={tag}
+                                    onChange={(event) => setTag(event.target.value)}
+                                />
                             </Box>
                             <Box className="name">
                                 <label htmlFor="icon">Icon:</label>
@@ -115,8 +147,8 @@ function Dailogicon({ refreshCategories }) {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleSubmit}>
-                        Submit
+                    <Button autoFocus onClick={handleSubmit }>
+                        {icon ? 'Update' : 'Submit'}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -124,4 +156,4 @@ function Dailogicon({ refreshCategories }) {
     );
 }
 
-export default Dailogicon;
+export default Dailogicon;

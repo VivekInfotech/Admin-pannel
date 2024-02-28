@@ -1,12 +1,27 @@
 // Category.js
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Breadcrumbs, Link } from '@mui/material';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Breadcrumbs, Link, Button } from '@mui/material';
 import Addcategory from './Addcategory';
 import axios from 'axios';
 
 function Category() {
     const [data, setData] = useState([]);
-    const [showAddButton, setShowAddButton] = useState(true);
+
+    const token = localStorage.getItem('token');
+
+    const updateCountIcons = () => {
+        axios.put('http://localhost:3001/count/update/65dedf5b5068fc31410f2da5',{},{
+            headers: {
+                admintoken: token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
 
     useEffect(() => {
         getCategory();
@@ -16,15 +31,20 @@ function Category() {
         axios.get('http://localhost:3001/category/find')
             .then((res) => {
                 setData(res.data.data);
-                setShowAddButton(true); // Ensure the add button is shown when categories are fetched
+                updateCountIcons()
             })
             .catch((error) => {
                 console.log(error.response.data.message);
             });
     };
 
+
     const remove = (id) => {
-        axios.delete(`http://localhost:3001/category/delete/${id}`)
+        axios.delete(`http://localhost:3001/category/delete/${id}`,{
+            headers: {
+                admintoken: token
+            }
+        })
             .then((res) => {
                 getCategory();
             })
@@ -38,15 +58,18 @@ function Category() {
             <Typography variant="h5">
                 Category
             </Typography>
+
             <Breadcrumbs aria-label="breadcrumb" marginBottom="30px">
                 <Link className="Breadcrumb" style={{ color: "#899bbd", fontSize: "14px", textDecoration: "none" }} to="/">
                     Home
                 </Link>
                 <Typography color="#273246" fontSize="14px">Category</Typography>
             </Breadcrumbs>
+
             <Box className="add">
-                <Addcategory addCategory={getCategory} setShowAddButton={setShowAddButton} showAddButton={showAddButton} />
+                <Box><Addcategory addCategory={getCategory} /></Box>
             </Box>
+
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="caption table">
                     <TableHead>
@@ -61,9 +84,9 @@ function Category() {
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
-                                <TableCell align="right" sx={{display:'flex'}}>
-                                    <Box sx={{marginLeft:'5px'}}><button onClick={() => remove(row._id)}>Delete</button></Box>
-                                    <Box><button onClick={() => remove(row._id)}>Update</button></Box>
+                                <TableCell align="right" sx={{ display: 'flex' }}>
+                                    <Addcategory refreshCategories={getCategory} updateCategory={row} />
+                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}>Delete</Button></Box>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -74,4 +97,4 @@ function Category() {
     );
 }
 
-export default Category;
+export default Category;

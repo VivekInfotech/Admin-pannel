@@ -42,6 +42,13 @@
   .css-i4bv87-MuiSvgIcon-root{
     color:#000 !important;
   }
+  .css-o4bg9w-MuiGrid-root{
+    
+    box-shadow: 0 15px 35px rgba(0,0,0,9) !important;
+  }
+  .css-mf5tvn-MuiButtonBase-root-MuiButton-root:hover{
+    background-color: #ffbc06 !important;
+  }
 .profileBTN:hover
 {
   background-color: transparent!important ;
@@ -78,13 +85,19 @@
   background-color: #304D30 !important;
   color: #fff !important;
 }
-
-.css-1xtiwv4,.css-4546ys ,.color  {
+.color{
+  background-color: #000 !important;
+  min-height: 100vh;
+}
+.css-1xtiwv4,.css-4546ys  {
   background-color: #B6C4B6 !important;
   min-height: 100vh;
 }
-.css-eaq2tq-MuiPaper-root,.css-zrntp1-MuiPaper-root-MuiCard-root,.css-1t1j96h-MuiPaper-root-MuiDialog-paper,.css-quj9j6-MuiTable-root,.css-qrqyu6-MuiPaper-root{
+.css-eaq2tq-MuiPaper-root,.css-1t1j96h-MuiPaper-root-MuiDialog-paper,.css-quj9j6-MuiTable-root,.css-qrqyu6-MuiPaper-root{
   background-color: #f3f6efcc !important;
+}
+.css-zrntp1-MuiPaper-root-MuiCard-root{
+  background-color: #222222 !important;
 }
 .css-14b6v47-MuiTypography-root{
   color: white !important;
@@ -148,7 +161,10 @@
   display: flex;
   justify-content: space-around;
 }
-
+.css-78tiky-MuiButtonBase-root-MuiButton-root:hover{
+  border-bottom: 1px solid #ffbc06 !important;
+  background-color: #272727 !important;
+}
 .blend0,
 .css-u0quxs-MuiStack-root,
 .css-v4cz06-MuiStack-root,
@@ -935,3 +951,54 @@ img.vert-move {
 body[data-aos-duration='10000']{
   transition-duration: 10000ms;
 }
+
+
+
+section 
+{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+section::before 
+{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#000,#ffbc06,#000);
+  animation: animate 5s linear infinite;
+}
+@keyframes animate 
+{
+  0%
+  {
+    transform: translateY(-100%);
+  }
+  100%
+  {
+    transform: translateY(100%);
+  }
+}
+section span 
+{
+  position: relative;
+  display: block;
+  width: calc(6.25vw - 2px);
+  height: calc(6.25vw - 2px);
+  background: #181818;
+  z-index: 2;
+  transition: 1.5s;
+}
+section span:hover 
+{
+  background: #ffbc06;
+  transition: 0s;
+}
+

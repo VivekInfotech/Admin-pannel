@@ -1,96 +1,139 @@
+// Interface.js
 import * as React from 'react';
-import { Box, Typography, Grid, styled, Paper, Accordion, AccordionActions, AccordionSummary, AccordionDetails, Button, Breadcrumbs } from '@mui/material';
+import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Breadcrumbs, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { Link } from "react-router-dom";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Dailodbox from './Dailodbox';
-import Dialog from '@mui/material/Dialog';
+import Dailodbox from './Dailodbox'; // Assuming you have a dialog box component for updating icons
 import axios from 'axios';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-//api change
-const remove = (id) => {
-  axios.delete(`http://localhost:3001/category/delete/${id}`)
-      .then((res) => {
-          console.log(res.data.data);
-          // getCategory();
-      })
-      .catch((error) => {
-          console.log(error.response.data.message);
-      });
+
+const Interface = () => {
+    const [rows, setRows] = React.useState([]);
+
+    const token = localStorage.getItem('token');
+
+    const updateCountIcons = () => {
+        axios.put('http://localhost:3001/count/update/65dedf5b5068fc31410f2da5', {}, {
+            headers: {
+                admintoken: token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+
+    React.useEffect(() => {
+        fetchIcons();
+    }, []);
+
+    const fetchIcons = () => {
+        axios.get('http://localhost:3001/interface/find')
+            .then((res) => {
+                console.log(res.data.data);
+                setRows(res.data.data);
+                updateCountIcons()
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+
+    const removeIcon = (id) => {
+        axios.delete(`http://localhost:3001/interface/delete/${id}`, {
+            headers: {
+                admintoken: token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.data);
+                fetchIcons(); // Refresh icons after removing
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+
+    return (
+        <Box>
+            <Typography variant="h5">
+                Interface Icon
+            </Typography>
+            <Breadcrumbs aria-label="breadcrumb" marginBottom="30px">
+                <Link className="Breadcrumb" style={{ color: "#899bbd", fontSize: "14px", textDecoration: "none" }} to="/">
+                    Home
+                </Link>
+                <Typography color="#899bbd" fontSize="14px">Icons</Typography>
+                <Typography color="#273246" fontSize="14px">Interface Icon</Typography>
+            </Breadcrumbs>
+
+            <Box className="add">
+                <Dailodbox refreshCategories={fetchIcons} targetFile="InterfaceIcon" /> {/* Pass targetFile prop */}
+            </Box>
+            <div>
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                    // aria-controls={`panel-${index}-content`}
+                    // id={`panel-${index}-header`}
+                    >
+                        <Typography>Demo</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TableContainer component={Box}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Icon</TableCell>
+                                        <TableCell align="right">Actions</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>Demo</TableCell>
+                                        <TableCell align="right">
+                                            <Button>Delete</Button>
+                                            <Button>Delete</Button>
+                                            {/* <Dailogicon refreshCategories={getCategories} icon={icon} /> */}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </AccordionDetails>
+                </Accordion>
+            </div>
+
+            {/* <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="caption table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">Image</TableCell>
+                            <TableCell align="right">Tags</TableCell>
+                            <TableCell align="right">Change</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row, index) => (
+                            <TableRow key={index}>
+                                <TableCell component="th" scope="row">{row.name}</TableCell>
+                                <TableCell align="right">{row.image}</TableCell>
+                                <TableCell align="right">{row.tag}</TableCell>
+                                <TableCell align="right" sx={{ display: 'flex' }}>
+                                    <Dailodbox refreshCategories={fetchIcons} icon={row} targetFile="InterfaceIcon" />
+                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => removeIcon(row._id)}>Delete</Button></Box>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer> */}
+        </Box>
+    );
 };
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  color: theme.palette.text.secondary,
-}));
-function createData(name, image, tags) {
-  return { name, image, tags };
-}
-
-const rows = [
-  createData('car', 'https://mui.com/material-ui/react-table/#data-table', 'car'),
-  createData('Home', 'https://mui.com/material-ui/react-table/#data-table', 'home'),
-  createData('Nation', 'https://mui.com/material-ui/react-table/#data-table', 'nation'),
-];
-
-
-
-function Interface() {
-  return (
-    <Box>
-      <Typography variant="h5"  >
-        Interface Icon
-      </Typography>
-      <Breadcrumbs aria-label="breadcrumb" marginBottom="30px">
-        <Link className="Breadcrumb" style={{ color: "#899bbd", fontSize: "14px", textDecoration: "none" }} to="/">
-          Home
-        </Link>
-        <Typography color="#899bbd" fontSize="14px">Icons</Typography>
-        <Typography color="#273246" fontSize="14px">Interface Icon</Typography>
-      </Breadcrumbs>
-
-
-      <Box className="add">
-        <Box><Dailodbox /></Box>
-      </Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="caption table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Image</TableCell>
-              <TableCell align="right">Tags</TableCell>
-              <TableCell align="right">Change</TableCell>
-
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.image}</TableCell>
-                <TableCell align="right">{row.tags}</TableCell>
-                <TableCell align="right" sx={{ display: 'flex' }}>
-                  <Box sx={{ marginLeft: '5px' }}><button onClick={() => remove(row._id)}>Delete</button></Box>
-                  <Box><button onClick={() => remove(row._id)}>Update</button></Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-
-    </Box>
-  )
-}
-
-export default Interface
+export default Interface;

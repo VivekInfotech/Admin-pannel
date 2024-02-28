@@ -4,10 +4,27 @@ import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, TableCo
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import Dailogicon from './Dailogicon';
+import Dailodbox from './Dailodbox';
 
 const Icon = () => {
     const [categories, setCategories] = useState([]);
     const [iconData, setIconData] = useState({});
+
+    const token = localStorage.getItem('token');
+    
+    const updateCountIcons = () => {
+        axios.put('http://localhost:3001/count/update/65dedf5b5068fc31410f2da5',{},{
+            headers: {
+                admintoken: token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
 
     useEffect(() => {
         getCategories();
@@ -19,6 +36,7 @@ const Icon = () => {
                 console.log(res.data.data);
                 setCategories(res.data.data);
                 getCategoryIcons(res.data.data);
+                updateCountIcons()
             })
             .catch((error) => {
                 console.log(error.response.data.message);
@@ -26,13 +44,12 @@ const Icon = () => {
     };
 
     const removeIcon = (id) => {
-        const token = localStorage.getItem('token');
         axios.delete(`http://localhost:3001/icon/delete/${id}`, {
             headers: { admintoken: token }
         })
             .then((res) => {
                 console.log(res.data.data);
-                getCategories(); // Refresh categories after removing icon
+                getCategories();
             })
             .catch((error) => {
                 console.log(error.response.data.message);
@@ -67,7 +84,7 @@ const Icon = () => {
             </Typography>
 
             <Box className="add">
-                <Box><Dailogicon refreshCategories={getCategories} /></Box>
+                <Box><Dailodbox refreshCategories={getCategories} /></Box>
             </Box>
 
             <div>
@@ -95,6 +112,7 @@ const Icon = () => {
                                                 <TableCell>{icon.name}</TableCell>
                                                 <TableCell align="right">
                                                     <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                    <Dailogicon refreshCategories={getCategories} icon={icon} />
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -109,4 +127,4 @@ const Icon = () => {
     );
 };
 
-export default Icon;
+export default Icon;
