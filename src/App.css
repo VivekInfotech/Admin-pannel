@@ -553,7 +553,7 @@ a:-webkit-any-link {
   transition: opacity 0.3s ease-out;
 }
 
-.circle svg {
+.circle img {
   z-index: 10000;
 }
 

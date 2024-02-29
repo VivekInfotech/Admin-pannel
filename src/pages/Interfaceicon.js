@@ -6,8 +6,11 @@ import { FaAccusoft, FaAmbulance } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import FullScreenDialog from './FullScreenDialog';
 import camera from './brands/camerainterface.png'
+import { useEffect } from 'react';
+import axios from 'axios';
 function Interfaceicon() {
   const [isDialogOpen, setDialogOpen] = useState(false);
+  const [data, setData] = useState([])
 
   const handleOpenDialog = () => {
     setDialogOpen(true);
@@ -17,12 +20,28 @@ function Interfaceicon() {
     setDialogOpen(false);
   };
 
+  useEffect(() => {
+    getInterfaceIcon()
+  }, [])
+
+  const getInterfaceIcon = () => {
+    axios.get('http://localhost:3001/interface/find')
+      .then((res) => {
+        let regularIcon = res.data.data.map(icon => ({ regular: icon.regular }))
+        console.log(regularIcon);
+        setData(regularIcon)
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      })
+  }
+
   return (
     <Box>
       <Grid container paddingTop={'46px'}>
         <Grid xs={12} className="backgroundInterface">
           <Box sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', alignItems: 'center', display: 'flex' }}>
-            <Grid md={12} sx={{ display: 'flex', alignItems: 'center', padding: '20px' ,justifyContent:'center' }}>
+            <Grid md={12} sx={{ display: 'flex', alignItems: 'center', padding: '20px', justifyContent: 'center' }}>
 
               <img src={camera} width={'60%'} alt="" srcset="" />
 
@@ -36,11 +55,11 @@ function Interfaceicon() {
                 Access a vast collection of over 24,000 SVG and web font-optimized vector-based icons designed for web, iOS, and Android applications.
               </Box>
               <Link to="/most-downloads">
-              <Box sx={{ padding: { xs: '9px 0px 50px 0px', md: '30px 0px 50px 20px' } }}>
-                <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block',cursor:'pointer',color:'#272727' }}>
-                  See All Icon
+                <Box sx={{ padding: { xs: '9px 0px 50px 0px', md: '30px 0px 50px 20px' } }}>
+                  <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block', cursor: 'pointer', color: '#272727' }}>
+                    See All Icon
+                  </Box>
                 </Box>
-              </Box>
               </Link>
 
             </Grid>
@@ -51,7 +70,7 @@ function Interfaceicon() {
 
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Container maxWidth="lg">
-          <Box sx={{ padding: {xs:'22px 20px 20px 20px',md:'50px 20px 50px 20px'} }}>
+          <Box sx={{ padding: { xs: '22px 20px 20px 20px', md: '50px 20px 50px 20px' } }}>
             <Box sx={{ fontSize: { xs: '23px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
               latest in-demand
             </Box>
@@ -61,187 +80,23 @@ function Interfaceicon() {
           </Box>
           <Grid xs={12} container >
 
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box onClick={handleOpenDialog}>
-                  <Box class="overlay"></Box>
-                  <Box class="circle" >
-                    <FaAccusoft fontSize={'60px'} />
-                  </Box>
-                </Box></Box>
+            {
+              data.map((el, index) => {
+                return <Grid xs={6} sm={4} md={2}>
+                  <Box class="card3 wallet">
+                    <Box onClick={handleOpenDialog}>
+                      <Box class="overlay"></Box>
+                      <Box class="circle">
+                        <img src={el.regular} alt="${altText}" width="50px" height="auto" />
+                      </Box>
+                    </Box></Box>
 
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-              <Box onClick={handleOpenDialog}>
+                </Grid>
+              })
+            }
 
-                <Box class="overlay"></Box>
-                <Box class="circle">
-                  <FaAmbulance fontSize={'60px'} />
-                </Box>
-              </Box>
-              </Box>
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
 
-                </Box>
 
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
-            <Grid xs={6} sm={4} md={2}>
-              <Box class="card3 wallet">
-                <Box class="overlay"></Box>
-                <Box class="circle">
-
-                </Box>
-
-              </Box>
-
-            </Grid>
             <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
 
             <Grid xs={12}>
@@ -255,7 +110,7 @@ function Interfaceicon() {
         </Container>
       </Box>
 
-      <Box sx={{ padding: {xs:'20px 20px',md:'50px 20px'}}}>
+      <Box sx={{ padding: { xs: '20px 20px', md: '50px 20px' } }}>
         <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
           Top Icon
         </Box>
