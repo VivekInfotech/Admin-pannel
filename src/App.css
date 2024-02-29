@@ -244,50 +244,6 @@
 .css-1e7e7bc-MuiListItemIcon-root {
   color: #fff !important;
 }
-
-/* .snowfall { 
-  background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
-  animation: snow 20s cubic-bezier(1, 0.99, 0, 0) 2s infinite;
-} */
-
-/* .snowfall2{
-  background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
-  animation: snow2 10s linear alternate infinite ;
-} */
-/* 
-@keyframes snow {
-  0% {
-      top: -700px;
-      background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
-      
-  }
-  
-  50% {
-      
-      background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
-      
-  }
-  
-  100% {
-      top: 700px;
-      
-      background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
-      
-  }
-} */
-
-
-
-/* 
-@keyframes snow2 {
-  from{
-      transform: translateX(0%);
-  }
-  to{
-      transform: translateY(100%);
-
-  }
-} */
 a:-webkit-any-link {
   color: #272727 !important;
   font-weight: 500 !important;
@@ -952,8 +908,6 @@ body[data-aos-duration='10000']{
   transition-duration: 10000ms;
 }
 
-
-
 section 
 {
   position: absolute;
@@ -1002,3 +956,28 @@ section span:hover
   transition: 0s;
 }
 
+section1 
+{
+  /* background-color: #888888; */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+section1 span{
+  width: calc(6.25vw - 2px);
+  height: calc(6.25vw - 2px);
+  background: #ffffff;
+  z-index: 2;
+  transition: 1.5s;
+}
+section1 span:hover 
+{
+  background: #F9F9FB;
+  transition: 0s;
+}

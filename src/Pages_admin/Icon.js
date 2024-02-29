@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
-import Dailogicon from './Dailogicon';
 import Dailodbox from './Dailodbox';
 
 const Icon = () => {
@@ -11,15 +10,14 @@ const Icon = () => {
     const [iconData, setIconData] = useState({});
 
     const token = localStorage.getItem('token');
-    
+
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65dedf5b5068fc31410f2da5',{},{
+        axios.put('http://localhost:3001/count/update/65dedf5b5068fc31410f2da5', {}, {
             headers: {
                 admintoken: token
             }
         })
             .then((res) => {
-                console.log(res.data.data);
             })
             .catch((error) => {
                 console.log(error.response.data.message);
@@ -27,15 +25,25 @@ const Icon = () => {
     };
 
     useEffect(() => {
+        fetchIcons()
         getCategories();
     }, []);
 
     const getCategories = () => {
         axios.get('http://localhost:3001/category/find')
             .then((res) => {
-                console.log(res.data.data);
                 setCategories(res.data.data);
                 getCategoryIcons(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+
+    const fetchIcons = () => {
+        axios.get('http://localhost:3001/icon/find')
+            .then((res) => {
+                setIconData(res.data.data);
                 updateCountIcons()
             })
             .catch((error) => {
@@ -74,6 +82,7 @@ const Icon = () => {
                     return { ...acc, ...curr };
                 }, {});
                 setIconData(iconDataObject);
+                console.log(iconDataObject);
             });
     };
 
@@ -84,7 +93,7 @@ const Icon = () => {
             </Typography>
 
             <Box className="add">
-                <Box><Dailodbox refreshCategories={getCategories} /></Box>
+                <Box><Dailodbox fetchIcons={getCategories} targetFile="icon" /></Box>
             </Box>
 
             <div>
@@ -112,7 +121,7 @@ const Icon = () => {
                                                 <TableCell>{icon.name}</TableCell>
                                                 <TableCell align="right">
                                                     <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
-                                                    <Dailogicon refreshCategories={getCategories} icon={icon} />
+                                                    <Dailodbox fetchIcons={getCategories} icon={icon} targetFile="icon" />
                                                 </TableCell>
                                             </TableRow>
                                         ))}

@@ -85,7 +85,7 @@ function Category() {
                                     {row.name}
                                 </TableCell>
                                 <TableCell align="right" sx={{ display: 'flex' }}>
-                                    <Addcategory refreshCategories={getCategory} updateCategory={row} />
+                                    <Addcategory addCategory={getCategory} updateCategory={row} />
                                     <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}>Delete</Button></Box>
                                 </TableCell>
                             </TableRow>

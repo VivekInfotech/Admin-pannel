@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// Dailodbox.js
+import * as React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -8,12 +9,9 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import { TextField } from '@mui/material';
-
-import { Box } from '@mui/material';
+import { Autocomplete, Box, TextField } from '@mui/material';
 import axios from 'axios';
-import Autocomplete from '@mui/material/Autocomplete';
-
+import { useState, useEffect } from 'react'; // Import useEffect
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -24,19 +22,18 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-function Dailodbox({ refreshCategories, icon, targetFile }) {
-    const [open, setOpen] = React.useState(false);
-    const [name, setName] = React.useState('');
+function Dailodbox({ fetchIcons, icon, targetFile }) {
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState('');
+    const [tag, setTag] = useState('');
     const [category, setCategory] = useState(null);
+    const [regularFile, setRegularFile] = useState(null);
+    const [boldFile, setBoldFile] = useState(null);
+    const [thinFile, setThinFile] = useState(null);
+    const [solidFile, setSolidFile] = useState(null);
+    const [straightFile, setStraightFile] = useState(null);
+    const [roundedFile, setRoundedFile] = useState(null);
     const [suggestedCategories, setSuggestedCategories] = useState([]);
-
-    const [tag, setTag] = React.useState('');
-    const [regularFile, setRegularFile] = React.useState(null);
-    const [boldFile, setBoldFile] = React.useState(null);
-    const [thinFile, setThinFile] = React.useState(null);
-    const [solidFile, setSolidFile] = React.useState(null);
-    const [straightFile, setStraightFile] = React.useState(null);
-    const [roundedFile, setRoundedFile] = React.useState(null);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -46,32 +43,61 @@ function Dailodbox({ refreshCategories, icon, targetFile }) {
         setOpen(false);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
+        fetchSuggestedCategories();
+    }, []);
+
+    useEffect(() => { // Set category when icon prop changes
         if (icon) {
             setName(icon.name);
             setTag(icon.tag);
+            setCategory({ label: icon.category, id: icon.categoryId });
         }
     }, [icon]);
 
+    const fetchSuggestedCategories = () => {
+        axios.get('http://localhost:3001/category/find')
+            .then((res) => {
+                const categories = res.data.data.map(category => ({ label: category.name, id: category._id }));
+                setSuggestedCategories(categories);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            });
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
-
+    
+        // Form data setup...
+    
         const formData = new FormData();
         formData.append('name', name);
         formData.append('tag', tag);
+        formData.append('category', category.label);
         formData.append('regular', regularFile);
         formData.append('bold', boldFile);
         formData.append('thin', thinFile);
         formData.append('solid', solidFile);
         formData.append('straight', straightFile);
         formData.append('rounded', roundedFile);
-
-        const token = localStorage.getItem('token');
-        const endpoint = targetFile === 'Animatedicon' ? 'animated' : 'interface';
+    
+        let endpoint;
+    
+        if (targetFile === 'Animatedicon') {
+            endpoint = 'animated';
+        } else if (targetFile === 'Interface') {
+            endpoint = 'interface';
+        } else {
+            endpoint = 'icon';
+        }
         
+        const token = localStorage.getItem('token');
+    
         try {
             let response;
             if (icon) {
+                console.log("endpoint :- ", endpoint);
                 response = await axios.put(`http://localhost:3001/${endpoint}/update/${icon._id}`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -79,13 +105,14 @@ function Dailodbox({ refreshCategories, icon, targetFile }) {
                     }
                 });
             } else {
+                console.log("endpoint :- ", endpoint);
                 response = await axios.post(`http://localhost:3001/${endpoint}/create`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         admintoken: token
                     }
                 });
-                handleClose(); // Close the dialog
+                console.log("Response :- ",response.data.data);
                 // Reset form state variables
                 setName('');
                 setTag('');
@@ -95,16 +122,16 @@ function Dailodbox({ refreshCategories, icon, targetFile }) {
                 setSolidFile(null);
                 setStraightFile(null);
                 setRoundedFile(null);
+    
+                // Immediately update state with new data
+                fetchIcons();
             }
-
-            console.log('Response:', response.data.data);
-            refreshCategories()
+            handleClose(); // Close the dialog after successful submission
         } catch (error) {
             console.error('Error:', error.response.data.message);
         }
-
-        handleClose();
     };
+    
 
 
     return (
@@ -137,7 +164,7 @@ function Dailodbox({ refreshCategories, icon, targetFile }) {
                 <DialogContent dividers>
                     <Typography gutterBottom>
                         <Box className="details">
-                        <Box className="selector">
+                            <Box className="selector">
                                 <Autocomplete
                                     disablePortal
                                     id="combo-box-demo"

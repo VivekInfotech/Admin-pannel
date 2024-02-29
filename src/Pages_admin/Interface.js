@@ -1,15 +1,13 @@
 // Interface.js
-import * as React from 'react';
-import { Box, Typography, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Breadcrumbs, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import { Link } from "react-router-dom";
-import Dailodbox from './Dailodbox'; // Assuming you have a dialog box component for updating icons
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, Button, Link, Breadcrumbs, Accordion, AccordionSummary, AccordionDetails, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import axios from 'axios';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import Dailodbox from './Dailodbox';
 
 const Interface = () => {
-    const [rows, setRows] = React.useState([]);
-
+    const [data, setData] = useState({});
+    const [categories, setCategories] = useState([]);
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
@@ -19,22 +17,32 @@ const Interface = () => {
             }
         })
             .then((res) => {
-                console.log(res.data.data);
             })
             .catch((error) => {
                 console.log(error.response.data.message);
             });
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetchIcons();
+        getCategories();
     }, []);
+
+    const getCategories = () => {
+        axios.get('http://localhost:3001/category/find')
+            .then((res) => {
+                setCategories(res.data.data);
+                getCategoryIcons(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
 
     const fetchIcons = () => {
         axios.get('http://localhost:3001/interface/find')
             .then((res) => {
-                console.log(res.data.data);
-                setRows(res.data.data);
+                setData(res.data.data);
                 updateCountIcons()
             })
             .catch((error) => {
@@ -50,12 +58,36 @@ const Interface = () => {
         })
             .then((res) => {
                 console.log(res.data.data);
-                fetchIcons(); // Refresh icons after removing
+                getCategories();
             })
             .catch((error) => {
                 console.log(error.response.data.message);
             });
     };
+
+    const getCategoryIcons = (categories) => {
+        const iconPromises = categories.map(category => {
+            return axios.get(`http://localhost:3001/interface/findOne/${category.name}`)
+                .then((res) => {
+                    return { [category.name]: res.data.data };
+                })
+                .catch((error) => {
+                    console.log(error.response.data);
+                    return { [category.name]: [] };
+                });
+        });
+
+        Promise.all(iconPromises)
+            .then(iconDataArray => {
+                const iconDataObject = iconDataArray.reduce((acc, curr) => {
+                    return { ...acc, ...curr };
+                }, {});
+                setData(iconDataObject);
+                console.log(iconDataObject);
+            });
+    };
+
+    
 
     return (
         <Box>
@@ -71,69 +103,47 @@ const Interface = () => {
             </Breadcrumbs>
 
             <Box className="add">
-                <Dailodbox refreshCategories={fetchIcons} targetFile="InterfaceIcon" /> {/* Pass targetFile prop */}
+                <Dailodbox fetchIcons={getCategories} targetFile="Interface" />
             </Box>
-            <div>
-                <Accordion>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                    // aria-controls={`panel-${index}-content`}
-                    // id={`panel-${index}-header`}
-                    >
-                        <Typography>Demo</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <TableContainer component={Box}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Icon</TableCell>
-                                        <TableCell align="right">Actions</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell>Demo</TableCell>
-                                        <TableCell align="right">
-                                            <Button>Delete</Button>
-                                            <Button>Delete</Button>
-                                            {/* <Dailogicon refreshCategories={getCategories} icon={icon} /> */}
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </AccordionDetails>
-                </Accordion>
-            </div>
 
-            {/* <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="caption table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Image</TableCell>
-                            <TableCell align="right">Tags</TableCell>
-                            <TableCell align="right">Change</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row, index) => (
-                            <TableRow key={index}>
-                                <TableCell component="th" scope="row">{row.name}</TableCell>
-                                <TableCell align="right">{row.image}</TableCell>
-                                <TableCell align="right">{row.tag}</TableCell>
-                                <TableCell align="right" sx={{ display: 'flex' }}>
-                                    <Dailodbox refreshCategories={fetchIcons} icon={row} targetFile="InterfaceIcon" />
-                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => removeIcon(row._id)}>Delete</Button></Box>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer> */}
+            <div>
+                {categories && categories.map((category, index) => (
+                    <Accordion key={index}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls={`panel-${index}-content`}
+                            id={`panel-${index}-header`}
+                        >
+                            <Typography>{category.name}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <TableContainer component={Box}>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Icon</TableCell>
+                                            <TableCell align="right">Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {data[category.name] && data[category.name].map((icon, iconIndex) => (
+                                            <TableRow key={iconIndex}>
+                                                <TableCell>{icon.name}</TableCell>
+                                                <TableCell align="right">
+                                                    <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                    <Dailodbox fetchIcons={getCategories} icon={icon} targetFile="Interface" />
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </AccordionDetails>
+                    </Accordion>
+                ))}
+            </div>
         </Box>
     );
 };
 
-export default Interface;
+export default Interface;

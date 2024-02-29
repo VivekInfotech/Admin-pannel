@@ -5,6 +5,7 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import React from 'react'
+import Contact from '../pages/Contact';
 import line from './Line 9.png'
 
 const pages = [
@@ -19,19 +20,13 @@ const Help = [
     { name: 'FAQs', path: '' },
     { name: 'Icon styles', path: '' },
     { name: 'IconGrid collections', path: '' },
-    { name: 'Follow', path: '' },
 ];
-const Tools = [
-    { name: 'API', path: '' },
-    { name: 'Google Workspace', path: '' }
-];
+
 const Company = [
     { name: 'About', path: '' },
-    { name: 'Contact us', path: '' },
-    { name: 'License', path: '' },
+    { name: 'Contact us', path: '/contact-us' },
+    { name: 'Follow', path: '' },
 
-    { name: 'Pricing', path: '' },
-    { name: 'Add icons', path: '' },
 ];
 function Footer() {
     const history = useHistory();
@@ -62,22 +57,7 @@ function Footer() {
                                     ))}
                                 </Box>
                             </Grid>
-                            <Grid xs={2}>
-                                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-                                    Tools
-                                </Box>
-                                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                                    {Tools.map((page, i) => (
-                                        <Button
-                                            key={i}
-                                            onClick={() => handlePageClick(page.path)}
-                                            sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-                                        >
-                                            {page.name}
-                                        </Button>
-                                    ))}
-                                </Box>
-                            </Grid>
+                            
                             <Grid xs={2}>
                                 <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
                                     Help

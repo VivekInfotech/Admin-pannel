@@ -11,7 +11,9 @@ import InputBase from '@mui/material/InputBase';
 import CountUp from 'react-countup';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import { FaSearch, FaRegSmile } from "react-icons/fa";
+import { FaSearch, FaRegSmile, FaSmile } from "react-icons/fa";
+import { CiFaceSmile } from "react-icons/ci";
+import { BsEmojiSmile } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { Link, useHistory } from 'react-router-dom';
 import iconlogo from './img/Vector.png'
@@ -257,7 +259,7 @@ function WebBody() {
                                         </Box>
                                         <Box className='center'>
                                             <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#74C0FC', alignItems: 'center', borderRadius: '50%' }}>
-                                                <FaRegSmile fontSize={'35px'} />
+                                                <FaSmile fontSize={'35px'} />
                                             </Box>
 
                                         </Box>
@@ -280,10 +282,10 @@ function WebBody() {
                                         </Box>
                                         <Box className='center'>
                                             <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#B197FC', alignItems: 'center', borderRadius: '50%' }}>
-                                                <FaRegSmile fontSize={'35px'} />
+                                                <CiFaceSmile  fontSize={'35px'} />
                                             </Box>
 
-                                        </Box>
+                                        </Box>  
                                         <Box className='center' fontSize={'18px'} padding={'20px'}>
                                             Thin
                                         </Box>
@@ -303,8 +305,8 @@ function WebBody() {
                                         </Box>
                                         <Box className='center'>
                                             <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#63E6BE', alignItems: 'center', borderRadius: '50%' }}>
-                                                <FaRegSmile fontSize={'35px'} />
-                                            </Box>
+                                                <BsEmojiSmile fontSize={'35px'} />  
+                                            </Box>  
 
                                         </Box>
                                         <Box className='center' fontSize={'18px'} padding={'20px'}>

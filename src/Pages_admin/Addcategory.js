@@ -21,7 +21,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-function Addcategory({ refreshCategories, updateCategory }) {
+function Addcategory({ addCategory, updateCategory }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState(updateCategory ? updateCategory.name : '');
     const [tag, setTag] = useState(updateCategory ? updateCategory.tag : '');
@@ -58,8 +58,8 @@ function Addcategory({ refreshCategories, updateCategory }) {
             }
             console.log(response.data);
             // refreshCategories();
+            addCategory()
             handleClose();
-            window.location.reload();
         } catch (error) {
             console.error("Error:", error.response.data.message);
         }

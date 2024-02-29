@@ -26,6 +26,7 @@ import {
   Route,
 } from "react-router-dom";
 import UserLayout from './components/UserLayout';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -78,6 +79,13 @@ function App() {
             <UserLayout>
 
               <Topanimatedicon />
+            </UserLayout>
+
+          </Route>
+          <Route path="/contact-us">
+            <UserLayout>
+
+              <Contact />
             </UserLayout>
 
           </Route>

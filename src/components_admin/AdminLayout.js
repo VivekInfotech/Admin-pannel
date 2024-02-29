@@ -312,7 +312,7 @@ const LogOut = () => {
     {
       page: "Login",
       icon: <BsBoxArrowInRight />,
-      path: "/admin/login"
+      path: "/login"
     },
     {
       page: "Error 404",
