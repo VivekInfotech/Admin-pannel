@@ -128,7 +128,7 @@ function Dailodbox({ fetchIcons, icon, targetFile }) {
             }
             handleClose(); // Close the dialog after successful submission
         } catch (error) {
-            console.error('Error:', error.response.data.message);
+            console.error('Error:', error.response.data);
         }
     };
     
