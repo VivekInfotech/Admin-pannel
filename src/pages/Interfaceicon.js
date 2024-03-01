@@ -27,7 +27,7 @@ function Interfaceicon() {
   const getInterfaceIcon = () => {
     axios.get('http://localhost:3001/interface/find')
       .then((res) => {
-        let regularIcon = res.data.data.map(icon => ({ regular: icon.regular }))
+        let regularIcon = res.data.data.map(icon => (icon))
         console.log(regularIcon);
         setData(regularIcon)
       })
@@ -87,7 +87,7 @@ function Interfaceicon() {
                     <Box onClick={handleOpenDialog}>
                       <Box class="overlay"></Box>
                       <Box class="circle">
-                        <img src={el.regular} alt="${altText}" width="50px" height="auto" />
+                        <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
                       </Box>
                     </Box></Box>
 
