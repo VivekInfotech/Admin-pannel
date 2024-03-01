@@ -12,7 +12,7 @@ const Icon = () => {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65dedf5b5068fc31410f2da5', {}, {
+        axios.put('http://localhost:3001/count/update/65e1491106a710e572400641', {}, {
             headers: {
                 admintoken: token
             }

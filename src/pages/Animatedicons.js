@@ -15,6 +15,8 @@ function Animatedicons() {
   const handleCloseDialog = () => {
     setDialogOpen(false);
   };
+
+  
   return (
     <Box>
       <Grid container paddingTop={'46px'}>

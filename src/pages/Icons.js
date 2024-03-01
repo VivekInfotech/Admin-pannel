@@ -59,77 +59,77 @@ function Icons() {
         <Grid container sx={{ paddingTop: '50px' }}>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={business} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={food} heading={'Food'} description="Food icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Food'} description="Food icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={hospital} heading={'Hospital'} description="Hospital icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Hospital'} description="Hospital icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={animal} heading={'Animal'} description="Animal icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Animal'} description="Animal icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={language} heading={'Language'} description="Language icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Language'} description="Language icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={alert} heading={'Alert'} description="Alert icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Alert'} description="Alert icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={indian} heading={'Indian Brands'} description="Indian icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Indian Brands'} description="Indian icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={Education} heading={'Education'} description="Education icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Education'} description="Education icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowblue" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
           <Grid md={3} sm={6} className='setcontant'>
             <Link to="/pack">
-              <Cardicon name="boxshadowyellow" bannerimg={banner} heading={'Business'} description="Business icon set more than 200+" />
+              <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
 
