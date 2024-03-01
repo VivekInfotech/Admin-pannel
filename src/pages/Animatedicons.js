@@ -1,37 +1,52 @@
 import { Box, Container, Grid } from '@mui/material'
-import {React , useState} from 'react'
+import { React, useEffect, useState } from 'react'
 import { FaAccusoft, FaAmbulance, FaImage } from "react-icons/fa";
 import { BsFiletypeSvg } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import banner from './brands/animatedbanner.png'
 import FullScreenDialog from './FullScreenDialog';
+import axios from 'axios';
 function Animatedicons() {
   const [isDialogOpen, setDialogOpen] = useState(false);
-
+  const [data, setData] = useState([])
   const handleOpenDialog = () => {
-    setDialogOpen(true);  
+    setDialogOpen(true);
   };
 
   const handleCloseDialog = () => {
     setDialogOpen(false);
   };
 
-  
+  useEffect(() => {
+    getAnimatedIcon()
+  }, [])
+
+  const getAnimatedIcon = () => {
+    axios.get('http://localhost:3001/animated/find')
+      .then((res) => {
+        // console.log(res.data.data);
+        setData(res.data.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+  console.log(data);
   return (
     <Box>
       <Grid container paddingTop={'46px'}>
         <Grid xs={12}>
-          <Box className="background" sx={{flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', position: 'relative', alignItems: 'center', display: 'flex' }}>
+          <Box className="background" sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', position: 'relative', alignItems: 'center', display: 'flex' }}>
             <Grid md={12} sx={{ padding: '20px' }}>
 
-              <Box sx={{ fontSize: { xs: '14px', sm: '20px', md: '32px' }, textTransform: 'capitalize', fontWeight: '700',  padding: { md: '50px 0px 0px 20px' }, color: '#272727' }}>
+              <Box sx={{ fontSize: { xs: '14px', sm: '20px', md: '32px' }, textTransform: 'capitalize', fontWeight: '700', padding: { md: '50px 0px 0px 20px' }, color: '#272727' }}>
                 Explore a vast collection of over 18,000 animated icons at your disposal.
               </Box>
-              <Box sx={{fontSize: { xs: '8px', sm: '14px', md: '18px' }, padding: { md: '10px 0px 0px 20px' }}}>
+              <Box sx={{ fontSize: { xs: '8px', sm: '14px', md: '18px' }, padding: { md: '10px 0px 0px 20px' } }}>
                 IconGrid offers a robust collection of meticulously designed animated icons, ready for seamless integration into your digital products, presentations, or videos!
               </Box>
-              <Box sx={{ padding: { xs: '9px 0px 0px 0px', md: '30px 0px 50px 20px' }}}>
-                <Box sx={{  fontSize: { xs: '10px', md: '16px' },border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block' }}>
+              <Box sx={{ padding: { xs: '9px 0px 0px 0px', md: '30px 0px 50px 20px' } }}>
+                <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block' }}>
                   See Trending Icon
                 </Box>
               </Box>
@@ -43,267 +58,21 @@ function Animatedicons() {
             </Grid>
           </Box>
         </Grid>
-        <Grid container paddingTop={{xs:'20px',md:'45px'}} xs={12} className='center'>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-            <Box onClick={handleOpenDialog} className="card4" id="card4">
-              <Box className="content4">
-                <FaAccusoft fontSize={'60px'} />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-                <FaAmbulance fontSize={'60px'} />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid container xs={12} className='center'>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid container xs={12} className='center'>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid container paddingBottom={{xs:'20px',md:'45px'}} xs={12} className='center'>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
-          <Grid xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}>
-            <Box className="card4" id="card4">
-              <Box className="content4">
-              </Box>
-            </Box>
-          </Grid>
+        <Grid container paddingTop={{ xs: '20px', md: '45px' }} xs={12} className='center'>
+
+          {
+            data.map((el, index) => {
+             return <Grid key={index} xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
+                <Box onClick={handleOpenDialog} className="card4" id="card4">
+                  <Box className="content4">
+                  <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
+                  </Box>
+                </Box>
+              </Grid>
+
+            })
+          }
+
           <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
 
         </Grid>
@@ -311,18 +80,18 @@ function Animatedicons() {
           <Box className="center" sx={{ fontSize: "18px", padding: '10px' }}>
             <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', padding: '7px 20px', borderRadius: '5px', backgroundColor: '#FFBC06' }}>
               <Link to="/Topanimatedicon">
-              See All Animated Icon
+                See All Animated Icon
               </Link>
             </Box>
           </Box>
         </Grid>
 
         <Grid xs={12}>
-          <Box sx={{ padding: {xs:'20px 20px 20px 20px',md:'50px 20px 50px 20px'} }}>
-            <Box sx={{ fontSize:{xs:'22px',sm:'50px',md:'72px'}, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+          <Box sx={{ padding: { xs: '20px 20px 20px 20px', md: '50px 20px 50px 20px' } }}>
+            <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
               How to add animated
             </Box>
-            <Box sx={{fontSize:{xs:'19px',sm:'50px',md:'72px'}, marginTop:{ xs:'-22px',sm:'-48px',md:'-65px'}, color: '#272727', textAlign: 'center' }}>
+            <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-22px', sm: '-48px', md: '-65px' }, color: '#272727', textAlign: 'center' }}>
               icons to any design
             </Box>
           </Box>
@@ -330,81 +99,81 @@ function Animatedicons() {
       </Grid>
       <Container maxWidth="xl">
 
-        <Grid container xs={12} sx={{ backgroundColor: '#FAFAFC',padding:{xs:'10px 10px 10px 10px',md:'40px 40px 10px 40px'} }}>
+        <Grid container xs={12} sx={{ backgroundColor: '#FAFAFC', padding: { xs: '10px 10px 10px 10px', md: '40px 40px 10px 40px' } }}>
           <Grid xs={12} md={6} >
             <Box className='center' paddingTop={'50px'}>
-            <img width={'60%'} src="https://cdn.svgator.com/assets/landing-pages/static/create-animated-svg-icons/59510656-0-Microinteractions.svg" alt="" srcset="" />
+              <img width={'60%'} src="https://cdn.svgator.com/assets/landing-pages/static/create-animated-svg-icons/59510656-0-Microinteractions.svg" alt="" srcset="" />
             </Box>
             <Grid container xs={12} paddingTop={'50px'}>
               <Grid xs={6} >
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight:{ xs:'10px',md:'20px'} }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight: { xs: '10px', md: '20px' } }}>
                     <FaImage fontSize={'25px'} />
                   </Box>
                   <Box display={'flex'} fontWeight={'600'}>
                     PNG
-                    <Box sx={{ marginLeft: '7px', fontSize: {xs:'10px',md:'14px'},padding:{xs: '4px 12px' , md:'0px 10px'},  backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
+                    <Box sx={{ marginLeft: '7px', fontSize: { xs: '10px', md: '14px' }, padding: { xs: '4px 12px', md: '0px 10px' }, backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
                       FREE
                     </Box>
                   </Box>
                 </Box>
-                <Box sx={{fontSize:{xs:'12px',md:'16px'},paddingLeft:{xs:'35px',md:'45px'},color:'#888888'}}>
+                <Box sx={{ fontSize: { xs: '12px', md: '16px' }, paddingLeft: { xs: '35px', md: '45px' }, color: '#888888' }}>
                   The prevalent image format that commonly supports transparencies.
                 </Box>
               </Grid>
               <Grid xs={6} >
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight:{ xs:'10px',md:'20px'} }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight: { xs: '10px', md: '20px' } }}>
                     <BsFiletypeSvg fontSize={'25px'} />
                   </Box>
                   <Box display={'flex'} fontWeight={'600'}>
                     SVG
-                    <Box sx={{fontSize: {xs:'10px',md:'14px'},padding:{xs: '4px 12px' , md:'0px 10px'}, marginLeft: '7px', backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
+                    <Box sx={{ fontSize: { xs: '10px', md: '14px' }, padding: { xs: '4px 12px', md: '0px 10px' }, marginLeft: '7px', backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
                       FREE
                     </Box>
                   </Box>
                 </Box>
-                <Box sx={{fontSize:{xs:'12px',md:'16px'},paddingLeft:{xs:'35px',md:'45px'},color:'#888888'}}>
+                <Box sx={{ fontSize: { xs: '12px', md: '16px' }, paddingLeft: { xs: '35px', md: '45px' }, color: '#888888' }}>
 
                   Vector formats allow for easy editing according to your preferences.
                 </Box>
               </Grid>
               <Grid xs={6} paddingTop={'35px'}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight:{ xs:'10px',md:'20px'} }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight: { xs: '10px', md: '20px' } }}>
                     <BsFiletypeSvg fontSize={'25px'} />
                   </Box>
                   <Box display={'flex'} fontWeight={'600'}>
                     SVG
-                    <Box sx={{fontSize: {xs:'10px',md:'14px'},padding:{xs: '4px 12px' , md:'0px 10px'}, marginLeft: '7px', backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
+                    <Box sx={{ fontSize: { xs: '10px', md: '14px' }, padding: { xs: '4px 12px', md: '0px 10px' }, marginLeft: '7px', backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
                       FREE
                     </Box>
                   </Box>
                 </Box>
-                <Box sx={{fontSize:{xs:'12px',md:'16px'},paddingLeft:{xs:'35px',md:'45px'},color:'#888888'}}>
+                <Box sx={{ fontSize: { xs: '12px', md: '16px' }, paddingLeft: { xs: '35px', md: '45px' }, color: '#888888' }}>
 
                   Vector formats allow for easy editing according to your preferences.
                 </Box>
               </Grid>
               <Grid xs={6} paddingTop={'35px'}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center',paddingRight:{ xs:'10px',md:'20px'}}}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', paddingRight: { xs: '10px', md: '20px' } }}>
                     <BsFiletypeSvg fontSize={'25px'} />
                   </Box>
                   <Box display={'flex'} fontWeight={'600'}>
                     SVG
-                    <Box sx={{fontSize: {xs:'10px',md:'14px'},padding:{xs: '4px 12px' , md:'0px 10px'}, marginLeft: '7px', backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
+                    <Box sx={{ fontSize: { xs: '10px', md: '14px' }, padding: { xs: '4px 12px', md: '0px 10px' }, marginLeft: '7px', backgroundColor: '#ffbc06', borderRadius: '5px', border: '1px solid #FFBC06' }}>
                       FREE
                     </Box>
                   </Box>
                 </Box>
-                <Box sx={{fontSize:{xs:'12px',md:'16px'},paddingLeft:{xs:'35px',md:'45px'},color:'#888888'}}>
+                <Box sx={{ fontSize: { xs: '12px', md: '16px' }, paddingLeft: { xs: '35px', md: '45px' }, color: '#888888' }}>
                   Vector formats allow for easy editing according to your preferences.
                 </Box>
               </Grid>
             </Grid>
           </Grid>
-          <Grid xs={6} sx={{display:{xs:'none' , md:'block'}}}>
+          <Grid xs={6} sx={{ display: { xs: 'none', md: 'block' } }}>
             <img width={'100%'} src={banner} alt="" srcset="" />
           </Grid>
 
@@ -414,11 +183,11 @@ function Animatedicons() {
 
 
 
-      <Box sx={{padding: {xs:'20px 20px 20px 20px',md:'50px 20px 50px 20px'}}}>
-        <Box sx={{ fontSize:{xs:'22px',sm:'50px',md:'72px'}, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+      <Box sx={{ padding: { xs: '20px 20px 20px 20px', md: '50px 20px 50px 20px' } }}>
+        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
           Top Icon
         </Box>
-        <Box sx={{fontSize:{xs:'19px',sm:'50px',md:'72px'}, marginTop:{ xs:'-22px',sm:'-48px',md:'-65px'}, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-22px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
           Search
         </Box>
       </Box>

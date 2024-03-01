@@ -68,6 +68,7 @@ function Contact() {
                                     </Box>
                                     <Box sx={{ marginBottom: '15px', paddingTop: '20px', fontWeight: '600', fontSize: '15px', borderBottom: '2px solid', display: 'inline-block' }}>
                                         +91(800)013 3106
+                                        
                                     </Box>
                                 </Grid>
 

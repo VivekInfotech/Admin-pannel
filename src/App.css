@@ -596,7 +596,7 @@ a:-webkit-any-link {
 
 .card4 .content4 {
   border-radius: 5px;
-  background: #171717;
+  background: #dedede;
   width: 126px;
   height: 126px;
   z-index: 1;
@@ -612,7 +612,7 @@ a:-webkit-any-link {
   transition: opacity 300ms;
   content: " ";
   display: block;
-  background: #ffbc06;
+  background: #515151;
   width: 50px;
   height: 50px;
   position: absolute;
@@ -767,6 +767,11 @@ a:-webkit-any-link {
   background-image: url(./components/img/nest.png);
   height: 460px;
   margin-left: 85px;
+}
+@media only screen and (max-width: 426px) {
+  .Nest {
+    display: none;
+  }
 }
 .switch {
   font-size: 17px;

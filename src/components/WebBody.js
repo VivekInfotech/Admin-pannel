@@ -1,4 +1,4 @@
-import React,{useEffect}  from 'react'
+import React, { useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -213,7 +213,7 @@ function WebBody() {
                     </Grid>
                 </Box>
 
-                <Box sx={{ marginTop: '70px',padding:'0px 24px' }}>
+                <Box sx={{ marginTop: '70px', padding: '0px 24px' }}>
                     <Container maxWidth="xl">
                         <Grid xs={12}>
                             <Typography sx={{ fontSize: '30px', fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
@@ -255,71 +255,71 @@ function WebBody() {
                             </Box >
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                        <Box sx={{ height: '86px', backgroundColor: '#AEDBFF' }}>
+                                    <Box sx={{ height: '86px', backgroundColor: '#AEDBFF' }}>
+                                    </Box>
+                                    <Box className='center'>
+                                        <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#74C0FC', alignItems: 'center', borderRadius: '50%' }}>
+                                            <FaSmile fontSize={'35px'} />
                                         </Box>
-                                        <Box className='center'>
-                                            <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#74C0FC', alignItems: 'center', borderRadius: '50%' }}>
-                                                <FaSmile fontSize={'35px'} />
-                                            </Box>
 
-                                        </Box>
-                                        <Box className='center' fontSize={'18px'} padding={'20px'}>
-                                            Solid
-                                        </Box>
-                                        <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                            "Explore our free solid icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."                                    </Box>
-                                        <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
-                                    <Link to="/most-downloads">
+                                    </Box>
+                                    <Box className='center' fontSize={'18px'} padding={'20px'}>
+                                        Solid
+                                    </Box>
+                                    <Box className='center' padding={'0px 28px'} textAlign={"center"}>
+                                        "Explore our free solid icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."                                    </Box>
+                                    <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                        <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #AEDBFF', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#AEDBFF' }}>Explore</Box>
-                                    </Link>
-                                        </Box>
+                                        </Link>
+                                    </Box>
 
                                 </Grid>
                             </Box>
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                        <Box sx={{ height: '86px', backgroundColor: '#CDBBFF' }}>
+                                    <Box sx={{ height: '86px', backgroundColor: '#CDBBFF' }}>
+                                    </Box>
+                                    <Box className='center'>
+                                        <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#B197FC', alignItems: 'center', borderRadius: '50%' }}>
+                                            <CiFaceSmile fontSize={'35px'} />
                                         </Box>
-                                        <Box className='center'>
-                                            <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#B197FC', alignItems: 'center', borderRadius: '50%' }}>
-                                                <CiFaceSmile  fontSize={'35px'} />
-                                            </Box>
 
-                                        </Box>  
-                                        <Box className='center' fontSize={'18px'} padding={'20px'}>
-                                            Thin
-                                        </Box>
-                                        <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                            "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
-                                        </Box>
-                                        <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
-                                    <Link to="/most-downloads">
+                                    </Box>
+                                    <Box className='center' fontSize={'18px'} padding={'20px'}>
+                                        Thin
+                                    </Box>
+                                    <Box className='center' padding={'0px 28px'} textAlign={"center"}>
+                                        "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
+                                    </Box>
+                                    <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                        <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #CDBBFF', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#CDBBFF' }}>Explore</Box>
-                                    </Link>
-                                        </Box>
+                                        </Link>
+                                    </Box>
                                 </Grid>
                             </Box>
                             <Box padding={'0px 20px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
-                                        <Box sx={{ height: '86px', backgroundColor: '#94FFDE' }}>
+                                    <Box sx={{ height: '86px', backgroundColor: '#94FFDE' }}>
+                                    </Box>
+                                    <Box className='center'>
+                                        <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#63E6BE', alignItems: 'center', borderRadius: '50%' }}>
+                                            <BsEmojiSmile fontSize={'35px'} />
                                         </Box>
-                                        <Box className='center'>
-                                            <Box className='center' sx={{ marginTop: '-37px', height: '73px', width: '73px', backgroundColor: '#63E6BE', alignItems: 'center', borderRadius: '50%' }}>
-                                                <BsEmojiSmile fontSize={'35px'} />  
-                                            </Box>  
 
-                                        </Box>
-                                        <Box className='center' fontSize={'18px'} padding={'20px'}>
-                                            Stroke
-                                        </Box>
-                                        <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                            "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
-                                        </Box>
-                                        <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
-                                    <Link to="/most-downloads">
+                                    </Box>
+                                    <Box className='center' fontSize={'18px'} padding={'20px'}>
+                                        Stroke
+                                    </Box>
+                                    <Box className='center' padding={'0px 28px'} textAlign={"center"}>
+                                        "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
+                                    </Box>
+                                    <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
+                                        <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #94FFDE', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#94FFDE' }}>Explore</Box>
-                                    </Link>
-                                        </Box>
+                                        </Link>
+                                    </Box>
                                 </Grid>
                             </Box>
                         </Grid>
@@ -330,49 +330,50 @@ function WebBody() {
                 <Box sx={{ marginTop: '70px' }}>
                     <Container maxWidth="xl" sx={{ backgroundColor: '#CDBBFF' }}>
                         <Grid container xs={12}>
-
-                            <Grid flexDirection={'column'} position={'relative'} xs={6}>
-                                <Box className='center' sx={{ alignItems: 'center', color: '#703DFF', flexDirection: 'column', fontSize: '70px', paddingTop: '55px', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
-                                    Animated
-                                </Box>
-                                <Box sx={{ marginTop: '-37px' }}>
-                                    <Box className='center' sx={{ alignItems: 'center', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
-
-                                        <img width={'290px'} src={camera} alt="" srcset="" />
+                            <Box sx={{ flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', display: 'flex'  }}>
+                                <Grid flexDirection={'column'} position={'relative'} xs={6}>
+                                    <Box className='center' sx={{ alignItems: 'center', color: '#703DFF', flexDirection: 'column', fontSize:{sm:'60px', md:'60px',lg:'70px'}, paddingTop: '55px', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
+                                        Animated
                                     </Box>
-                                    <Box className='center' sx={{
-                                        marginTop: '-282px',
-                                        marginLeft: '65px',
-                                        alignItems: 'center', color: '#fff', fontSize: '171px', fontFamily: "Rammetto One, sans-serif"
-                                    }}>
-                                        Ic&nbsp;&nbsp;&nbsp;ns
-                                    </Box>
-                                </Box>
-                            </Grid>
-                            <Grid xs={6} padding={'60px'} sx={{ display: 'felx', flexDirection: 'column', alignItems: 'center' }}>
-                                <Box sx={{ paddingTop: '30px' }}>
-                                    We provide you animated icons through which you can bring your website to life and make it animated. animations plays a vital role in your web page as it can directly enhance the user experience and change their perception of visualizing your brand.
-                                </Box>
-                                <Box sx={{ paddingTop: '20px' }}>
-                                    Explore different categories of animated icons with unique creativity to unlock more productivity.
-                                </Box>
-                                <Box sx={{ paddingTop: '60px' }}>
-                                    <Box sx={{ borderRadius: '7px', display: 'inline-block', padding: '5px 20px', color: '#fff', backgroundColor: '#703DFF', cursor: 'pointer' }}>
-                                        <Link to="/animated-icons">
-                                            <Box color={'#fff'}>More..!</Box>
-                                        </Link>
+                                    <Box sx={{ marginTop: '-37px' }}>
+                                        <Box className='center' sx={{ alignItems: 'center', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
+
+                                            <img width={'290px'} src={camera} alt="" srcset="" />
                                         </Box>
-                                </Box>
-                            </Grid>
+                                        <Box className='center' sx={{
+                                            marginTop: {xs:'-268px',sm:'-268px',md:'-268px',lg:'-282px'},
+                                            marginLeft: '65px',
+                                            alignItems: 'center', color: '#fff', fontSize:{xs:'155px',sm:'155px', md:'155px',lg:'171px'}, fontFamily: "Rammetto One, sans-serif"
+                                        }}>
+                                            Ic&nbsp;&nbsp;&nbsp;ns
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                                <Grid xs={12} md={6}  sx={{padding:{xs:'10px',sm:'10px',md:'60px'}, display: 'felx', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Box sx={{ paddingTop:{ sm:'0px',md:'30px'} }}>
+                                        We provide you animated icons through which you can bring your website to life and make it animated. animations plays a vital role in your web page as it can directly enhance the user experience and change their perception of visualizing your brand.
+                                    </Box>
+                                    <Box sx={{ paddingTop: '20px' }}>
+                                        Explore different categories of animated icons with unique creativity to unlock more productivity.
+                                    </Box>
+                                    <Box sx={{ paddingTop: '60px' }}>
+                                        <Box sx={{ borderRadius: '7px', display: 'inline-block', padding: '5px 20px', color: '#fff', backgroundColor: '#703DFF', cursor: 'pointer' }}>
+                                            <Link to="/animated-icons">
+                                                <Box color={'#fff'}>More..!</Box>
+                                            </Link>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            </Box>
                         </Grid>
                     </Container>
                 </Box>
 
 
                 {/* responsive */}
-                
 
-                <Box sx={{ marginTop: '50px', position: 'relative' }}>
+
+                {/* <Box sx={{ marginTop: '50px', position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '52%', zIndex: 9 }}>
                         <img src={lineleft} alt="" srcset="" />
                     </Box>
@@ -460,23 +461,23 @@ function WebBody() {
 
                         </Grid>
                     </Container>
-                </Box>
+                </Box> */}
 
 
 
-             {/* responsive */}
+                {/* responsive */}
 
                 <Box sx={{ marginTop: '25px', backgroundColor: '#FFE08A' }}>
                     <Container className='bgIcons' maxWidth="xl" sx={{}}>
                         <Grid container xs={12}>
-                            <Grid xs={6} padding={'122px 70px 0px 90px'}>
+                            <Grid xs={12} sm={6} sx={{ padding: { xs: '70px 24px 70px 24px', sm: '70px 30px 70px 30px', md: '122px 70px 0px 90px' } }} >
                                 <Box sx={{ position: 'relative' }}>
                                     <Box sx={{ fontSize: '34px', marginBottom: '17px', fontWeight: '500', display: 'inline-block', borderBottom: '3px solid #272727' }}>Our Interface</Box>
-                                    <Box sx={{ position: 'absolute', top: '-52%', left: '33%' }}><img src={bee1} alt="" srcset="" /></Box>
+                                    <Box sx={{ position: 'absolute', top: { xs: '-55%', sm: '-55%', md: '-52%' }, left: { xs: '54%', sm: '58%', md: '33%' } }}><img src={bee1} alt="" srcset="" /></Box>
                                 </Box>
                                 <Box>
                                     <Grid xs={12}>
-                                        <Box sx={{ position: 'relative' }}>
+                                        <Box sx={{ position: 'relative', fontSize: { xs: '12px', sm: '16px', md: '14px', lg: '16px' } }}>
 
                                             Our interface is simplified so that our users can navigate through different pages & icons without any problems. Our interface is user-friendly, featuring a clean design for easy navigation. You can browse categories, search for icons, and preview them in different sizes and formats. It's responsive across devices, ensuring a seamless experience. Simplifying the process, you can quickly find and download icons for your projects, whether you're a designer, developer, or enthusiast.
 
@@ -484,15 +485,15 @@ function WebBody() {
                                     </Grid>
                                 </Box>
                             </Grid>
-                            <Grid xs={6}>
+                            <Grid sm={6}>
                                 <Box sx={{ position: 'relative' }}>
 
                                     <Box className='Nest'>
 
-                                        <Box sx={{ position: 'absolute', bottom: '23%', left: '21%' }}>
+                                        <Box sx={{ position: 'absolute', bottom: { sm: '23%', md: '23%' }, left: { sm: '40%', md: '21%' } }}>
                                             <img src={bee2} alt="" srcset="" />
                                         </Box>
-                                        <Box sx={{ position: 'absolute', top: '6%', left: '7% ' }}>
+                                        <Box sx={{ position: 'absolute', top: { sm: '6%', md: '6%' }, left: { sm: '14%', md: '7%' } }}>
                                             <img src={bee3} alt="" srcset="" />
                                         </Box>
                                     </Box>
@@ -506,24 +507,24 @@ function WebBody() {
                     <Container maxWidth="xl" sx={{}}>
                         <Grid container xs={12}>
                             <Box sx={{ flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', display: 'flex' }}>
-                            <Grid xs={6} padding={'70px 70px 0px 90px'}>
-                                <Box sx={{}}>
-                                    <Box sx={{ fontSize: '54px', marginBottom: '17px', fontWeight: '500', display: 'inline-block', fontFamily: "Rammetto One, sans-serif", color: '#BBFCE9', WebkitTextStroke: '1px #272727',userSelect:'none' }}>Whats new ?</Box>
-                                </Box>
-                                <Box>
-                                    <Grid xs={12}>
-                                        <Box sx={{}}>
-                                            Exciting news! Premium icons are now free for all users! Explore our latest collection of meticulously crafted icons designed to elevate your projects. Unlock creativity with our diverse range of high-quality icons. Upgrade your designs effortlessly with us!
-                                        </Box>
-                                        <Box sx={{ marginTop: '25px' }}>
-                                            We're thrilled to announce updates to our icon website! Explore new icons across categories and enjoy an improved user interface with enhanced navigation and faster performance. Discover the perfect icons for your projects with ease. Stay tuned for more updates as we strive to provide the best selection and user experience possible.
-                                        </Box>
-                                    </Grid>
-                                </Box>
-                            </Grid>
-                            <Grid xs={6} sx={{ paddingLeft: '100px', margin: '0px 0px -7px 0px' }}>
-                                <img src={boy} alt="" srcset="" />
-                            </Grid>
+                                <Grid xs={12} md={6} sx={{ padding: { xs: '20px 24px 0px 24px', md: '70px 70px 0px 90px' } }}>
+                                    <Box sx={{}}>
+                                        <Box sx={{ fontSize: { xs: '28px', sm: '45px', md: '45px', lg: '54px' }, marginBottom: '17px', fontWeight: '500', display: 'inline-block', fontFamily: "Rammetto One, sans-serif", color: '#BBFCE9', WebkitTextStroke: '1px #272727', userSelect: 'none' }}>Whats new ?</Box>
+                                    </Box>
+                                    <Box>
+                                        <Grid xs={12}>
+                                            <Box sx={{ fontSize: { xs: '12px', sm: '16px', md: '14px', lg: '16px' } }}>
+                                                Exciting news! Premium icons are now free for all users! Explore our latest collection of meticulously crafted icons designed to elevate your projects. Unlock creativity with our diverse range of high-quality icons. Upgrade your designs effortlessly with us!
+                                            </Box>
+                                            <Box sx={{ marginTop: '25px', fontSize: { xs: '12px', sm: '16px', md: '14px', lg: '16px' } }}>
+                                                We're thrilled to announce updates to our icon website! Explore new icons across categories and enjoy an improved user interface with enhanced navigation and faster performance. Discover the perfect icons for your projects with ease. Stay tuned for more updates as we strive to provide the best selection and user experience possible.
+                                            </Box>
+                                        </Grid>
+                                    </Box>
+                                </Grid>
+                                <Grid xs={6} sx={{ paddingLeft: '100px', margin: { xs: '0px 0px -6px 0px', sm: '0px 0px -7px 0px', md: '0px 0px -65px 0px', lg: '0px 0px -7px 0px' } }}>
+                                    <img src={boy} alt="" width={'100%'} srcset="" />
+                                </Grid>
                             </Box>
                         </Grid>
                     </Container>

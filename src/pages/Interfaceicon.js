@@ -24,6 +24,7 @@ function Interfaceicon() {
     getInterfaceIcon()
   }, [])
 
+  
   const getInterfaceIcon = () => {
     axios.get('http://localhost:3001/interface/find')
       .then((res) => {

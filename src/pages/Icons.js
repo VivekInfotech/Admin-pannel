@@ -57,77 +57,77 @@ function Icons() {
           Icon Packs
         </Box>
         <Grid container sx={{ paddingTop: '50px' }}>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Food'} description="Food icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Hospital'} description="Hospital icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Animal'} description="Animal icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Language'} description="Language icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Alert'} description="Alert icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Indian Brands'} description="Indian icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Education'} description="Education icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
           </Grid>
-          <Grid md={3} sm={6} className='setcontant'>
+          <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
             <Link to="/pack">
               <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
             </Link>
@@ -157,13 +157,15 @@ function Icons() {
             </Box>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box class="card">
-              <Box class="card-img"></Box>
-              <Box class="card-info">
-                <p class="text-title">Color Fill </p>
-                <p class="text-body">The "color fill" icon applies solid colors in graphic design software.</p>
+            <Link to="/back-fill">
+              <Box class="card">
+                <Box class="card-img"></Box>
+                <Box class="card-info">
+                  <p class="text-title">Color Fill </p>
+                  <p class="text-body">The "color fill" icon applies solid colors in graphic design software.</p>
+                </Box>
               </Box>
-            </Box>
+            </Link>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
             <Box class="card">

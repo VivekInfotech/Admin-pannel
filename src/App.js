@@ -19,14 +19,15 @@ import Icon from './Pages_admin/Icon';
 import Animatedicon from './Pages_admin/Animatedicon';
 import Category from './Pages_admin/Category';
 import Interface from './Pages_admin/Interface';
+import UserLayout from './components/UserLayout';
+import Contact from './pages/Contact';
+import BlackFill from './pages/BlackFill';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import UserLayout from './components/UserLayout';
-import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -84,10 +85,13 @@ function App() {
           </Route>
           <Route path="/contact-us">
             <UserLayout>
-
               <Contact />
             </UserLayout>
-
+          </Route>
+          <Route path="/back-fill">
+          <UserLayout>
+              <BlackFill />
+            </UserLayout>
           </Route>
 
           <Route path="/login">
