@@ -25,6 +25,7 @@ function Addcategory({ addCategory, updateCategory }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState(updateCategory ? updateCategory.name : '');
     const [tag, setTag] = useState(updateCategory ? updateCategory.tag : '');
+    const [description, setDescription] = useState(updateCategory ? updateCategory.description : '');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,12 +37,12 @@ function Addcategory({ addCategory, updateCategory }) {
 
     const token = localStorage.getItem('token');
     const handleSubmit = async () => {
-        if (!name || !tag) {
-            console.error("Name and tag are required");
+        if (!name || !tag || !description) {
+            console.error("Name, tag and description are required");
             return;
         }
         try {
-            const value = { name, tag };
+            const value = { name, tag, description };
             let response;
             if (updateCategory) {
                 response = await axios.put(`http://localhost:3001/category/update/${updateCategory._id}`, value, {
@@ -109,6 +110,16 @@ function Addcategory({ addCategory, updateCategory }) {
                                     id="tag"
                                     value={tag}
                                     onChange={(event) => setTag(event.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                />
+                            </Box>
+                            <Box className="name">
+                                <label htmlFor="description">Description :</label>
+                                <input
+                                    type="text"
+                                    id="description"
+                                    value={description}
+                                    onChange={(event) => setDescription(event.target.value)}
                                     onKeyDown={handleKeyDown}
                                 />
                             </Box>
