@@ -34,6 +34,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Topprops from './Topprops';
 import FullScreenDialog from './FullScreenDialog';
 import { Button } from '@mui/material';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -209,12 +211,27 @@ const Topicon = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   const handleOpenDialog = () => {
-    setDialogOpen(true);  
+    setDialogOpen(true);
   };
 
   const handleCloseDialog = () => {
     setDialogOpen(false);
   };
+
+  useEffect(() => {
+    getIcons()
+  }, [])
+
+  const getIcons = () => {
+    axios.get('http://localhost:3001/icon/find')
+      .then((res) => {
+        console.log(res.data.data);
+        // setData(res.data.data)
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      })
+  }
 
 
   return (
@@ -340,79 +357,29 @@ const Topicon = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Container maxWidth="xl">
-          <Box sx={{  fontSize: { xs: '23px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+          <Box sx={{ fontSize: { xs: '23px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
             top
           </Box>
-          <Box sx={{fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
+          <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
             Icons
           </Box>
 
-          <Box sx={{fontSize:{xs:'10px',sm:'',md:'16px'}, margin: {xs:'0px',md:'auto'}, width: {xs:'100%',md:'50%'}, textAlign: 'center', marginTop: '10px', paddingBottom: '10px', color: '#888888' }}>
+          <Box sx={{ fontSize: { xs: '10px', sm: '', md: '16px' }, margin: { xs: '0px', md: 'auto' }, width: { xs: '100%', md: '50%' }, textAlign: 'center', marginTop: '10px', paddingBottom: '10px', color: '#888888' }}>
             Explore a vast collection of highly popular and freely available icon fonts, with thousands of downloads, offered in diverse formats such as PNG, SVG, iOS, and Android. Access a plethora of options to enhance your projects with visually appealing icons.
           </Box>
           <Box className="search" sx={{ paddingTop: '40px' }}>
             <Grid container spacing={4} >
+
+
+
               <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
                 <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
-              </Grid>
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-                
               </Grid>
 
               <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
-                  
+
             </Grid>
-            <Box sx={{ display: 'flex', justifyContent: 'center' ,padding:'10px 0px'}}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', padding: '10px 0px' }}>
               <Stack spacing={2}>
                 <Pagination
                   count={10}

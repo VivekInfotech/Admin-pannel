@@ -15,7 +15,6 @@ function Cardicon(props) {
     const getIcons = () => {
         axios.get('http://localhost:3001/icon/find')
             .then((res) => {
-                console.log(res.data.data);
                 setData(res.data.data)
             })
             .catch((error) => {
@@ -29,13 +28,15 @@ function Cardicon(props) {
                 <Grid container>
 
                     {
-                        data.map((el,index) => {
-                            return <Grid key={index} xs={3} className='center'>
-                                <Box sx={{ marginY: '10px', backgroundColor: '#F5F5F5', borderRadius: '10px', display: 'inline-block', padding: '17px' }}>
-                                    {/* <img width={'100%'} src={props.bannerimg} alt="" /> */}
-                                    <img src={el.regular} alt={el.name} title={el.name} width="20px" height="auto" />
-                                </Box>
-                            </Grid>
+                        data.map((el, index) => {
+                            if (index <= 7) {
+                                return <Grid key={index} xs={3} className='center'>
+                                    <Box sx={{ marginY: '10px', backgroundColor: '#F5F5F5', borderRadius: '10px', display: 'inline-block', padding: '17px' }}>
+                                        {/* <img width={'100%'} src={props.bannerimg} alt="" /> */}
+                                        <img src={el.regular} alt={el.name} title={el.name} width="20px" height="auto" />
+                                    </Box>
+                                </Grid>
+                            }
                         })
                     }
                 </Grid>
@@ -49,4 +50,4 @@ function Cardicon(props) {
     )
 }
 
-export default Cardicon
+export default Cardicon
