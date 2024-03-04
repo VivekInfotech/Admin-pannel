@@ -76,7 +76,7 @@
 {
   color: #012970;
 }
-.css-1rwt2y5-MuiButtonBase-root-MuiButton-root,.css-1k455el, .css-78trlr-MuiButtonBase-root-MuiIconButton-root ,.css-3majze-MuiListItemIcon-root,.css-4t3x6l-MuiPaper-root-MuiDrawer-paper 
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root, .css-78trlr-MuiButtonBase-root-MuiIconButton-root ,.css-3majze-MuiListItemIcon-root
   {
   
   background-color: #304D30 !important;
@@ -571,11 +571,11 @@ a:-webkit-any-link {
 }
 
 .css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper,
-.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper,.css-12i7wg6-MuiPaper-root-MuiDrawer-paper,.css-80h6ph-MuiTypography-root,.css-40vdap-MuiPaper-root-MuiAppBar-root,.css-z1ewoe-MuiButtonBase-root-MuiButton-root ,.css-w2q257-MuiStack-root{
+.css-2dum1v-MuiDrawer-docked .MuiDrawer-paper,.css-4t3x6l-MuiPaper-root-MuiDrawer-paper ,.css-12i7wg6-MuiPaper-root-MuiDrawer-paper,.css-80h6ph-MuiTypography-root,.css-40vdap-MuiPaper-root-MuiAppBar-root,.css-z1ewoe-MuiButtonBase-root-MuiButton-root ,.css-w2q257-MuiStack-root{
   background-color: #272727 !important;
   color: #fff !important;
 }
-.css-uob957-MuiListSubheader-root{
+.css-uob957-MuiListSubheader-root,.css-78trlr-MuiButtonBase-root-MuiIconButton-root{
   background-color: #1B4242 !important;
 }
 
@@ -602,7 +602,7 @@ a:-webkit-any-link {
 
 .card4 .content4 {
   border-radius: 5px;
-  background: #dedede;
+  background: #f5f5f5;
   width: 126px;
   height: 126px;
   z-index: 1;
@@ -766,6 +766,14 @@ a:-webkit-any-link {
   background-color: #FFBC06;
   color: #fff;
   border-color: #FFBC06;
+}
+.gif img{
+  width: 290px;
+}
+@media only screen and (max-width: 426px) {
+  .gif img{
+    width: 158px;
+  }
 }
 .bgIcons{
   background-image: url(./components/img/beeback.png);
@@ -994,4 +1002,51 @@ section1 span:hover
 {
   background: #F9F9FB;
   transition: 0s;
+}
+.wrapper {
+  width: 100%;
+  max-width: 31.25rem;
+  margin: 20px auto;
+}
+
+.label {
+  font-size: .625rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: +1.3px;
+  margin-bottom: 1rem;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#searchQueryInput {
+  width: 100%;
+  height: 2.8rem;
+  background: #f5f5f5;
+  outline: none;
+  border: none;
+  border-radius: 1.625rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 1rem;
+}
+
+#searchQuerySubmit {
+  width: 3.5rem;
+  height: 2.8rem;
+  margin-left: -3.5rem;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#searchQuerySubmit:hover {
+  cursor: pointer;
+}
+.css-6hp17o-MuiList-root-MuiMenu-list{
+  background-color: #272727 !important;
 }

@@ -17,15 +17,6 @@ export default function Pack() {
     const [selectedIconId, setSelectedIconId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
 
-    const handleOpenDialog = (iconId) => {
-        setDialogOpen(true);
-        setSelectedIconId(iconId);
-    };
-
-    const handleCloseDialog = () => {
-        setDialogOpen(false);
-    };
-
     const location = useLocation();
 
     useEffect(() => {
@@ -34,6 +25,26 @@ export default function Pack() {
             getIcons(location.state.categoryName);
         }
     }, [location]);
+
+
+    const handleOpenDialog = (iconId) => {
+        setDialogOpen(true);
+        setSelectedIconId(iconId);
+    };
+
+    const handleCloseDialog = async (iconId) => {
+        setDialogOpen(false);
+        await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000`)
+            .then((res) => {
+                console.log("update Icon color :- ", res.data.data);
+                getIcons(categoryName);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            });
+    };
+    
+
 
     const getIcons = (categoryName) => {
         axios.get(`http://localhost:3001/icon/findOne/${categoryName}`)
@@ -89,13 +100,13 @@ export default function Pack() {
                                     </Box>
                                 </Box>
                             </Grid>
-                            <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} iconId={selectedIconId} />
+                            <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} />
                         </Grid>
                     </Container>
                 </Box>
 
             </Box>
 
-        </Box>
-    );
+        </Box>
+    );
 }

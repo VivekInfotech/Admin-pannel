@@ -10,7 +10,9 @@ import Topicon from './pages/Topicon';
 import Animatedicons from './pages/Animatedicons';
 import Pack from './pages/Pack';
 import Topanimatedicon from './pages/Topanimatedicon';
-
+import Support from './pages/Support';
+import BlackFill from './pages/BlackFill';
+import Contact from './pages/Contact';
 
 //admin pages
 import AdminLayout from './components_admin/AdminLayout'
@@ -20,8 +22,6 @@ import Animatedicon from './Pages_admin/Animatedicon';
 import Category from './Pages_admin/Category';
 import Interface from './Pages_admin/Interface';
 import UserLayout from './components/UserLayout';
-import Contact from './pages/Contact';
-import BlackFill from './pages/BlackFill';
 
 import {
   BrowserRouter as Router,
@@ -86,6 +86,11 @@ function App() {
           <Route path="/contact-us">
             <UserLayout>
               <Contact />
+            </UserLayout>
+          </Route>
+          <Route path="/support">
+            <UserLayout>
+              <Support />
             </UserLayout>
           </Route>
           <Route path="/back-fill">

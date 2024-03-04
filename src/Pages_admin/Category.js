@@ -10,7 +10,7 @@ function Category() {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65e1491106a710e572400641',{},{
+        axios.put('http://localhost:3001/count/update/65e41862f553d71c874fabc5',{},{
             headers: {
                 admintoken: token
             }

@@ -82,9 +82,9 @@ function Icons() {
           {
             category.map((el, index) => {
               return <Grid key={index} lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                <Link to={{ pathname: "/pack", state: { categoryName: el.name } }}>
-                  <Cardicon name="boxshadowyellow" bannerimg={''} heading={el.name} description={el.description} />
-                </Link>
+                <Link to={{ pathname: "/pack", state: { categoryName: el.name, id: el._id } }}>
+                  <Cardicon name="boxshadowyellow" categoryName={el.name} bannerimg={''} heading={el.name} description={el.description} />
+                </Link>
               </Grid>
             })
           }

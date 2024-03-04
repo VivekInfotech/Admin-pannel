@@ -4,17 +4,20 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 
-function Cardicon(props) {
+export default function Cardicon(props) {
 
+    
     const [data, setData] = useState([])
-
+    
+    console.log(props.categoryName);
     useEffect(() => {
-        getIcons()
+        getIcons(props.categoryName)
     }, [])
-
-    const getIcons = () => {
-        axios.get('http://localhost:3001/icon/find')
+    
+    const getIcons = (categoryName) => {
+        axios.get(`http://localhost:3001/icon/findOne/${categoryName}`)
             .then((res) => {
+                console.log(res.data.data);
                 setData(res.data.data)
             })
             .catch((error) => {
@@ -32,7 +35,7 @@ function Cardicon(props) {
                             if (index <= 7) {
                                 return <Grid key={index} xs={3} className='center'>
                                     <Box sx={{ marginY: '10px', backgroundColor: '#F5F5F5', borderRadius: '10px', display: 'inline-block', padding: '17px' }}>
-                                        {/* <img width={'100%'} src={props.bannerimg} alt="" /> */}
+                                    {/* <img width={'100%'} src={props.bannerimg} alt="" /> */}
                                         <img src={el.regular} alt={el.name} title={el.name} width="20px" height="auto" />
                                     </Box>
                                 </Grid>
@@ -46,8 +49,6 @@ function Cardicon(props) {
                 <h3 className='m-0'>{props.heading}</h3>
                 <p className='m-0'>{props.description}</p>
             </Box>
-        </Box>
-    )
+        </Box>
+    )
 }
-
-export default Cardicon

@@ -11,6 +11,12 @@ import Tooltip from '@mui/material/Tooltip';
 import Grid from '@mui/material/Grid';
 import { IoIosColorPalette, IoMdImages, IoIosShareAlt, IoIosDownload, IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Menu } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -21,15 +27,20 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [selectedIconUrl, setSelectedIconUrl] = useState(null);
 
-  const handleColorChange = (event) => {
+  const handleColorChange = async (event) => {
     const newColor = event.target.value;
-    setSelectedColor(newColor);
-    check(newColor);
-  };
+    const cleanedColor = newColor.replace(/#/g, '');
+    setSelectedColor(cleanedColor);
 
-  const check = (color) => {
-    console.log(`Selected color: ${color}`);
-  };
+    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/${cleanedColor}`)
+      .then((res) => {
+        console.log("update Icon color :- ",res.data.data);
+        getIcon(iconId)
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
 
   useEffect(() => {
     if (iconId) {
@@ -62,7 +73,15 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
     }
     return '';
   }
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <React.Fragment>
@@ -158,11 +177,38 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
                 </Box>
                 <Box sx={{ display: 'flex', margin: '24px 25px' }}>
                   <Grid xs={3} marginRight={'10px'}>
-                    <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 10px' }}>
-
-                      <Box>PNG <IoIosArrowDown /></Box>
+                    <Box sx={{ position: 'relative' }}>
+                      <Box
+                        className='center'
+                        sx={{
+                          borderRadius: '7px',
+                          backgroundColor: '#f5f5f5',
+                          fontWeight: '600',
+                          padding: '10px 10px',
+                          cursor: 'pointer',
+                        }}
+                      // onClick={handleClick}
+                      >
+                        <Box>
+                          PNG <IoIosArrowDown onClick={handleClick} />
+                        </Box>
+                      </Box>
+                      <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                      >
+                        <MenuItem onClick={handleClose}>512px</MenuItem>
+                        <MenuItem onClick={handleClose}>256px</MenuItem>
+                        <MenuItem onClick={handleClose}>128px</MenuItem>
+                        <MenuItem onClick={handleClose}>64px</MenuItem>
+                        <MenuItem onClick={handleClose}>32px</MenuItem>
+                        <MenuItem onClick={handleClose}>24px</MenuItem>
+                        <MenuItem onClick={handleClose}>16px</MenuItem>
+                      </Menu>
                     </Box>
-
                   </Grid>
                   <Grid xs={3} marginRight={'10px'}>
                     <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px' }}>

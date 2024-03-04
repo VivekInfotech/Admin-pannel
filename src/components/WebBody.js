@@ -216,10 +216,10 @@ function WebBody() {
                 <Box sx={{ marginTop: '70px', padding: '0px 24px' }}>
                     <Container maxWidth="xl">
                         <Grid xs={12}>
-                            <Typography sx={{ fontSize: '30px', fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
+                            <Typography sx={{ fontSize:{xs:'18px',sm: '30px'}, fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
                                 GICONS, The highly sought-after collection of free SVG user interface icons
                             </Typography>
-                            <Typography sx={{ color: '#777' }}>
+                            <Typography sx={{ color: '#777' ,fontSize:{xs:'12px',sm: '16px'}}}>
                                 Explore a collection of over 24,300 free UI icons, presented in 9 distinct styles, fully editable and customizable to uniquely suit your needs.
                             </Typography>
                         </Grid>
@@ -228,7 +228,7 @@ function WebBody() {
 
                     <Container maxWidth="xl" sx={{ marginTop: '35px' }}>
                         <Grid container xs={12} className='center'>
-                            <Box padding={'0px 20px'}>
+                            <Box padding={'0px 20px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#FFE08A' }}>
                                     </Box>
@@ -253,7 +253,7 @@ function WebBody() {
                                     </Box>
                                 </Grid>
                             </Box >
-                            <Box padding={'0px 20px'}>
+                            <Box padding={'0px 20px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#AEDBFF' }}>
                                     </Box>
@@ -276,7 +276,7 @@ function WebBody() {
 
                                 </Grid>
                             </Box>
-                            <Box padding={'0px 20px'}>
+                            <Box padding={'0px 20px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#CDBBFF' }}>
                                     </Box>
@@ -299,7 +299,7 @@ function WebBody() {
                                     </Box>
                                 </Grid>
                             </Box>
-                            <Box padding={'0px 20px'}>
+                            <Box padding={'0px 20px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#94FFDE' }}>
                                     </Box>
@@ -331,32 +331,31 @@ function WebBody() {
                     <Container maxWidth="xl" sx={{ backgroundColor: '#CDBBFF' }}>
                         <Grid container xs={12}>
                             <Box sx={{ flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', display: 'flex'  }}>
-                                <Grid flexDirection={'column'} position={'relative'} xs={6}>
-                                    <Box className='center' sx={{ alignItems: 'center', color: '#703DFF', flexDirection: 'column', fontSize:{sm:'60px', md:'60px',lg:'70px'}, paddingTop: '55px', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
+                                <Grid flexDirection={'column'} position={'relative'} xs={12} md={6}    >
+                                    <Box className='center' sx={{ alignItems: 'center', color: '#703DFF', flexDirection: 'column', fontSize:{xs:'40px',sm:'60px', md:'60px',lg:'70px'}, paddingTop: '55px', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
                                         Animated
                                     </Box>
                                     <Box sx={{ marginTop: '-37px' }}>
-                                        <Box className='center' sx={{ alignItems: 'center', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
-
-                                            <img width={'290px'} src={camera} alt="" srcset="" />
+                                        <Box className='center gif' sx={{ alignItems: 'center', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
+                                            <img src={camera} alt="" srcset="" />
                                         </Box>
                                         <Box className='center' sx={{
-                                            marginTop: {xs:'-268px',sm:'-268px',md:'-268px',lg:'-282px'},
-                                            marginLeft: '65px',
-                                            alignItems: 'center', color: '#fff', fontSize:{xs:'155px',sm:'155px', md:'155px',lg:'171px'}, fontFamily: "Rammetto One, sans-serif"
+                                            marginTop: {xs:'-146px',sm:'-268px',md:'-268px',lg:'-282px'},
+                                            marginLeft: {xs:'auto',sm:'65px'},
+                                            alignItems: 'center', color: '#fff', fontSize:{xs:'90px',sm:'155px', md:'155px',lg:'171px'}, fontFamily: "Rammetto One, sans-serif"
                                         }}>
                                             Ic&nbsp;&nbsp;&nbsp;ns
                                         </Box>
                                     </Box>
                                 </Grid>
                                 <Grid xs={12} md={6}  sx={{padding:{xs:'10px',sm:'10px',md:'60px'}, display: 'felx', flexDirection: 'column', alignItems: 'center' }}>
-                                    <Box sx={{ paddingTop:{ sm:'0px',md:'30px'} }}>
+                                    <Box sx={{ paddingTop:{ sm:'0px',md:'30px'},fontSize:{xs:'12px',sm:'16px'} }}>
                                         We provide you animated icons through which you can bring your website to life and make it animated. animations plays a vital role in your web page as it can directly enhance the user experience and change their perception of visualizing your brand.
                                     </Box>
-                                    <Box sx={{ paddingTop: '20px' }}>
+                                    <Box sx={{ paddingTop: '20px',fontSize:{xs:'12px',sm:'16px'} }}>
                                         Explore different categories of animated icons with unique creativity to unlock more productivity.
                                     </Box>
-                                    <Box sx={{ paddingTop: '60px' }}>
+                                    <Box sx={{ paddingTop: {xs:'40px',sm:'60px'} }}>
                                         <Box sx={{ borderRadius: '7px', display: 'inline-block', padding: '5px 20px', color: '#fff', backgroundColor: '#703DFF', cursor: 'pointer' }}>
                                             <Link to="/animated-icons">
                                                 <Box color={'#fff'}>More..!</Box>
