@@ -17,7 +17,7 @@
 
 
 .MuiDrawer-root .MuiPaper-root.css-12i7wg6-MuiPaper-root-MuiDrawer-paper{
-    top: 65px!important;
+    top: 47px !important;
 }
 
 ::-webkit-scrollbar {
@@ -645,7 +645,7 @@ a:-webkit-any-link {
   display: flex !important;
 }
 .css-m9glnp-MuiPaper-root-MuiDialog-paper {
-  width: 80% !important;
+  width: 90% !important;
   height: auto !important;
 }
 .css-zw3mfo-MuiModal-root-MuiDialog-root{

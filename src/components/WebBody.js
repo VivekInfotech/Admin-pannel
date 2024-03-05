@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled, alpha } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,7 +14,7 @@ import { FaSearch, FaRegSmile, FaSmile } from "react-icons/fa";
 import { CiFaceSmile } from "react-icons/ci";
 import { BsEmojiSmile } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import iconlogo from './img/Vector.png'
 import interfaceicon from './img/interfaceicon.png'
 import animatedicon from './img/animated.png'
@@ -116,7 +115,7 @@ function WebBody() {
                             <Grid container xs={12} sx={{ justifyContent: 'center' }}>
                                 <Stack spacing={0} direction="row" alignItems="center" sx={{ width: "100%" }}>
                                     <Grid item xs={12} sx={{
-                                        display: 'flex', width: '70%', flexDirection: 'column', color: '#272727', justifyContent: 'center', paddingTop: '120px', textAlign: 'center', lineHeight: '1',
+                                        display: 'flex', width: '70%', flexDirection: 'column', color: '#272727', justifyContent: 'center',marginTop: {xs:'50px',sm:'120px'}, textAlign: 'center', lineHeight: '1',
                                         fontWeight: "700", zIndex: 9, fontSize: { xs: '22px', sm: '32px', md: '45px' }
                                     }}>
                                         {/* data-aos="zoom-in" data-aos-offset="0" */}
@@ -125,7 +124,7 @@ function WebBody() {
                                     </Grid>
 
                                 </Stack>
-                                <Stack spacing={1} direction="row" alignItems="center" sx={{ width: "48%" }}>
+                                <Stack spacing={1} direction="row" alignItems="center" sx={{ width:{xs:'80%',sm: "48%"} }}>
                                     <Grid item xs={12} sx={{
                                         color: '#272727', textAlign: 'center', paddingTop: '33px',
                                         alignItems: 'end', zIndex: 9, fontSize: { xs: '12px', sm: '12px', md: '14px' }
@@ -138,7 +137,7 @@ function WebBody() {
                     </Container>
                     <Box sx={{ flexGrow: 1 }}>
                         <Toolbar sx={{ display: 'flex', justifyContent: 'center' }} >
-                            <Grid sx={{ width: '50%', paddingTop: '33px' }}>
+                            <Grid sx={{ width: {xs:'90%',sm:'50%'}, paddingTop: '33px' }}>
                                 <Search sx={{ backgroundColor: "#fff0", border: '1px solid #272727', margin: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                                     <Box className="icon-serch" sx={{ display: 'flex', alignItems: 'center' }}>
                                         <Box sx={{ paddingLeft: '10px', paddingTop: '5px' }}>

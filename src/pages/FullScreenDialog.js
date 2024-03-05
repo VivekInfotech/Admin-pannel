@@ -9,13 +9,9 @@ import Slide from '@mui/material/Slide';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Grid from '@mui/material/Grid';
-import { IoIosColorPalette, IoMdImages, IoIosShareAlt, IoIosDownload, IoIosArrowDown } from "react-icons/io";
+import {  IoMdImages, IoIosShareAlt, IoIosDownload, IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { Menu } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -27,20 +23,28 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [selectedIconUrl, setSelectedIconUrl] = useState(null);
 
+
   const handleColorChange = async (event) => {
     const newColor = event.target.value;
     const cleanedColor = newColor.replace(/#/g, '');
     setSelectedColor(cleanedColor);
+    console.log(cleanedColor);
+  };
 
+  const handleColorPickerClose = async () => {
+    await updateColor(selectedColor);
+  };
+
+  const updateColor = async (cleanedColor) => {
     await axios.put(`http://localhost:3001/editIcon/update/${iconId}/${cleanedColor}`)
       .then((res) => {
-        console.log("update Icon color :- ",res.data.data);
+        console.log("update Icon color :- ", res.data.data);
         getIcon(iconId)
       })
       .catch((error) => {
         console.log(error.response.data.message);
-      });
-  };
+      });
+  }
 
   useEffect(() => {
     if (iconId) {
@@ -53,7 +57,7 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);
-        setSelectedIconUrl(res.data.data.regular); // Set the default selected icon URL
+        setSelectedIconUrl(res.data.data.regular);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -73,6 +77,7 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
     }
     return '';
   }
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -81,7 +86,7 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
+  };
 
   return (
     <React.Fragment>
@@ -99,12 +104,12 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
             >
               <CloseIcon />
             </IconButton>
-          </Toolbar>
+          </Toolbar>  
         </AppBar>
-        <Box>
+        <Box sx={{}}> 
           {data && (
             <Grid container>
-              <Grid xs={6}>
+              <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', padding: '10px 25px', justifyContent: 'space-between', cursor: 'pointer' }}>
                   <Box sx={{ border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }}>
                     Save
@@ -122,7 +127,7 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
                   )}
                 </Box>
               </Grid>
-              <Grid xs={6}>
+              <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', padding: '10px 21px', justifyContent: 'space-between', fontWeight: '600', fontSize: '24px' }}>
                   IconGrid
                 </Box>

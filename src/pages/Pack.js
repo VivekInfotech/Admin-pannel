@@ -34,16 +34,19 @@ export default function Pack() {
 
     const handleCloseDialog = async (iconId) => {
         setDialogOpen(false);
+        updateIcons(iconId)
+    };
+    
+    const updateIcons = async (iconId) => {
         await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000`)
             .then((res) => {
                 console.log("update Icon color :- ", res.data.data);
                 getIcons(categoryName);
             })
-            .catch((error) => {
+            .catch((error) => { 
                 console.log(error.response.data.message);
             });
-    };
-    
+    }
 
 
     const getIcons = (categoryName) => {

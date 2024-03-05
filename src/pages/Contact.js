@@ -4,17 +4,14 @@ import React from 'react'
 import { FaRocketchat } from "react-icons/fa";
 
 function Contact() {
+  
     return (
         <Box sx={{ padding: '65px 0px' }}>
-            <Box position={'relative'}>
-                <section1> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-                </section1>
-
-
-                <Box sx={{ position: 'absolute', top: '20%', zIndex: '9', width: '100%' }}>
+            <Box >
+                <Box sx={{ width: '100%' }}>
                     <Box sx={{ margin: '30px 0px' }}>
                         <Box className='center'
-                            sx={{ fontSize: '36px', fontWeight: '700', color: '#272727' }}
+                            sx={{ fontSize: {xs:'21px',sm:'36px'}, fontWeight: '700', color: '#272727' }}
                         >Contact Our Friendly Team
 
                         </Box>
@@ -28,7 +25,7 @@ function Contact() {
                     <Box>
                         <Container maxWidth="lg">
                             <Grid container justifyContent={'space-around'}>
-                                <Grid xs={3} sx={{ margin: '0px 10px', padding: '20px 20px', border: '1px solid #dcdcdc', borderRadius: '7px' }}>
+                                <Grid md={4} lg={3} xs={12} sx={{ margin: '20px 10px', padding: '20px 20px', border: '1px solid #dcdcdc', borderRadius: '7px' }}>
                                     <Box sx={{ marginBottom: '20px', padding: '10px 15px', border: '1px solid #dcdcdc', borderRadius: '7px', display: 'inline-block' }}>
                                         <FaRocketchat fontSize={'20px'} />
                                     </Box>
@@ -42,7 +39,7 @@ function Contact() {
                                         vivekvaghasiya133@gmail.com
                                     </Box>
                                 </Grid>
-                                <Grid xs={3} sx={{ margin: '0px 10px', padding: '20px 20px', border: '1px solid #dcdcdc', borderRadius: '7px' }}>
+                                <Grid md={4} lg={3} xs={12} sx={{ margin: '20px 10px', padding: '20px 20px', border: '1px solid #dcdcdc', borderRadius: '7px' }}>
                                     <Box sx={{ marginBottom: '20px', padding: '10px 15px', border: '1px solid #dcdcdc', borderRadius: '7px', display: 'inline-block' }}>
                                         <FaRocketchat fontSize={'20px'} />
                                     </Box>
@@ -56,7 +53,7 @@ function Contact() {
                                         vivekvaghasiya133@gmail.com
                                     </Box>
                                 </Grid>
-                                <Grid xs={3} sx={{ margin: '0px 10px', padding: '20px 20px', border: '1px solid #dcdcdc', borderRadius: '7px' }}>
+                                <Grid md={4} lg={3} xs={12} sx={{ margin: '20px 10px', padding: '20px 20px', border: '1px solid #dcdcdc', borderRadius: '7px' }}>
                                     <Box sx={{ marginBottom: '20px', padding: '10px 15px', border: '1px solid #dcdcdc', borderRadius: '7px', display: 'inline-block' }}>
                                         <FaRocketchat fontSize={'20px'} />
                                     </Box>

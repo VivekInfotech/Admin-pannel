@@ -5,16 +5,9 @@ import React from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import backgroundImg from './brands/app-preview-dark.jpg'
-import banner from './coronavirus-5.png'
+
 import Cardicon from './Cardicon';
-import business from './brands/budinesss.png'
-import food from './brands/food.png'
-import hospital from './brands/hospital.png'
-import animal from './brands/animal.png'
-import language from './brands/language.png'
-import alert from './brands/alert.png'
-import indian from './brands/indian brands.png'
-import Education from './brands/Education.png'
+
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
@@ -84,7 +77,7 @@ function Icons() {
               return <Grid key={index} lg={3} md={4} sm={6} xs={12} className='setcontant'>
                 <Link to={{ pathname: "/pack", state: { categoryName: el.name, id: el._id } }}>
                   <Cardicon name="boxshadowyellow" categoryName={el.name} bannerimg={''} heading={el.name} description={el.description} />
-                </Link>
+                </Link>
               </Grid>
             })
           }
@@ -204,4 +197,4 @@ function Icons() {
   )
 }
 
-export default Icons
+export default Icons

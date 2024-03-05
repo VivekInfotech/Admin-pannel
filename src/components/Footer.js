@@ -1,122 +1,119 @@
-import { Box } from '@mui/material'
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import React from 'react'
-import Contact from '../pages/Contact';
-import line from './Line 9.png'
+import { Box, Container, Grid, Button } from '@mui/material';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { useTheme } from '@mui/material/styles';
+import { useHistory } from 'react-router-dom';
+
+import line from './Line 9.png';
 
 const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'Icons', path: '/icons' },
-    { name: 'Interface icons', path: '/interface-icons' },
-    { name: 'Animated icons', path: '/animated-icons' },
+  { name: 'Home', path: '/' },
+  { name: 'Icons', path: '/icons' },
+  { name: 'Interface icons', path: '/interface-icons' },
+  { name: 'Animated icons', path: '/animated-icons' },
 ];
 
 const Help = [
-    { name: 'Support', path: '/support' },
-    { name: 'FAQs', path: '' },
-    { name: 'Icon styles', path: '' },
-    { name: 'IconGrid collections', path: '' },
+  { name: 'Support', path: '/support' },
+  { name: 'FAQs', path: '' },
+  { name: 'Icon styles', path: '' },
+  { name: 'IconGrid collections', path: '' },
 ];
 
 const Company = [
-    { name: 'About', path: '' },
-    { name: 'Contact us', path: '/contact-us' },
-    { name: 'Follow', path: '' },
-
+  { name: 'About', path: '' },
+  { name: 'Contact us', path: '/contact-us' },
+  { name: 'Follow', path: '' },
 ];
+
 function Footer() {
-    const history = useHistory();
-    const handlePageClick = (path) => {
-        history.push(path);
+  const theme = useTheme();
+  const history = useHistory();
 
-    };
+  const handlePageClick = (path) => {
+    history.push(path);
+  };
 
-    return (
-        <Box>
-            <Box sx={{ width: '100%', backgroundColor: '#272727', borderRadius: '230px 0px 0px 0px', paddingTop: '70px' }}>
-                <Container maxWidth="lg">
-                    <Grid container>
-                        <Grid xs={9} sx={{ color: '#fff', display: 'flex', justifyContent: 'space-around' }}>
-                            <Grid xs={2}>
-                                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-                                    Content
-                                </Box>
-                                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                                    {pages.map((page, i) => (
-                                        <Button
-                                            key={i}
-                                            onClick={() => handlePageClick(page.path)}
-                                            sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-                                        >
-                                            {page.name}
-                                        </Button>
-                                    ))}
-                                </Box>
-                            </Grid>
-                            
-                            <Grid xs={2}>
-                                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-                                    Help
-                                </Box>
-                                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                                    {Help.map((page, i) => (
-                                        <Button
-                                            key={i}
-                                            onClick={() => handlePageClick(page.path)}
-                                            sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-                                        >
-                                            {page.name}
-                                        </Button>
-                                    ))}
-                                </Box>
-                            </Grid>
-                            <Grid xs={3}>
-                                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-                                    Company
-                                </Box>
-                                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                                    {Company.map((page, i) => (
-                                        <Button
-                                            key={i}
-                                            onClick={() => handlePageClick(page.path)}
-                                            sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-                                        >
-                                            {page.name}
-                                        </Button>
-                                    ))}
-                                </Box>
-                            </Grid>
-                        </Grid>
-                        <Grid xs={3} sx={{ color: '#fff' }}>
-                            <Box sx={{width:'100%', fontSize: '24px', fontWeight: '600',display:'flex',justifyContent:'center' }}>
-                                Socials
-                            </Box>
-                            <Box sx={{fontSize:'35px',display:'flex',justifyContent:'space-around',paddingTop:'10px' }}>
-                                <FaFacebook />
-                                <FaInstagram />
-                                <FaTwitter />
-                                
-                            </Box>
-                                      
-                        
-                        </Grid>
-                        
-                    </Grid>
-                    
-                    <Box sx={{padding:'30px 0px 20px 0px'}}>
-                    <img width={'100%'} src={line} alt="" />   
-                     </Box>
-                    <Box sx={{textAlign:'center',color:'white',paddingBottom:'20px'}}>
-                    Copyright © 2024 IconGrid Company S.L. All rights reserved
-                    </Box>                            
-                </Container>
-            </Box>
-        </Box>
-    )
+  return (
+    <Box>
+      <Box sx={{ width: '100%', backgroundColor: '#272727', borderRadius: '230px 0px 0px 0px', paddingTop: '70px' }}>
+        <Container maxWidth="lg">
+          <Grid container>
+          <Grid item xs={12} md={9} sx={{ color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+  <Grid item xs={12} md={2}>
+    <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
+      Content
+    </Box>
+    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      {pages.map((page, i) => (
+        <Button
+          key={i}
+          onClick={() => handlePageClick(page.path)}
+          sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+        >
+          {page.name}
+        </Button>
+      ))}
+    </Box>
+  </Grid>
+
+  <Grid item xs={12} md={2}>
+    <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
+      Help
+    </Box>
+    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      {Help.map((page, i) => (
+        <Button
+          key={i}
+          onClick={() => handlePageClick(page.path)}
+          sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+        >
+          {page.name}
+        </Button>
+      ))}
+    </Box>
+  </Grid>
+
+  <Grid item xs={12} md={3}>
+    <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
+      Company
+    </Box>
+    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      {Company.map((page, i) => (
+        <Button
+          key={i}
+          onClick={() => handlePageClick(page.path)}
+          sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+        >
+          {page.name}
+        </Button>
+      ))}
+    </Box>
+  </Grid>
+</Grid>
+
+            <Grid item xs={12} md={3} sx={{ color: '#fff', textAlign: 'center', pt: 2 }}>
+              <Box sx={{ width: '100%', fontSize: '24px', fontWeight: '600', display: 'flex', justifyContent: 'center' }}>
+                Socials
+              </Box>
+              <Box sx={{ fontSize: '35px', display: 'flex', justifyContent: 'space-around', paddingTop: '10px' }}>
+                <FaFacebook />
+                <FaInstagram />
+                <FaTwitter />
+              </Box>
+            </Grid>
+          </Grid>
+
+          <Box sx={{ padding: '30px 0px 20px 0px' }}>
+            <img width="100%" src={line} alt="" />
+          </Box>
+
+          <Box sx={{ textAlign: 'center', color: 'white', paddingBottom: '20px' }}>
+            Copyright © 2024 IconGrid Company S.L. All rights reserved
+          </Box>
+        </Container>
+      </Box>
+    </Box>
+  );
 }
 
-export default Footer
+export default Footer;
