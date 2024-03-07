@@ -56,7 +56,7 @@ function Icons() {
             </Grid>
             <Grid md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
 
-              <img src={backgroundImg} width={'100%'} alt="" srcset="" />
+              <img src={backgroundImg} width={'100%'} alt="" srcSet="" />
 
             </Grid>
           </Box>
@@ -96,59 +96,59 @@ function Icons() {
       <Box sx={{ backgroundColor: '#272727', padding: '0px 30px' }}>
         <Grid container sx={{ padding: '70px 0px', justifyContent: 'center' }}>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box class="card">
-              <Box class="card-img"></Box>
-              <Box class="card-info">
-                <p class="text-title">Indian Brands </p>
-                <p class="text-body">Iconic Indian brands cover diverse sectors across various industries</p>
+            <Box className="card">
+              <Box className="card-img"></Box>
+              <Box className="card-info">
+                <p className="text-title">Indian Brands </p>
+                <p className="text-body">Iconic Indian brands cover diverse sectors across various industries</p>
               </Box>
             </Box>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
             <Link to="/back-fill">
-              <Box class="card">
-                <Box class="card-img"></Box>
-                <Box class="card-info">
-                  <p class="text-title">Color Fill </p>
-                  <p class="text-body">The "color fill" icon applies solid colors in graphic design software.</p>
+              <Box className="card">
+                <Box className="card-img"></Box>
+                <Box className="card-info">
+                  <p className="text-title">Color Fill </p>
+                  <p className="text-body">The "color fill" icon applies solid colors in graphic design software.</p>
                 </Box>
               </Box>
             </Link>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box class="card">
-              <Box class="card-img"></Box>
-              <Box class="card-info">
-                <p class="text-title">Out Line</p>
-                <p class="text-body">Outline emphasizes visual design edges.</p>
+            <Box className="card">
+              <Box className="card-img"></Box>
+              <Box className="card-info">
+                <p className="text-title">Out Line</p>
+                <p className="text-body">Outline emphasizes visual design edges.</p>
               </Box>
             </Box>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box class="card">
-              <Box class="card-img"></Box>
-              <Box class="card-info">
-                <p class="text-title">Black Fill </p>
-                <p class="text-body">
+            <Box className="card">
+              <Box className="card-img"></Box>
+              <Box className="card-info">
+                <p className="text-title">Black Fill </p>
+                <p className="text-body">
                   Black fill enriches design, adding depth and visual contrast.</p>
               </Box>
             </Box>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box class="card">
-              <Box class="card-img"></Box>
-              <Box class="card-info">
-                <p class="text-title">Character </p>
-                <p class="text-body">Icon symbolizes identity, individuality, personality.</p>
+            <Box className="card">
+              <Box className="card-img"></Box>
+              <Box className="card-info">
+                <p className="text-title">Character </p>
+                <p className="text-body">Icon symbolizes identity, individuality, personality.</p>
               </Box>
             </Box>
           </Grid>
           <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box class="card">
-              <Box class="card-img"></Box>
-              <Box class="card-info">
-                <p class="text-title">Show</p>
-                <p class="text-body">Product description and details</p>
+            <Box className="card">
+              <Box className="card-img"></Box>
+              <Box className="card-info">
+                <p className="text-title">Show</p>
+                <p className="text-body">Product description and details</p>
               </Box>
             </Box>
           </Grid>
@@ -167,27 +167,27 @@ function Icons() {
       <Box>
         <Container maxWidth="lg">
           <Grid container>
-            <div class="tags foot-tags hide-foot-tags">
-              <a href="" title="" class="text-capitalize">Education</a>
-              <a href="" title="" class="text-capitalize">Technology</a>
-              <a href="" title="" class="text-capitalize">User</a>
-              <a href="" title="" class="text-capitalize">People</a>
-              <a href="" title="" class="text-capitalize">Business</a>
-              <a href="" title="" class="text-capitalize">Food</a>
-              <a href="" title="" class="text-capitalize">Computer</a>
-              <a href="" title="" class="text-capitalize">Marketing</a>
-              <a href="" title="" class="text-capitalize">Document</a>
-              <a href="" title="" class="text-capitalize">Man</a>
-              <a href="" title=" " class="text-capitalize">Message</a>
-              <a href="" title="" class="text-capitalize">Building</a>
-              <a href="" title="" class="text-capitalize">Time</a>
-              <a href="" title="" class="text-capitalize">Arrow</a>
-              <a href="" title="" class="text-capitalize">Home</a>
-              <a href="" title="" class="text-capitalize">House</a>
-              <a href="" title="" class="text-capitalize">Music</a>
-              <a href="" title="" class="text-capitalize">Chat</a>
-              <a href="" title="" class="text-capitalize">Cloud</a>
-              <a href="" title="" class="text-capitalize">Book</a>
+            <div className="tags foot-tags hide-foot-tags">
+              <a href="" title="" className="text-capitalize">Education</a>
+              <a href="" title="" className="text-capitalize">Technology</a>
+              <a href="" title="" className="text-capitalize">User</a>
+              <a href="" title="" className="text-capitalize">People</a>
+              <a href="" title="" className="text-capitalize">Business</a>
+              <a href="" title="" className="text-capitalize">Food</a>
+              <a href="" title="" className="text-capitalize">Computer</a>
+              <a href="" title="" className="text-capitalize">Marketing</a>
+              <a href="" title="" className="text-capitalize">Document</a>
+              <a href="" title="" className="text-capitalize">Man</a>
+              <a href="" title="" className="text-capitalize">Message</a>
+              <a href="" title="" className="text-capitalize">Building</a>
+              <a href="" title="" className="text-capitalize">Time</a>
+              <a href="" title="" className="text-capitalize">Arrow</a>
+              <a href="" title="" className="text-capitalize">Home</a>
+              <a href="" title="" className="text-capitalize">House</a>
+              <a href="" title="" className="text-capitalize">Music</a>
+              <a href="" title="" className="text-capitalize">Chat</a>
+              <a href="" title="" className="text-capitalize">Cloud</a>
+              <a href="" title="" className="text-capitalize">Book</a>
             </div>
           </Grid>
         </Container>

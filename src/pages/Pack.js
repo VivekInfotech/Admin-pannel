@@ -38,7 +38,7 @@ export default function Pack() {
     };
     
     const updateIcons = async (iconId) => {
-        await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000`)
+        await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/icon`)
             .then((res) => {
                 console.log("update Icon color :- ", res.data.data);
                 getIcons(categoryName);
@@ -103,7 +103,7 @@ export default function Pack() {
                                     </Box>
                                 </Box>
                             </Grid>
-                            <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} />
+                            <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="icon" />
                         </Grid>
                     </Container>
                 </Box>

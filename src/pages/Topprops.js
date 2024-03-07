@@ -9,7 +9,7 @@ function Topprops(props) {
         <Box className='iconss' onClick={props.onClick} >
             <Box sx={{ display: 'flex', justifyContent: 'center', padding: '30px' }}>
                 <Grid sx={{ display: 'flex', width: '100px', flexDirection: 'column', alignItems: 'center' }}>
-                    <img src={props.image} alt="" />
+                    <img src={props.image} alt={props.name} title={props.name} width="50px" height="auto" />
                     <Box sx={{ paddingTop: '20px' }}>
                         {props.tag}
                     </Box>
@@ -19,4 +19,4 @@ function Topprops(props) {
     )
 }
 
-export default Topprops
+export default Topprops

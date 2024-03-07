@@ -168,7 +168,7 @@
 .blend0,
 .css-u0quxs-MuiStack-root,
 .css-v4cz06-MuiStack-root,
-.css-i4bv87-MuiSvgIcon-root ,.css-1qwzq7g-MuiListItemIcon-root,.css-u9vj98-MuiListItemIcon-root{
+.css-i4bv87-MuiSvgIcon-root,.css-uc6mlj-MuiButtonBase-root-MuiButton-root ,.css-1qwzq7g-MuiListItemIcon-root,.css-u9vj98-MuiListItemIcon-root{
   color: #fff !important;
 }
 
@@ -364,6 +364,12 @@ a:-webkit-any-link {
 .background {
   background-image: url(./components/img/banner-download-bg.png), url(./components/img/banner-download-bg-2.png);
   width: 100%;
+}
+.background1 {
+  background-image: url(./pages/brands/Background.jpg);
+  width: 100%;
+  background-size: cover;
+  background-position-y: -184px;
 }
 
 .backgroundInterface {
@@ -646,7 +652,6 @@ a:-webkit-any-link {
 }
 .css-m9glnp-MuiPaper-root-MuiDialog-paper {
   width: 90% !important;
-  height: auto !important;
 }
 .css-zw3mfo-MuiModal-root-MuiDialog-root{
   top: 15px !important;
@@ -976,33 +981,6 @@ section span:hover
   transition: 0s;
 }
 
-section1 
-{
-  /* background-color: #888888; */
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-  flex-wrap: wrap;
-  overflow: hidden;
-  /* background-color: #e9e9e9; */
-  z-index: 1;
-}
-
-section1 span{
-  width: calc(6.25vw - 2px);
-  height: calc(6.25vw - 2px);
-  background: #ffffff;
-  z-index: 2;
-  transition: 1.5s;
-}
-section1 span:hover 
-{
-  background: #F9F9FB;
-  transition: 0s;
-}
 .wrapper {
   width: 100%;
   max-width: 31.25rem;
@@ -1047,6 +1025,16 @@ section1 span:hover
 #searchQuerySubmit:hover {
   cursor: pointer;
 }
-.css-6hp17o-MuiList-root-MuiMenu-list{
+.css-6hp17o-MuiList-root-MuiMenu-list,.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root,.css-15v22id-MuiAccordionDetails-root{
   background-color: #272727 !important;
+  color: #fff !important;
+}
+.css-1fmgl07-MuiPaper-root-MuiAccordion-root{
+  box-shadow: none !important;
+}
+.css-1afbf1i-MuiButtonBase-root-MuiButton-root:hover{
+  background-color: #272727 !important;
+  color: #ffbc06 !important;
+  transform: translate(5%);
+  transition: all 0.3s;
 }

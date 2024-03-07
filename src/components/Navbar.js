@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
+import logo from './img/icon-grid.png'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 
 const pages = [
@@ -65,7 +65,8 @@ function Navbar() {
                                 textDecoration: 'none',
                             }}
                         >
-                            LOGO
+                            logo
+                            {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

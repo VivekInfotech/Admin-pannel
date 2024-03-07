@@ -6,16 +6,33 @@ import { Link } from 'react-router-dom';
 import banner from './brands/animatedbanner.png'
 import FullScreenDialog from './FullScreenDialog';
 import axios from 'axios';
+
 function Animatedicons() {
+
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [data, setData] = useState([])
-  const handleOpenDialog = () => {
+  const [selectedIconId, setSelectedIconId] = useState(null);
+
+  const handleOpenDialog = (iconId) => {
+    setSelectedIconId(iconId);
     setDialogOpen(true);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = (iconId) => {
     setDialogOpen(false);
+    updateIcons(iconId)
   };
+
+  const updateIcons = async (iconId) => {
+    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/animated`)
+      .then((res) => {
+        console.log("update Icon color :- ", res.data.data);
+        getAnimatedIcon();
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }
 
   useEffect(() => {
     getAnimatedIcon()
@@ -24,25 +41,25 @@ function Animatedicons() {
   const getAnimatedIcon = () => {
     axios.get('http://localhost:3001/animated/find')
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         setData(res.data.data)
       })
       .catch((error) => {
         console.log(error);
       })
   }
-  console.log(data);
+
   return (
     <Box>
       <Grid container paddingTop={'46px'}>
         <Grid xs={12}>
-          <Box className="background" sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', position: 'relative', alignItems: 'center', display: 'flex' }}>
-            <Grid md={12} sx={{ padding: '20px' }}>
+          <Box className='home-hero' sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#272727', position: 'relative', alignItems: 'center', display: 'flex' }}>
+            <Grid md={12} sx={{ padding: '20px', textAlign: 'center' }}>
 
-              <Box sx={{ fontSize: { xs: '14px', sm: '20px', md: '32px' }, textTransform: 'capitalize', fontWeight: '700', padding: { md: '50px 0px 0px 20px' }, color: '#272727' }}>
+              <Box sx={{ fontSize: { xs: '14px', sm: '20px', md: '32px' }, width: '63%', margin: 'auto', textTransform: 'capitalize', fontWeight: '700', padding: { md: '50px 0px 0px 0px' }, color: '#ffbc06' }}>
                 Explore a vast collection of over 18,000 animated icons at your disposal.
               </Box>
-              <Box sx={{ fontSize: { xs: '8px', sm: '14px', md: '18px' }, padding: { md: '10px 0px 0px 20px' } }}>
+              <Box sx={{ fontSize: { xs: '8px', sm: '14px', md: '18px' }, width: '63%', margin: 'auto', color: '#fff', padding: { md: '10px 0px 0px 0px' } }}>
                 IconGrid offers a robust collection of meticulously designed animated icons, ready for seamless integration into your digital products, presentations, or videos!
               </Box>
               <Box sx={{ padding: { xs: '9px 0px 0px 0px', md: '30px 0px 50px 20px' } }}>
@@ -54,26 +71,24 @@ function Animatedicons() {
 
               </Box>
             </Grid>
-            <Grid xs={5} sx={{ display: 'flex', alignItems: 'center' }}>
-            </Grid>
+
           </Box>
         </Grid>
         <Grid container paddingTop={{ xs: '20px', md: '45px' }} xs={12} className='center'>
 
           {
             data.map((el, index) => {
-             return <Grid key={index} xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-                <Box onClick={handleOpenDialog} className="card4" id="card4">
+              return <Grid key={index} xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
+                <Box onClick={() => handleOpenDialog(el._id)} className="card4" id="card4">
                   <Box className="content4">
-                  <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
+                    <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
                   </Box>
                 </Box>
               </Grid>
-
             })
           }
 
-          <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
+          <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="animated" />
 
         </Grid>
         <Grid xs={12}>

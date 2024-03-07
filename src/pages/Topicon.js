@@ -195,9 +195,14 @@ const category = [
   }
 ];
 const Topicon = () => {
-  const theme = useTheme();
+
   const [open, setOpen] = React.useState(false);
   const [close, setClose] = React.useState(true);
+  const [data, setData] = useState([])
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [selectedIconId, setSelectedIconId] = useState(null);
+
+  const theme = useTheme();
   let history = useHistory();
 
   const handleDrawerOpen = () => {
@@ -207,25 +212,38 @@ const Topicon = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const [isDialogOpen, setDialogOpen] = useState(false);
 
-  const handleOpenDialog = () => {
+  const handleOpenDialog = (iconId) => {
+    setSelectedIconId(iconId);
     setDialogOpen(true);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = (iconId) => {
     setDialogOpen(false);
+    updateIcons(iconId)
   };
 
+  const updateIcons = async (iconId) => {
+    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/interface`)
+      .then((res) => {
+        console.log("update Icon color :- ", res.data.data);
+        getInterfaceIcon();
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }
+
   useEffect(() => {
-    getIcons()
+    getInterfaceIcon()
   }, [])
 
-  const getIcons = () => {
-    axios.get('http://localhost:3001/icon/find')
+  const getInterfaceIcon = () => {
+    axios.get('http://localhost:3001/interface/find')
       .then((res) => {
-        console.log(res.data.data);
-        // setData(res.data.data)
+        let regularIcon = res.data.data.map(icon => (icon))
+        console.log("regularIcon :- ", regularIcon);
+        setData(regularIcon)
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -369,13 +387,15 @@ const Topicon = () => {
           <Box className="search" sx={{ paddingTop: '40px' }}>
             <Grid container spacing={4} >
 
+              {
+                data.map((el, index) => {
+                  return <Grid key={index} lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
+                    <Topprops image={el.regular} name={el.name} tag={el.name} onClick={() => handleOpenDialog(el._id)} />
+                  </Grid>
+                })
+              }
 
-
-              <Grid lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                <Topprops image={house} tag="jdqwdfuh" onClick={handleOpenDialog} />
-              </Grid>
-
-              <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
+              <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="interface" />
 
             </Grid>
             <Box sx={{ display: 'flex', justifyContent: 'center', padding: '10px 0px' }}>
@@ -398,4 +418,4 @@ const Topicon = () => {
   );
 }
 
-export default Topicon
+export default Topicon

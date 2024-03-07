@@ -1,3 +1,4 @@
+// FullScreenDialog.js
 import React, { useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
@@ -9,7 +10,7 @@ import Slide from '@mui/material/Slide';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Grid from '@mui/material/Grid';
-import {  IoMdImages, IoIosShareAlt, IoIosDownload, IoIosArrowDown } from "react-icons/io";
+import { IoMdImages, IoIosShareAlt, IoIosDownload, IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import { Menu } from '@mui/material';
@@ -18,7 +19,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({ open, onClose, iconId }) {
+export default function FullScreenDialog({ open, onClose, iconId, entityType }) {
   const [data, setData] = useState();
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [selectedIconUrl, setSelectedIconUrl] = useState(null);
@@ -32,11 +33,11 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
   };
 
   const handleColorPickerClose = async () => {
-    await updateColor(selectedColor);
+    // await updateColor(selectedColor);
   };
 
   const updateColor = async (cleanedColor) => {
-    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/${cleanedColor}`)
+    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/${cleanedColor}/${entityType}`)
       .then((res) => {
         console.log("update Icon color :- ", res.data.data);
         getIcon(iconId)
@@ -53,7 +54,7 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
   }, [iconId]);
 
   const getIcon = (iconId) => {
-    axios.get(`http://localhost:3001/icon/findById/${iconId}`)
+    axios.get(`http://localhost:3001/${entityType}/findById/${iconId}`)
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);
@@ -115,10 +116,13 @@ export default function FullScreenDialog({ open, onClose, iconId }) {
                     Save
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', fontWeight: '600' }}>
-                    <input type="color"
+                  <input
+                      type="color"
                       id="color1"
                       value={selectedColor}
-                      onChange={handleColorChange} />
+                      onChange={handleColorChange}
+                      onBlur={handleColorPickerClose} // Add onBlur event to handle color picker close
+                    />
                   </Box>
                 </Box>
                 <Box className='center' sx={{ paddingY: '50px', border: '2px solid #888888', borderRadius: '9px', margin: '10px 25px' }}>

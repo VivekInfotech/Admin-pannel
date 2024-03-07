@@ -1,3 +1,4 @@
+// Interfaceicon.js
 import { React, useState } from 'react';
 import { Box } from '@mui/material'
 import Grid from '@mui/material/Grid';
@@ -8,28 +9,43 @@ import FullScreenDialog from './FullScreenDialog';
 import camera from './brands/camerainterface.png'
 import { useEffect } from 'react';
 import axios from 'axios';
+
 function Interfaceicon() {
+
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [data, setData] = useState([])
+  const [selectedIconId, setSelectedIconId] = useState(null);
 
-  const handleOpenDialog = () => {
+  const handleOpenDialog = (iconId) => {
+    setSelectedIconId(iconId);
     setDialogOpen(true);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = (iconId) => {
     setDialogOpen(false);
+    updateIcons(iconId)
   };
+
+  const updateIcons = async (iconId) => {
+    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/interface`)
+      .then((res) => {
+        console.log("update Icon color :- ", res.data.data);
+        getInterfaceIcon();
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }
 
   useEffect(() => {
     getInterfaceIcon()
   }, [])
 
-  
   const getInterfaceIcon = () => {
     axios.get('http://localhost:3001/interface/find')
       .then((res) => {
         let regularIcon = res.data.data.map(icon => (icon))
-        console.log(regularIcon);
+        console.log("regularIcon :- ", regularIcon);
         setData(regularIcon)
       })
       .catch((error) => {
@@ -83,22 +99,22 @@ function Interfaceicon() {
 
             {
               data.map((el, index) => {
-                return <Grid xs={6} sm={4} md={2}>
-                  <Box class="card3 wallet">
-                    <Box onClick={handleOpenDialog}>
-                      <Box class="overlay"></Box>
-                      <Box class="circle">
-                        <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
-                      </Box>
-                    </Box></Box>
+                if (index <= 17) {
+                  return <Grid key={index} xs={6} sm={4} md={2}>
+                    <Box class="card3 wallet">
+                      <Box onClick={() => handleOpenDialog(el._id)}>
+                        <Box class="overlay"></Box>
+                        <Box class="circle">
+                          <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
+                        </Box>
+                      </Box></Box>
 
-                </Grid>
+                  </Grid>
+                }
               })
             }
 
-
-
-            <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
+            <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="interface" />
 
             <Grid xs={12}>
               <Box className="center" sx={{ fontSize: "18px", padding: '10px' }}>
@@ -153,4 +169,4 @@ function Interfaceicon() {
   )
 }
 
-export default Interfaceicon
+export default Interfaceicon

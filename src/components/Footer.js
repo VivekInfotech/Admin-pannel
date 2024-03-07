@@ -2,7 +2,11 @@ import { Box, Container, Grid, Button } from '@mui/material';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { useTheme } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
-
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import line from './Line 9.png';
 
 const pages = [
@@ -35,66 +39,137 @@ function Footer() {
 
   return (
     <Box>
-      <Box sx={{ width: '100%', backgroundColor: '#272727', borderRadius: '230px 0px 0px 0px', paddingTop: '70px' }}>
+      <Box sx={{ width: '100%', backgroundColor: '#272727', borderRadius: { md: '230px 0px 0px 0px' }, paddingTop: '70px' }}>
         <Container maxWidth="lg">
           <Grid container>
-          <Grid item xs={12} md={9} sx={{ color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-  <Grid item xs={12} md={2}>
-    <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-      Content
-    </Box>
-    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-      {pages.map((page, i) => (
-        <Button
-          key={i}
-          onClick={() => handlePageClick(page.path)}
-          sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-        >
-          {page.name}
-        </Button>
-      ))}
-    </Box>
-  </Grid>
+            <Grid container item xs={12} md={9} sx={{ display: { xs: 'none', sm: 'flex' }, color: '#fff', justifyContent: 'space-around' }}>
+              <Grid item xs={12} sm={3}>
+                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
+                  Content
+                </Box>
+                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                  {pages.map((page, i) => (
+                    <Button
+                      key={i}
+                      onClick={() => handlePageClick(page.path)}
+                      sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                    >
+                      {page.name}
+                    </Button>
+                  ))}
+                </Box>
+              </Grid>
 
-  <Grid item xs={12} md={2}>
-    <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-      Help
-    </Box>
-    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-      {Help.map((page, i) => (
-        <Button
-          key={i}
-          onClick={() => handlePageClick(page.path)}
-          sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-        >
-          {page.name}
-        </Button>
-      ))}
-    </Box>
-  </Grid>
+              <Grid item xs={12} sm={3}>
+                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
+                  Help
+                </Box>
+                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                  {Help.map((page, i) => (
+                    <Button
+                      key={i}
+                      onClick={() => handlePageClick(page.path)}
+                      sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                    >
+                      {page.name}
+                    </Button>
+                  ))}
+                </Box>
+              </Grid>
 
-  <Grid item xs={12} md={3}>
-    <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
-      Company
-    </Box>
-    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-      {Company.map((page, i) => (
-        <Button
-          key={i}
-          onClick={() => handlePageClick(page.path)}
-          sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
-        >
-          {page.name}
-        </Button>
-      ))}
-    </Box>
-  </Grid>
-</Grid>
+              <Grid item xs={12} sm={3}>
+                <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
+                  Company
+                </Box>
+                <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                  {Company.map((page, i) => (
+                    <Button
+                      key={i}
+                      onClick={() => handlePageClick(page.path)}
+                      sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                    >
+                      {page.name}
+                    </Button>
+                  ))}
+                </Box>
+              </Grid>
+            </Grid>
 
-            <Grid item xs={12} md={3} sx={{ color: '#fff', textAlign: 'center', pt: 2 }}>
-              <Box sx={{ width: '100%', fontSize: '24px', fontWeight: '600', display: 'flex', justifyContent: 'center' }}>
-                Socials
+            <Grid container item xs={12} md={9} sx={{ display: { xs: 'flex', sm: 'none' }, color: '#fff', justifyContent: 'space-around' }}>
+              <Box sx={{width:'100%'}}>
+                <Accordion sx={{backgroundColor:'#272727'}}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                  >
+                    Content
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                      {pages.map((page, i) => (
+                        <Button
+                          key={i}
+                          onClick={() => handlePageClick(page.path)}
+                          sx={{ my: 1, color: '#272727', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                        >
+                          {page.name}
+                        </Button>
+                      ))}
+                    </Box>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion sx={{backgroundColor:'#272727'}}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2-content"
+                    id="panel2-header"
+                  >
+                    Help
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                      {Help.map((page, i) => (
+                        <Button
+                          key={i}
+                          onClick={() => handlePageClick(page.path)}
+                          sx={{ my: 1, color: '#272727', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                        >
+                          {page.name}
+                        </Button>
+                      ))}
+                    </Box>
+                  </AccordionDetails>
+                </Accordion >
+                <Accordion sx={{backgroundColor:'#272727'}}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel3-content"
+                    id="panel3-header"
+                  >
+                    Company
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                      {Company.map((page, i) => (
+                        <Button
+                          key={i}
+                          onClick={() => handlePageClick(page.path)}
+                          sx={{ my: 1, color: '#272727', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                        >
+                          {page.name}
+                        </Button>
+                      ))}
+                    </Box>
+                  </AccordionDetails>
+
+                </Accordion>
               </Box>
+            </Grid>
+            
+
+            <Grid item xs={12} md={3} sx={{ color: '#fff' ,marginTop:{xs:'20px',sm:'0px'} }}>
+              <Box sx={{ width: '100%', fontSize: '24px', fontWeight: '600', display: 'flex', justifyContent: 'center' }}>Socials</Box>
               <Box sx={{ fontSize: '35px', display: 'flex', justifyContent: 'space-around', paddingTop: '10px' }}>
                 <FaFacebook />
                 <FaInstagram />
@@ -107,7 +182,7 @@ function Footer() {
             <img width="100%" src={line} alt="" />
           </Box>
 
-          <Box sx={{ textAlign: 'center', color: 'white', paddingBottom: '20px' }}>
+          <Box sx={{ fontSize:{xs:'9px',sm:'16px'},textAlign: 'center', color: 'white', paddingBottom: '20px' }}>
             Copyright © 2024 IconGrid Company S.L. All rights reserved
           </Box>
         </Container>
