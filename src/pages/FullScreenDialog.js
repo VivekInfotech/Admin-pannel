@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+import { FaCopy } from "react-icons/fa";
 import Slide from '@mui/material/Slide';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
@@ -76,7 +77,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
   const link = () => {
     if (selectedIconUrl) {
-      return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>;
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>`;
     }
     return '';
   }
@@ -161,6 +162,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                   <Box className="code-editor">
                     <Box className="header">
                       <span className="title">HTML</span>
+                      <span className="title"><FaCopy /></span>
                     </Box>
                     <Box className="editor-content">
                       <code className="code">

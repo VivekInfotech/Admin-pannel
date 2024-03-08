@@ -40,11 +40,11 @@ export default function Cardicon(props) {
                         })
                     }
                 </Grid>
-            </Box>
+            </Box>
             <Box className="info-area">
                 <h3 className='m-0'>{props.heading}</h3>
                 <p className='m-0'>{props.description}</p>
             </Box>
-        </Box>
+        </Box>
     )
 }

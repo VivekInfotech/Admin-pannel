@@ -545,6 +545,29 @@ const LogOut = () => {
                 </ListItemButton>
               </ListItem>
             </List>
+            <ListItem sx={{ padding: "0px 20px" }}>
+                <ListItemButton onClick={() => setExpand({ ...expand, 1: !expand[1] })}>
+                  <ListItemIcon sx={{ minWidth: "30px" }}>
+                    <BsGem />
+                  </ListItemIcon>
+                  <ListItemText primary="Popular Icon" />
+                  {expand[1] ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+              </ListItem>
+              <Collapse in={expand[1]} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding dense>
+                  {Components.map((component,index) => (
+                    <ListItem key={index} disablePadding onClick={() => { history.push(component.path) }}>
+                      <ListItemButton sx={{ pl: 4 }}>
+                        <ListItemIcon sx={{ minWidth: "20px", marginLeft: "30px" }}>
+                          <CircleIcon sx={{ fontSize: "9px" }} />
+                        </ListItemIcon>
+                        <ListItemText primary={component.page} />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Collapse>
             <List subheader={
               <ListSubheader component="div">
                 PAGES
