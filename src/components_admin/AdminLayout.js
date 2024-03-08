@@ -301,6 +301,16 @@ const LogOut = () => {
       page: "Interface icon"
     }
   ];
+  const Components1 = [
+    {
+      path: "/admin/popular-icon/icon",
+      page: "Icon"
+    },
+    {
+      path: "/admin/popular-icon/category",
+      page: "Category"
+    }
+  ];
   const Tables = ["General Tables", "Data Tables"];
   const Charts = ["Chart.js", "ApexCharts", "ECharts"];
   const Icons = ["Bootstrap Icons", "Remix Icons", "Boxions"]
@@ -330,9 +340,17 @@ const LogOut = () => {
     4: false,
     5: false
   }
+  const DropdownExpand1 = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  }
 
   // Dropdown Expand State 
   const [expand, setExpand] = React.useState(DropdownExpand);
+  const [expand1, setExpand1] = React.useState(DropdownExpand1);
 
   // use for screen breakpoint 
   // const isMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -546,17 +564,17 @@ const LogOut = () => {
               </ListItem>
             </List>
             <ListItem sx={{ padding: "0px 20px" }}>
-                <ListItemButton onClick={() => setExpand({ ...expand, 1: !expand[1] })}>
+                <ListItemButton onClick={() => setExpand1({ ...expand1, 1: !expand1[1] })}>
                   <ListItemIcon sx={{ minWidth: "30px" }}>
                     <BsGem />
                   </ListItemIcon>
                   <ListItemText primary="Popular Icon" />
-                  {expand[1] ? <ExpandLess /> : <ExpandMore />}
+                  {expand1[1] ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
               </ListItem>
-              <Collapse in={expand[1]} timeout="auto" unmountOnExit>
+              <Collapse in={expand1[1]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding dense>
-                  {Components.map((component,index) => (
+                  {Components1.map((component,index) => (
                     <ListItem key={index} disablePadding onClick={() => { history.push(component.path) }}>
                       <ListItemButton sx={{ pl: 4 }}>
                         <ListItemIcon sx={{ minWidth: "20px", marginLeft: "30px" }}>

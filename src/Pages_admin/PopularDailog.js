@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 
-function Dailogicon({ refreshCategories, icon }) {
+function PopularDailog({ refreshCategories, icon }) {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState(null);
     const [name, setName] = useState('');
@@ -96,12 +96,12 @@ function Dailogicon({ refreshCategories, icon }) {
                 </Button>
             ) : (
                 <Button variant="outlined" onClick={handleClickOpen}>
-                    Add Icon
+                    Add Popular Category
                 </Button>
             )}
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    {icon ? 'Update Icon' : 'Add Icon'}
+                    {icon ? 'Update Icon' : 'Add Category'}
                     <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500], }}>
                         <CloseIcon />
                     </IconButton>
@@ -110,18 +110,7 @@ function Dailogicon({ refreshCategories, icon }) {
                 <DialogContent dividers>
                     <Typography gutterBottom>
                         <Box className="details">
-                            <Box className="selector">
-                                <Autocomplete
-                                    disablePortal
-                                    id="combo-box-demo"
-                                    options={suggestedCategories}
-                                    value={category}
-                                    onChange={(event, newValue) => setCategory(newValue)}
-                                    getOptionLabel={(option) => option.label}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Categories" />}
-                                />
-                            </Box>
+                            
                             <Box className="name">
                                 <label htmlFor="name">Name :</label>
                                 <input
@@ -140,10 +129,7 @@ function Dailogicon({ refreshCategories, icon }) {
                                     onChange={(event) => setTag(event.target.value)}
                                 />
                             </Box>
-                            <Box className="name">
-                                <label htmlFor="icon">Icon:</label>
-                                <input type="file" onChange={(event) => setFile(event.target.files[0])} />
-                            </Box>
+                            
                         </Box>
                     </Typography>
                 </DialogContent>
@@ -157,4 +143,4 @@ function Dailogicon({ refreshCategories, icon }) {
     );
 }
 
-export default Dailogicon;
+export default PopularDailog;

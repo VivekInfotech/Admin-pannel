@@ -99,7 +99,7 @@ function Icons() {
             <Box className="card">
               <Box className="card-img"></Box>
               <Box className="card-info">
-                <p className="text-title">Indian Brands </p>
+                <p className="text-title">Hand drawn </p>
                 <p className="text-body">Iconic Indian brands cover diverse sectors across various industries</p>
               </Box>
             </Box>
@@ -119,7 +119,7 @@ function Icons() {
             <Box className="card">
               <Box className="card-img"></Box>
               <Box className="card-info">
-                <p className="text-title">Out Line</p>
+                <p className="text-title">Black outline</p>
                 <p className="text-body">Outline emphasizes visual design edges.</p>
               </Box>
             </Box>
@@ -138,7 +138,7 @@ function Icons() {
             <Box className="card">
               <Box className="card-img"></Box>
               <Box className="card-info">
-                <p className="text-title">Character </p>
+                <p className="text-title">Lineal Color </p>
                 <p className="text-body">Icon symbolizes identity, individuality, personality.</p>
               </Box>
             </Box>
@@ -147,7 +147,7 @@ function Icons() {
             <Box className="card">
               <Box className="card-img"></Box>
               <Box className="card-info">
-                <p className="text-title">Show</p>
+                <p className="text-title">Flat</p>
                 <p className="text-body">Product description and details</p>
               </Box>
             </Box>

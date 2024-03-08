@@ -29,6 +29,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import PopularIcon from './Pages_admin/PopularIcon';
+import PopularCategory from './Pages_admin/PopularCategory';
 
 function App() {
   return (
@@ -118,6 +120,16 @@ function App() {
           <Route path="/admin/icons/icon">
             <AdminLayout>
               <Icon />
+            </AdminLayout>
+          </Route>
+          <Route path="/admin/popular-icon/icon">
+            <AdminLayout>
+              <PopularIcon />
+            </AdminLayout>
+          </Route>
+          <Route path="/admin/popular-icon/category">
+            <AdminLayout>
+              <PopularCategory />
             </AdminLayout>
           </Route>
 
