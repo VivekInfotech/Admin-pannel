@@ -9,7 +9,7 @@ function Topprops(props) {
         <Box className='iconss' onClick={props.onClick} >
             <Box sx={{ display: 'flex', justifyContent: 'center', padding: '30px' }}>
                 <Grid sx={{ display: 'flex', width: '100px', flexDirection: 'column', alignItems: 'center' }}>
-                    <img src={props.image} alt={props.name} title={props.name} width="50px" height="auto" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="50" height="50" dangerouslySetInnerHTML={{ __html: props.image }}></svg>
                     <Box sx={{ paddingTop: '20px' }}>
                         {props.tag}
                     </Box>

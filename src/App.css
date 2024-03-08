@@ -7,7 +7,9 @@
   font-family: "Poppins", sans-serif !important;
 
 }
-
+.css-zza0ns-MuiBadge-badge{
+  background-color: #ffbc06 !important;
+}
 
 
 .bg-primary span
@@ -561,7 +563,7 @@ a:-webkit-any-link {
   transition: opacity 0.3s ease-out;
 }
 
-.circle img {
+.circle svg {
   z-index: 10000;
 }
 

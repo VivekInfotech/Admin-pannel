@@ -23,6 +23,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
   const [data, setData] = useState();
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [selectedIconUrl, setSelectedIconUrl] = useState(null);
+  const [iconName, setIconName] = useState('');
 
 
   const handleColorChange = async (event) => {
@@ -33,7 +34,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
   };
 
   const handleColorPickerClose = async () => {
-    // await updateColor(selectedColor);
+    await updateColor(selectedColor);
   };
 
   const updateColor = async (cleanedColor) => {
@@ -58,6 +59,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);
+        setIconName(res.data.data.name)
         setSelectedIconUrl(res.data.data.regular);
       })
       .catch((error) => {
@@ -74,7 +76,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
   const link = () => {
     if (selectedIconUrl) {
-      return `<img src=${selectedIconUrl} alt=${data.name} title=${data.name} width='100px' height='auto' />`;
+      return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>;
     }
     return '';
   }
@@ -87,7 +89,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
+  };
 
   return (
     <React.Fragment>
@@ -95,7 +97,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
         <AppBar sx={{ position: 'relative', backgroundColor: '#FFBC06' }}>
           <Toolbar>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" color={'#272727'} fontWeight={'600'} component="Box">
-              Sound
+              {iconName}
             </Typography>
             <IconButton
               edge="start"
@@ -105,9 +107,9 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
             >
               <CloseIcon />
             </IconButton>
-          </Toolbar>  
+          </Toolbar>
         </AppBar>
-        <Box sx={{}}> 
+        <Box sx={{}}>
           {data && (
             <Grid container>
               <Grid item xs={12} md={6}>
@@ -116,18 +118,18 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                     Save
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', fontWeight: '600' }}>
-                  <input
+                    <input
                       type="color"
                       id="color1"
                       value={selectedColor}
                       onChange={handleColorChange}
                       onBlur={handleColorPickerClose} // Add onBlur event to handle color picker close
-                    />
+                    />
                   </Box>
                 </Box>
                 <Box className='center' sx={{ paddingY: '50px', border: '2px solid #888888', borderRadius: '9px', margin: '10px 25px' }}>
                   {selectedIconUrl && (
-                    <img src={selectedIconUrl} alt={data.name} title={data.name} width='300px' height='auto' />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="300" height="300" dangerouslySetInnerHTML={{ __html: selectedIconUrl }}></svg>
                   )}
                 </Box>
               </Grid>
@@ -136,12 +138,24 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                   IconGrid
                 </Box>
                 <Box sx={{ display: 'flex', padding: '12px 0px', justifyContent: 'space-around' }}>
-                  <Box className='type' onClick={() => selectedIcon(data.regular)}><img src={data.regular} alt={data.name} title={data.name} width="40px" height="auto" /></Box>
-                  <Box className='type' onClick={() => selectedIcon(data.bold)}><img src={data.bold} alt={data.name} title={data.name} width="40px" height="auto" /></Box>
-                  <Box className='type' onClick={() => selectedIcon(data.solid)}><img src={data.solid} alt={data.name} title={data.name} width="40px" height="auto" /></Box>
-                  <Box className='type' onClick={() => selectedIcon(data.thin)}><img src={data.thin} alt={data.name} title={data.name} width="40px" height="auto" /></Box>
-                  <Box className='type' onClick={() => selectedIcon(data.rounded)}><img src={data.rounded} alt={data.name} title={data.name} width="40px" height="auto" /></Box>
-                  <Box className='type' onClick={() => selectedIcon(data.straight)}><img src={data.straight} alt={data.name} title={data.name} width="40px" height="auto" /></Box>
+                  <Box className='type' onClick={() => selectedIcon(data.regular)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="45" height="45" dangerouslySetInnerHTML={{ __html: data.regular }}></svg>
+                  </Box>
+                  <Box className='type' onClick={() => selectedIcon(data.bold)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="45" height="45" dangerouslySetInnerHTML={{ __html: data.bold }}></svg>
+                  </Box>
+                  <Box className='type' onClick={() => selectedIcon(data.solid)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="45" height="45" dangerouslySetInnerHTML={{ __html: data.solid }}></svg>
+                  </Box>
+                  <Box className='type' onClick={() => selectedIcon(data.thin)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="45" height="45" dangerouslySetInnerHTML={{ __html: data.thin }}></svg>
+                  </Box>
+                  <Box className='type' onClick={() => selectedIcon(data.rounded)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="45" height="45" dangerouslySetInnerHTML={{ __html: data.rounded }}></svg>
+                  </Box>
+                  <Box className='type' onClick={() => selectedIcon(data.straight)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="45" height="45" dangerouslySetInnerHTML={{ __html: data.straight }}></svg>
+                  </Box>
                 </Box>
                 <Box className='center' sx={{ margin: '12px 25px' }}>
                   <Box className="code-editor">
@@ -250,5 +264,5 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
         </Box>
       </Dialog>
     </React.Fragment>
-  );
+  );
 }

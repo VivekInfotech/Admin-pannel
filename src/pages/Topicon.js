@@ -389,8 +389,9 @@ const Topicon = () => {
 
               {
                 data.map((el, index) => {
-                  return <Grid key={index} lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center' }}  >
-                    <Topprops image={el.regular} name={el.name} tag={el.name} onClick={() => handleOpenDialog(el._id)} />
+                  return <Grid key={index} lg={2} md={4} sx={{ display: 'flex', justifyContent: 'center', zIndex: "999" }}  >
+                    {/* <Topprops image={el.regular} name={el.name} tag={el.name} onClick={() => handleOpenDialog(el._id)} /> */}
+                    <Topprops image={el.regular} onClick={() => handleOpenDialog(el._id)} />
                   </Grid>
                 })
               }

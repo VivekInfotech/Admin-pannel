@@ -6,10 +6,8 @@ import { useState } from 'react'
 
 export default function Cardicon(props) {
 
-
     const [data, setData] = useState([])
 
-    console.log(props.categoryName);
     useEffect(() => {
         getIcons(props.categoryName)
     }, [])
@@ -35,7 +33,7 @@ export default function Cardicon(props) {
                             if (index <= 7) {
                                 return <Grid key={index} xs={3} className='center'>
                                     <Box sx={{ marginY: '10px', backgroundColor: '#F5F5F5', borderRadius: '10px', display: 'inline-block', padding: '17px' }}>
-                                        <img src={el.regular} alt={el.name} title={el.name} width="20px" height="auto" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
                                     </Box>
                                 </Grid>
                             }
@@ -47,6 +45,6 @@ export default function Cardicon(props) {
                 <h3 className='m-0'>{props.heading}</h3>
                 <p className='m-0'>{props.description}</p>
             </Box>
-        </Box>
-    )
+        </Box>
+    )
 }

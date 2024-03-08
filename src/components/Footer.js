@@ -18,7 +18,7 @@ const pages = [
 
 const Help = [
   { name: 'Support', path: '/support' },
-  { name: 'FAQs', path: '' },
+  { name: 'FAQs', path: '/faqs' },
   { name: 'Icon styles', path: '' },
   { name: 'IconGrid collections', path: '' },
 ];

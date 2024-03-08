@@ -36,14 +36,14 @@ export default function Pack() {
         setDialogOpen(false);
         updateIcons(iconId)
     };
-    
+
     const updateIcons = async (iconId) => {
         await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/icon`)
             .then((res) => {
                 console.log("update Icon color :- ", res.data.data);
                 getIcons(categoryName);
             })
-            .catch((error) => { 
+            .catch((error) => {
                 console.log(error.response.data.message);
             });
     }
@@ -86,7 +86,7 @@ export default function Pack() {
                                             <Box className="card3 wallet">
                                                 <Box className="overlay"></Box>
                                                 <Box className="circle" >
-                                                    <img src={el.regular} alt={el.name} title={el.name} width="60px" height="auto" />
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
                                                 </Box>
                                             </Box>
                                         </Box>

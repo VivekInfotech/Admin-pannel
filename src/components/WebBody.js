@@ -28,6 +28,8 @@ import happy from './img/happy.png'
 import sad from './img/sad.png'
 import lineleft from './img/line left.png'
 import lineright from './img/line right.png'
+
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
@@ -371,7 +373,7 @@ function WebBody() {
                 {/* responsive */}
 
 
-                {/* <Box sx={{ marginTop: '50px', position: 'relative' }}>
+                <Box sx={{ marginTop: '50px', position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '52%', zIndex: 9 }}>
                         <img src={lineleft} alt="" srcset="" />
                     </Box>
@@ -459,7 +461,7 @@ function WebBody() {
 
                         </Grid>
                     </Container>
-                </Box> */}
+                </Box>
 
 
 

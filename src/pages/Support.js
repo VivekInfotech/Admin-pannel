@@ -120,11 +120,11 @@ function Support() {
                     <Grid container xs={12}>
                         <Grid xs={12} sx={{ margin: { xs: '70px 24px 70px 24px', sm: '70px 30px 70px 30px', md: '122px 70px 122px 90px' } }}>
                             <Box sx={{ textAlign: 'center' }}>
-                                <Box sx={{ fontSize: '34px', marginBottom: '17px', fontWeight: '500', display: 'inline-block', borderBottom: '3px solid #272727' }}>Can we help you?</Box>
+                                <Box sx={{ fontSize: {xs:'23px',sm:'34px'}, marginBottom: '17px', fontWeight: '500', display: 'inline-block', borderBottom: '3px solid #272727' }}>Can we help you?</Box>
                                 <Box sx={{ position: 'absolute', top: { xs: '-55%', sm: '-55%', md: '-52%' }, left: { xs: '54%', sm: '58%', md: '33%' } }}></Box>
                             </Box>
 
-                            <Box class="wrapper center">
+                            <Box class="wrapper center" >
                                 <Box class="searchBar">
                                     <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
                                     <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">

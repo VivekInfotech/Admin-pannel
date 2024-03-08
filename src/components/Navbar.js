@@ -14,7 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import logo from './img/icon-grid.png'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 const pages = [
     { name: 'Home', path: '/' },
     { name: 'Icons', path: '/icons' },
@@ -46,7 +47,7 @@ function Navbar() {
     };
     return (
         <>
-            <AppBar sx={{ backgroundColor: '#272727', position:'fixed',top:0 ,zIndex:'99'}}>
+            <AppBar sx={{ backgroundColor: '#272727', position: 'fixed', top: 0, zIndex: '99' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -128,7 +129,7 @@ function Navbar() {
                         >
                             LOGO
                         </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } , justifyContent: 'center' }}>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                             {pages.map((page, i) => (
                                 <Button
                                     key={i}
@@ -140,7 +141,13 @@ function Navbar() {
                             ))}
                         </Box>
 
+                           <Box sx={{margin:'0px 20px'}}>
+                           <Badge badgeContent={4} color="primary">
+                                <MailIcon color="#fff   " />
+                            </Badge>
+                           </Box>
                         <Box sx={{ flexGrow: 0 }}>
+
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

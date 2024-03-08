@@ -13,6 +13,7 @@ import Topanimatedicon from './pages/Topanimatedicon';
 import Support from './pages/Support';
 import BlackFill from './pages/BlackFill';
 import Contact from './pages/Contact';
+import Faqs from './pages/Faqs';
 
 //admin pages
 import AdminLayout from './components_admin/AdminLayout'
@@ -91,6 +92,11 @@ function App() {
           <Route path="/support">
             <UserLayout>
               <Support />
+            </UserLayout>
+          </Route>
+          <Route path="/faqs">
+            <UserLayout>
+              <Faqs />
             </UserLayout>
           </Route>
           <Route path="/back-fill">

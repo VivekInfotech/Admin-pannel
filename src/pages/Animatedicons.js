@@ -81,7 +81,7 @@ function Animatedicons() {
               return <Grid key={index} xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
                 <Box onClick={() => handleOpenDialog(el._id)} className="card4" id="card4">
                   <Box className="content4">
-                    <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="50" height="50" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
                   </Box>
                 </Box>
               </Grid>
@@ -238,4 +238,4 @@ function Animatedicons() {
   )
 }
 
-export default Animatedicons
+export default Animatedicons

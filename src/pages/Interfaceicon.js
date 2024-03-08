@@ -105,7 +105,7 @@ function Interfaceicon() {
                       <Box onClick={() => handleOpenDialog(el._id)}>
                         <Box class="overlay"></Box>
                         <Box class="circle">
-                          <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
                         </Box>
                       </Box></Box>
 
