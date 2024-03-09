@@ -97,7 +97,7 @@ function Footer() {
 
             <Grid container item xs={12} md={9} sx={{ display: { xs: 'flex', sm: 'none' }, color: '#fff', justifyContent: 'space-around' }}>
               <Box sx={{width:'100%'}}>
-                <Accordion sx={{backgroundColor:'#272727'}}>
+                <Accordion sx={{backgroundColor:'#272727',color:'#fff'}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
@@ -119,7 +119,7 @@ function Footer() {
                     </Box>
                   </AccordionDetails>
                 </Accordion>
-                <Accordion sx={{backgroundColor:'#272727'}}>
+                <Accordion sx={{backgroundColor:'#272727',color:'#fff'}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2-content"
@@ -141,7 +141,7 @@ function Footer() {
                     </Box>
                   </AccordionDetails>
                 </Accordion >
-                <Accordion sx={{backgroundColor:'#272727'}}>
+                <Accordion sx={{backgroundColor:'#272727',color:'#fff'}}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel3-content"
@@ -172,7 +172,9 @@ function Footer() {
               <Box sx={{ width: '100%', fontSize: '24px', fontWeight: '600', display: 'flex', justifyContent: 'center' }}>Socials</Box>
               <Box sx={{ fontSize: '35px', display: 'flex', justifyContent: 'space-around', paddingTop: '10px' }}>
                 <FaFacebook />
-                <FaInstagram />
+                <a href="https://www.instagram.com/icongrid_/?next=%2F">
+                <FaInstagram  color='#fff'/>
+                </a>
                 <FaTwitter />
               </Box>
             </Grid>

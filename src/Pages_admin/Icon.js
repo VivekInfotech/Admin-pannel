@@ -96,7 +96,7 @@ const Icon = () => {
                 <Box><Dailodbox fetchIcons={getCategories} targetFile="icon" /></Box>
             </Box>
 
-            <div>
+            <Box>
                 {categories && categories.map((category, index) => (
                     <Accordion key={index}>
                         <AccordionSummary
@@ -131,7 +131,7 @@ const Icon = () => {
                         </AccordionDetails>
                     </Accordion>
                 ))}
-            </div>
+            </Box>
         </Box>
     );
 };

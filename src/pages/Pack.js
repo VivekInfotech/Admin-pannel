@@ -94,15 +94,7 @@ export default function Pack() {
                                 })
                             }
 
-                            <Grid xs={12}>
-                                <Box className="center" sx={{ fontSize: "18px", padding: '10px' }}>
-                                    <Box sx={{ border: '1px solid #FFBC06', padding: '7px 20px', borderRadius: '5px', backgroundColor: '#FFBC06' }}>
-                                        <Link to="/most-downloads">
-                                            See All Icon
-                                        </Link>
-                                    </Box>
-                                </Box>
-                            </Grid>
+                            
                             <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="icon" />
                         </Grid>
                     </Container>
