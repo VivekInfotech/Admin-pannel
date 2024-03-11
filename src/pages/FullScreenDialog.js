@@ -94,7 +94,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
   const link = () => {
     if (selectedIconUrl) {
-      return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>;
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>`;
     }
     return '';
   }

@@ -5,12 +5,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 
-function PopularDailog({ refreshCategories, icon }) {
+function PopularDailog({ addCategory, icon }) {
     const [open, setOpen] = useState(false);
-    const [category, setCategory] = useState(null);
+    const [card, setCard] = useState(null);
     const [name, setName] = useState('');
     const [tag, setTag] = useState('');
-    const [file, setFile] = useState(null);
+    const [description, setDescription] = useState('');
     const [suggestedCategories, setSuggestedCategories] = useState([]);
 
     useEffect(() => {
@@ -19,16 +19,17 @@ function PopularDailog({ refreshCategories, icon }) {
 
     useEffect(() => {
         if (icon) {
-            setCategory({ label: icon.category, id: icon.categoryId });
+            setCard({ label: icon.card, id: icon.cardId });
             setName(icon.name);
             setTag(icon.tag);
+            setDescription(icon.description);
         }
     }, [icon]);
 
     const fetchSuggestedCategories = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('http://localhost:3001/popCategory/find')
             .then((res) => {
-                const categories = res.data.data.map(category => ({ label: category.name, id: category._id }));
+                const categories = res.data.data.map(card => ({ label: card.name, id: card._id }));
                 setSuggestedCategories(categories);
             })
             .catch((error) => {
@@ -47,58 +48,57 @@ function PopularDailog({ refreshCategories, icon }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!category || !name || !tag || !file) {
-            console.log('Please select a category, enter a name, enter a tag, and choose a file');
+        if (!card || !name || !tag || !description) {
+            console.log('Please select a card, enter a name, enter a tag, and description');
             return;
         }
 
-        const formData = new FormData();
-        formData.append('category', category.label);
-        formData.append('name', name);
-        formData.append('tag', tag);
-        formData.append('icon', file);
+        const value = { card: card.label, name, tag, description };
 
         const token = localStorage.getItem('token');
 
         try {
             let response;
             if (icon) {
-                response = await axios.put(`http://localhost:3001/icon/update/${icon._id}`, formData, {
+                response = await axios.put(`http://localhost:3001/popCategory/update/${icon._id}`, value, {
                     headers: {
-                        'Content-Type': 'multipart/form-data',
                         admintoken: token
                     }
                 });
             } else {
-                response = await axios.post('http://localhost:3001/icon/create', formData, {
+                response = await axios.post('http://localhost:3001/popCategory/create', value, {
                     headers: {
-                        'Content-Type': 'multipart/form-data',
                         admintoken: token
                     }
                 });
             }
 
             console.log('Response:', response.data.data);
-            refreshCategories();
+            addCategory();
+            setCard(null);
+            setName("");
+            setTag("");
+            setDescription("");
+            handleClose();
         } catch (error) {
             console.error('Error:', error.response.data.message);
         }
+    };
 
-        handleClose();
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSubmit(event); // Pass the event object to handleSubmit
+        }
     };
 
 
     return (
         <React.Fragment>
-            {icon ? (
-                <Button variant="outlined" onClick={handleClickOpen}>
-                    Update
-                </Button>
-            ) : (
-                <Button variant="outlined" onClick={handleClickOpen}>
-                    Add Popular Category
-                </Button>
-            )}
+            <Button variant="outlined" onClick={handleClickOpen}>
+                {icon ? 'Update' : 'Add Popular Category'}
+            </Button>
+
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                     {icon ? 'Update Icon' : 'Add Category'}
@@ -106,11 +106,24 @@ function PopularDailog({ refreshCategories, icon }) {
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
-                
+
                 <DialogContent dividers>
                     <Typography gutterBottom>
                         <Box className="details">
-                            
+
+                            <Box className="selector">
+                                <Autocomplete
+                                    disablePortal
+                                    id="combo-box-demo"
+                                    options={suggestedCategories}
+                                    value={card}
+                                    onChange={(event, newValue) => setCard(newValue)}
+                                    getOptionLabel={(option) => option.label}
+                                    sx={{ width: 300 }}
+                                    renderInput={(params) => <TextField {...params} label="Card" />}
+                                />
+                            </Box>
+
                             <Box className="name">
                                 <label htmlFor="name">Name :</label>
                                 <input
@@ -118,6 +131,7 @@ function PopularDailog({ refreshCategories, icon }) {
                                     id="name"
                                     value={name}
                                     onChange={(event) => setName(event.target.value)}
+                                    onKeyDown={handleKeyDown}
                                 />
                             </Box>
                             <Box className="name">
@@ -127,14 +141,25 @@ function PopularDailog({ refreshCategories, icon }) {
                                     id="tag"
                                     value={tag}
                                     onChange={(event) => setTag(event.target.value)}
+                                    onKeyDown={handleKeyDown}
                                 />
                             </Box>
-                            
+                            <Box className="name">
+                                <label htmlFor="description">Description :</label>
+                                <input
+                                    type="text"
+                                    id="description"
+                                    value={description}
+                                    onChange={(event) => setDescription(event.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                />
+                            </Box>
+
                         </Box>
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleSubmit }>
+                    <Button autoFocus onClick={handleSubmit}>
                         {icon ? 'Update' : 'Submit'}
                     </Button>
                 </DialogActions>
@@ -143,4 +168,4 @@ function PopularDailog({ refreshCategories, icon }) {
     );
 }
 
-export default PopularDailog;
+export default PopularDailog;

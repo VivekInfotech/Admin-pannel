@@ -6,9 +6,10 @@ import axios from 'axios';
 import Dailodbox from './Dailodbox';
 import Popularaddicon from './Popularaddicon';
 
-const PopularIcon    = () => {
+const PopularIcon = () => {
     const [categories, setCategories] = useState([]);
     const [iconData, setIconData] = useState({});
+    const [card, setCard] = useState(["Hand drawn","color fill","Black outline","Black Fill","Lineal Color","Flat"]);
 
     const token = localStorage.getItem('token');
 
@@ -28,10 +29,11 @@ const PopularIcon    = () => {
     useEffect(() => {
         fetchIcons()
         getCategories();
+        console.log("card :- ", card[0]);
     }, []);
 
     const getCategories = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('http://localhost:3001/popCategory/find')
             .then((res) => {
                 setCategories(res.data.data);
                 getCategoryIcons(res.data.data);
@@ -42,7 +44,7 @@ const PopularIcon    = () => {
     };
 
     const fetchIcons = () => {
-        axios.get('http://localhost:3001/icon/find')
+        axios.get('http://localhost:3001/popular/find')
             .then((res) => {
                 setIconData(res.data.data);
                 updateCountIcons()
@@ -53,7 +55,7 @@ const PopularIcon    = () => {
     };
 
     const removeIcon = (id) => {
-        axios.delete(`http://localhost:3001/icon/delete/${id}`, {
+        axios.delete(`http://localhost:3001/popular/delete/${id}`, {
             headers: { admintoken: token }
         })
             .then((res) => {
@@ -67,7 +69,7 @@ const PopularIcon    = () => {
 
     const getCategoryIcons = (categories) => {
         const iconPromises = categories.map(category => {
-            return axios.get(`http://localhost:3001/icon/findOne/${category.name}`)
+            return axios.get(`http://localhost:3001/popular/findOne/${category.name}`)
                 .then((res) => {
                     return { [category.name]: res.data.data };
                 })
@@ -90,7 +92,7 @@ const PopularIcon    = () => {
     return (
         <Box>
             <Typography variant="h5" marginBottom="5px">
-            PopularIcon
+                PopularIcon
             </Typography>
 
             <Box className="add">
@@ -122,7 +124,7 @@ const PopularIcon    = () => {
                                                 <TableCell>{icon.name}</TableCell>
                                                 <TableCell align="right">
                                                     <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
-                                                    <Dailodbox fetchIcons={getCategories} icon={icon} targetFile="icon" />
+                                                    <Popularaddicon fetchIcons={getCategories} icon={icon} />
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -137,4 +139,4 @@ const PopularIcon    = () => {
     );
 };
 
-export default PopularIcon;
+export default PopularIcon;

@@ -1,4 +1,4 @@
-// Category.js
+// PopularCategory.js
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Breadcrumbs, Link, Button } from '@mui/material';
 import Addcategory from './Addcategory';
@@ -29,7 +29,7 @@ function PopularCategory() {
     }, []);
 
     const getCategory = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('http://localhost:3001/popCategory/find')
             .then((res) => {
                 setData(res.data.data);
                 updateCountIcons()
@@ -41,7 +41,7 @@ function PopularCategory() {
 
 
     const remove = (id) => {
-        axios.delete(`http://localhost:3001/category/delete/${id}`,{
+        axios.delete(`http://localhost:3001/popCategory/delete/${id}`,{
             headers: {
                 admintoken: token
             }
@@ -86,7 +86,7 @@ function PopularCategory() {
                                     {row.name}
                                 </TableCell>
                                 <TableCell align="right" sx={{ display: 'flex' }}>
-                                    <Addcategory addCategory={getCategory} updateCategory={row} />
+                                    <PopularDailog addCategory={getCategory} icon={row} />
                                     <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}>Delete</Button></Box>
                                 </TableCell>
                             </TableRow>
@@ -98,4 +98,4 @@ function PopularCategory() {
     );
 }
 
-export default PopularCategory;
+export default PopularCategory;

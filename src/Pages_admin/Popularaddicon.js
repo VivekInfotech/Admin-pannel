@@ -26,13 +26,9 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [tag, setTag] = useState('');
+    const [card, setCard] = useState(null);
     const [category, setCategory] = useState(null);
-    const [regularFile, setRegularFile] = useState(null);
-    const [boldFile, setBoldFile] = useState(null);
-    const [thinFile, setThinFile] = useState(null);
-    const [solidFile, setSolidFile] = useState(null);
-    const [straightFile, setStraightFile] = useState(null);
-    const [roundedFile, setRoundedFile] = useState(null);
+    const [iconFile, setIconFile] = useState(null);
     const [suggestedCategories, setSuggestedCategories] = useState([]);
 
     const handleClickOpen = () => {
@@ -51,12 +47,13 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
         if (icon) {
             setName(icon.name);
             setTag(icon.tag);
+            setCard({ label: icon.card, id: icon.cardId });
             setCategory({ label: icon.category, id: icon.categoryId });
         }
     }, [icon]);
 
     const fetchSuggestedCategories = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('http://localhost:3001/popCategory/find')
             .then((res) => {
                 const categories = res.data.data.map(category => ({ label: category.name, id: category._id }));
                 setSuggestedCategories(categories);
@@ -74,39 +71,23 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('tag', tag);
+        formData.append('card', card.label);
         formData.append('category', category.label);
-        formData.append('regular', regularFile);
-        formData.append('bold', boldFile);
-        formData.append('thin', thinFile);
-        formData.append('solid', solidFile);
-        formData.append('straight', straightFile);
-        formData.append('rounded', roundedFile);
-
-        let endpoint;
-
-        if (targetFile === 'Animatedicon') {
-            endpoint = 'animated';
-        } else if (targetFile === 'Interface') {
-            endpoint = 'interface';
-        } else {
-            endpoint = 'icon';
-        }
+        formData.append('icon', iconFile);
 
         const token = localStorage.getItem('token');
 
         try {
             let response;
             if (icon) {
-                console.log("endpoint :- ", endpoint);
-                response = await axios.put(`http://localhost:3001/${endpoint}/update/${icon._id}`, formData, {
+                response = await axios.put(`http://localhost:3001/popular/update/${icon._id}`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         admintoken: token
                     }
                 });
             } else {
-                console.log("endpoint :- ", endpoint);
-                response = await axios.post(`http://localhost:3001/${endpoint}/create`, formData, {
+                response = await axios.post(`http://localhost:3001/popular/create`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         admintoken: token
@@ -116,12 +97,9 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                 // Reset form state variables
                 setName('');
                 setTag('');
-                setRegularFile(null);
-                setBoldFile(null);
-                setThinFile(null);
-                setSolidFile(null);
-                setStraightFile(null);
-                setRoundedFile(null);
+                setCard(null);
+                setCategory(null);
+                setIconFile(null);
 
                 // Immediately update state with new data
                 fetchIcons();
@@ -169,11 +147,11 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                                     disablePortal
                                     id="combo-box-demo"
                                     options={suggestedCategories}
-                                    value={category}
-                                    onChange={(event, newValue) => setCategory(newValue)}
+                                    value={card}
+                                    onChange={(event, newValue) => setCard(newValue)}
                                     getOptionLabel={(option) => option.label}
                                     sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Categories" />}
+                                    renderInput={(params) => <TextField {...params} label="Card" />}
                                 />
                             </Box>
                             <Box className="selector">
@@ -207,12 +185,12 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                                 />
                             </Box>
                             <Box className="name">
-                                <label htmlFor="regular">Icon:</label>
+                                <label htmlFor="icon">Icon:</label>
                                 <input
                                     type="file"
-                                    id="regular"
-                                    name="regular"
-                                    onChange={(e) => setRegularFile(e.target.files[0])}
+                                    id="icon"
+                                    name="icon"
+                                    onChange={(e) => setIconFile(e.target.files[0])}
                                     multiple
                                 />
                             </Box>
