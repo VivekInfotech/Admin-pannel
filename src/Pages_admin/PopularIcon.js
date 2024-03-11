@@ -9,7 +9,7 @@ import Popularaddicon from './Popularaddicon';
 const PopularIcon = () => {
     const [categories, setCategories] = useState([]);
     const [iconData, setIconData] = useState({});
-    const [card, setCard] = useState(["Hand drawn","color fill","Black outline","Black Fill","Lineal Color","Flat"]);
+    const [card, setCard] = useState(["Hand drawn", "color fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
 
     const token = localStorage.getItem('token');
 
@@ -98,8 +98,56 @@ const PopularIcon = () => {
             <Box className="add">
                 <Box><Popularaddicon fetchIcons={getCategories} targetFile="icon" /></Box>
             </Box>
-
             <div>
+                {card && card.map((card, index) => (
+                    <Accordion key={index}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls={`panel-${index}-content`}
+                            id={`panel-${index}-header`}
+                        >
+                            <Typography>{card}</Typography>
+                        </AccordionSummary>
+                        <div>
+                            {categories && categories.map((category, index) => (
+                                <Accordion key={index}>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls={`panel-${index}-content`}
+                                        id={`panel-${index}-header`}
+                                    >
+                                        <Typography>{category.name}</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <TableContainer component={Box}>
+                                            <Table>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Icon</TableCell>
+                                                        <TableCell align="right">Actions</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {iconData[category.name] && iconData[category.name].map((icon, iconIndex) => (
+                                                        <TableRow key={iconIndex}>
+                                                            <TableCell>{icon.name}</TableCell>
+                                                            <TableCell align="right">
+                                                                <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                                <Popularaddicon fetchIcons={getCategories} icon={icon} />
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </AccordionDetails>
+                                </Accordion>
+                            ))}
+                        </div>
+                    </Accordion>
+                ))}
+            </div>
+            {/* <div>
                 {categories && categories.map((category, index) => (
                     <Accordion key={index}>
                         <AccordionSummary
@@ -134,7 +182,7 @@ const PopularIcon = () => {
                         </AccordionDetails>
                     </Accordion>
                 ))}
-            </div>
+            </div> */}
         </Box>
     );
 };
