@@ -31,6 +31,7 @@ function PopularCategory() {
     const getCategory = () => {
         axios.get('http://localhost:3001/popCategory/find')
             .then((res) => {
+                console.log(res.data.data);
                 setData(res.data.data);
                 updateCountIcons()
             })

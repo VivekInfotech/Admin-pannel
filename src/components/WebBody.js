@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -38,6 +38,8 @@ import {
     Route,
 
 } from "react-router-dom";
+import axios from 'axios';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -45,7 +47,6 @@ const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
-
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
@@ -106,6 +107,28 @@ function WebBody() {
     //     delay: 100,
     //     once: true,
     //   });
+
+    const [searchValue, setSearchValue] = useState('');
+
+    let history = useHistory()
+
+    const handleSearchChange = (event) => {
+        setSearchValue(event.target.value);
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSearchSubmit();
+        }
+    };
+
+    const handleSearchSubmit = () => {
+        history.push({
+            pathname: '/search-icon',
+            state: { searchValue: searchValue }
+        });
+    };
+
     return (
         <>
             <Box sx={{ width: '100%', paddingTop: '55px' }}>
@@ -117,7 +140,7 @@ function WebBody() {
                             <Grid container xs={12} sx={{ justifyContent: 'center' }}>
                                 <Stack spacing={0} direction="row" alignItems="center" sx={{ width: "100%" }}>
                                     <Grid item xs={12} sx={{
-                                        display: 'flex', width: '70%', flexDirection: 'column', color: '#272727', justifyContent: 'center',marginTop: {xs:'50px',sm:'120px'}, textAlign: 'center', lineHeight: '1',
+                                        display: 'flex', width: '70%', flexDirection: 'column', color: '#272727', justifyContent: 'center', marginTop: { xs: '50px', sm: '120px' }, textAlign: 'center', lineHeight: '1',
                                         fontWeight: "700", zIndex: 9, fontSize: { xs: '22px', sm: '32px', md: '45px' }
                                     }}>
                                         {/* data-aos="zoom-in" data-aos-offset="0" */}
@@ -126,7 +149,7 @@ function WebBody() {
                                     </Grid>
 
                                 </Stack>
-                                <Stack spacing={1} direction="row" alignItems="center" sx={{ width:{xs:'80%',sm: "48%"} }}>
+                                <Stack spacing={1} direction="row" alignItems="center" sx={{ width: { xs: '80%', sm: "48%" } }}>
                                     <Grid item xs={12} sx={{
                                         color: '#272727', textAlign: 'center', paddingTop: '33px',
                                         alignItems: 'end', zIndex: 9, fontSize: { xs: '12px', sm: '12px', md: '14px' }
@@ -138,27 +161,34 @@ function WebBody() {
                         </Box>
                     </Container>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Toolbar sx={{ display: 'flex', justifyContent: 'center' }} >
-                            <Grid sx={{ width: {xs:'90%',sm:'50%'}, paddingTop: '33px' }}>
-                                <Search sx={{ backgroundColor: "#fff0", border: '1px solid #272727', margin: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
+                        <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Grid sx={{ width: { xs: '90%', sm: '50%' }, paddingTop: '33px' }}>
+                                <Search sx={{ backgroundColor: '#fff0', border: '1px solid #272727', margin: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <Box className="icon-serch" sx={{ display: 'flex', alignItems: 'center' }}>
                                         <Box sx={{ paddingLeft: '10px', paddingTop: '5px' }}>
                                             <FaSearch fontSize={'20px'} />
                                         </Box>
-
                                         <StyledInputBase
                                             placeholder="Search…"
                                             inputProps={{ 'aria-label': 'search' }}
+                                            value={searchValue}
+                                            onChange={handleSearchChange}
+                                            onKeyPress={handleKeyPress} // Add this line
                                         />
                                     </Box>
                                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '7px' }}>
-                                        <Box sx={{ border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '5px', padding: '0px 10px', cursor: 'pointer' }}>Go</Box>
+                                        <Box sx={{ border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '5px', padding: '0px 10px', cursor: 'pointer' }} onClick={handleSearchSubmit}>
+                                            <Link to={{ pathname: "/search-icon", state: { searchValue: searchValue } }}>
+                                                Go
+                                            </Link>
+                                        </Box>
                                     </Box>
                                 </Search>
                             </Grid>
                         </Toolbar>
                     </Box>
                 </Box>
+
                 <Box sx={{ marginTop: '0px', backgroundColor: '#272727' }}>
                     <Grid container padding={'24px'} sx={{ justifyContent: 'space-around' }}>
                         <Grid item md={3} sm={6} xs={12} sx={{}}  >
@@ -217,10 +247,10 @@ function WebBody() {
                 <Box sx={{ marginTop: '70px', padding: '0px 24px' }}>
                     <Container maxWidth="xl">
                         <Grid xs={12}>
-                            <Typography sx={{ fontSize:{xs:'18px',sm: '30px'}, fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
+                            <Typography sx={{ fontSize: { xs: '18px', sm: '30px' }, fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
                                 GICONS, The highly sought-after collection of free SVG user interface icons
                             </Typography>
-                            <Typography sx={{ color: '#777' ,fontSize:{xs:'12px',sm: '16px'}}}>
+                            <Typography sx={{ color: '#777', fontSize: { xs: '12px', sm: '16px' } }}>
                                 Explore a collection of over 24,300 free UI icons, presented in 9 distinct styles, fully editable and customizable to uniquely suit your needs.
                             </Typography>
                         </Grid>
@@ -331,9 +361,9 @@ function WebBody() {
                 <Box sx={{ marginTop: '70px' }}>
                     <Container maxWidth="xl" sx={{ backgroundColor: '#CDBBFF' }}>
                         <Grid container xs={12}>
-                            <Box sx={{ flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', display: 'flex'  }}>
+                            <Box sx={{ flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', display: 'flex' }}>
                                 <Grid flexDirection={'column'} position={'relative'} xs={12} md={6}    >
-                                    <Box className='center' sx={{ alignItems: 'center', color: '#703DFF', flexDirection: 'column', fontSize:{xs:'40px',sm:'60px', md:'60px',lg:'70px'}, paddingTop: '55px', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
+                                    <Box className='center' sx={{ alignItems: 'center', color: '#703DFF', flexDirection: 'column', fontSize: { xs: '40px', sm: '60px', md: '60px', lg: '70px' }, paddingTop: '55px', fontWeight: '700', fontFamily: "Rammetto One, sans-serif" }}>
                                         Animated
                                     </Box>
                                     <Box sx={{ marginTop: '-37px' }}>
@@ -341,22 +371,22 @@ function WebBody() {
                                             <img src={camera} alt="" srcset="" />
                                         </Box>
                                         <Box className='center' sx={{
-                                            marginTop: {xs:'-146px',sm:'-268px',md:'-268px',lg:'-282px'},
-                                            marginLeft: {xs:'auto',sm:'65px'},
-                                            alignItems: 'center', color: '#fff', fontSize:{xs:'90px',sm:'155px', md:'155px',lg:'171px'}, fontFamily: "Rammetto One, sans-serif"
+                                            marginTop: { xs: '-146px', sm: '-268px', md: '-268px', lg: '-282px' },
+                                            marginLeft: { xs: 'auto', sm: '65px' },
+                                            alignItems: 'center', color: '#fff', fontSize: { xs: '90px', sm: '155px', md: '155px', lg: '171px' }, fontFamily: "Rammetto One, sans-serif"
                                         }}>
                                             Ic&nbsp;&nbsp;&nbsp;ns
                                         </Box>
                                     </Box>
                                 </Grid>
-                                <Grid xs={12} md={6}  sx={{padding:{xs:'10px',sm:'10px',md:'60px'}, display: 'felx', flexDirection: 'column', alignItems: 'center' }}>
-                                    <Box sx={{ paddingTop:{ sm:'0px',md:'30px'},fontSize:{xs:'12px',sm:'16px'} }}>
+                                <Grid xs={12} md={6} sx={{ padding: { xs: '10px', sm: '10px', md: '60px' }, display: 'felx', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Box sx={{ paddingTop: { sm: '0px', md: '30px' }, fontSize: { xs: '12px', sm: '16px' } }}>
                                         We provide you animated icons through which you can bring your website to life and make it animated. animations plays a vital role in your web page as it can directly enhance the user experience and change their perception of visualizing your brand.
                                     </Box>
-                                    <Box sx={{ paddingTop: '20px',fontSize:{xs:'12px',sm:'16px'} }}>
+                                    <Box sx={{ paddingTop: '20px', fontSize: { xs: '12px', sm: '16px' } }}>
                                         Explore different categories of animated icons with unique creativity to unlock more productivity.
                                     </Box>
-                                    <Box sx={{ paddingTop: {xs:'40px',sm:'60px'} }}>
+                                    <Box sx={{ paddingTop: { xs: '40px', sm: '60px' } }}>
                                         <Box sx={{ borderRadius: '7px', display: 'inline-block', padding: '5px 20px', color: '#fff', backgroundColor: '#703DFF', cursor: 'pointer' }}>
                                             <Link to="/animated-icons">
                                                 <Box color={'#fff'}>More..!</Box>
@@ -371,7 +401,6 @@ function WebBody() {
 
 
                 {/* responsive */}
-
 
                 {/* <Box sx={{ marginTop: '50px', position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '52%', zIndex: 9 }}>
@@ -462,8 +491,6 @@ function WebBody() {
                         </Grid>
                     </Container>
                 </Box> */}
-
-
 
                 {/* responsive */}
 

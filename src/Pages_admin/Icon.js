@@ -68,6 +68,7 @@ const Icon = () => {
         const iconPromises = categories.map(category => {
             return axios.get(`http://localhost:3001/icon/findOne/${category.name}`)
                 .then((res) => {
+                    console.log([category.name]);
                     return { [category.name]: res.data.data };
                 })
                 .catch((error) => {

@@ -9,6 +9,7 @@ import FullScreenDialog from './FullScreenDialog';
 import camera from './brands/camerainterface.png'
 import { useEffect } from 'react';
 import axios from 'axios';
+import Search from './Search';
 
 function Interfaceicon() {
 
@@ -55,6 +56,7 @@ function Interfaceicon() {
 
   return (
     <Box>
+      <Search />
       <Grid container paddingTop={'46px'}>
         <Grid xs={12} className="backgroundInterface">
           <Box sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', alignItems: 'center', display: 'flex' }}>

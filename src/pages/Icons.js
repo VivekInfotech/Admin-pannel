@@ -11,10 +11,20 @@ import Cardicon from './Cardicon';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import Search from './Search';
 
 function Icons() {
 
   const [category, setCategory] = useState([])
+  const [card, setCard] = useState([
+    { name: "Hand drawn", description: "Iconic Indian brands cover diverse sectors across various industries" },
+    { name: "Color Fill", description: "The 'color fill' icon applies solid colors in graphic design software." },
+    { name: "Black outline", description: "Outline emphasizes visual design edges." },
+    { name: "Black Fill", description: "Black fill enriches design, adding depth and visual contrast." },
+    { name: "Lineal Color", description: "Icon symbolizes identity, individuality, personality." },
+    { name: "Flat", description: "Product description and details" }
+  ])
+
 
   useEffect(() => {
     getCategory()
@@ -33,6 +43,7 @@ function Icons() {
 
   return (
     <Box sx={{ paddingBottom: '150px' }}>
+      <Search />
       <Grid container paddingTop={'18px'}>
         <Grid xs={12} >
           <Box className="background" sx={{ flexDirection: { xs: 'column', md: 'row' }, backgroundColor: '#00000021', alignItems: 'center', display: 'flex' }}>
@@ -95,63 +106,23 @@ function Icons() {
       </Box>
       <Box sx={{ backgroundColor: '#272727', padding: '0px 30px' }}>
         <Grid container sx={{ padding: '70px 0px', justifyContent: 'center' }}>
-          <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box className="card">
-              <Box className="card-img"></Box>
-              <Box className="card-info">
-                <p className="text-title">Hand drawn </p>
-                <p className="text-body">Iconic Indian brands cover diverse sectors across various industries</p>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Link to="/back-fill">
-              <Box className="card">
-                <Box className="card-img"></Box>
-                <Box className="card-info">
-                  <p className="text-title">Color Fill </p>
-                  <p className="text-body">The "color fill" icon applies solid colors in graphic design software.</p>
-                </Box>
-              </Box>
-            </Link>
-          </Grid>
-          <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box className="card">
-              <Box className="card-img"></Box>
-              <Box className="card-info">
-                <p className="text-title">Black outline</p>
-                <p className="text-body">Outline emphasizes visual design edges.</p>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box className="card">
-              <Box className="card-img"></Box>
-              <Box className="card-info">
-                <p className="text-title">Black Fill </p>
-                <p className="text-body">
-                  Black fill enriches design, adding depth and visual contrast.</p>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box className="card">
-              <Box className="card-img"></Box>
-              <Box className="card-info">
-                <p className="text-title">Lineal Color </p>
-                <p className="text-body">Icon symbolizes identity, individuality, personality.</p>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid className='center' sm={4} lg={2} padding={'10px 0px'}>
-            <Box className="card">
-              <Box className="card-img"></Box>
-              <Box className="card-info">
-                <p className="text-title">Flat</p>
-                <p className="text-body">Product description and details</p>
-              </Box>
-            </Box>
-          </Grid>
+          {console.log("fghjk :- ",card[3])}
+          {
+            card.map((el, index) => {
+              return <Grid key={index} className='center' sm={4} lg={2} padding={'10px 0px'}>
+                <Link to={{ pathname: "/back-fill", state: { cardName: el.name} }}>
+                  <Box className="card">
+                    <Box className="card-img"></Box>
+                    <Box className="card-info">
+                      <p className="text-title">{el.name} </p>
+                      <p className="text-body">{el.description}</p>
+                    </Box>
+                  </Box>
+                </Link>
+              </Grid>
+            })
+          }
+
         </Grid>
       </Box>
 
@@ -197,4 +168,4 @@ function Icons() {
   )
 }
 
-export default Icons
+export default Icons

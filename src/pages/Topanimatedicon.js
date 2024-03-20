@@ -24,9 +24,9 @@ function Topanimatedicon() {
     setDialogOpen(false);
     updateIcons(iconId)
   };
-
+  
   const updateIcons = async (iconId) => {
-    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/interface`)
+    await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/animated`)
       .then((res) => {
         console.log("update Icon color :- ", res.data.data);
         getAnimatedIcon();

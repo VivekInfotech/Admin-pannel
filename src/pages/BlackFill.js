@@ -1,11 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Cardicon from './Cardicon'
-import { Box, Grid, Link } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import FullScreenDialog from './FullScreenDialog';
+import axios from 'axios';
+import { Link, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 function BlackFill() {
     const [isDialogOpen, setDialogOpen] = useState(false);
-    const [data, setData] = useState([])
+    const [category, setCategory] = useState([])
+
+    let location = useLocation()
+    let cardName =  location.state.cardName
+
+    useEffect(() => {
+        getCategory()
+    }, [])
+
+    const getCategory = () => {
+        axios.get(`http://localhost:3001/popCategory/findOne/${cardName}`)
+            .then((res) => {
+                console.log(res.data.data);
+                setCategory(res.data.data)
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+            })
+    }
 
 
     const handleOpenDialog = () => {
@@ -20,103 +40,23 @@ function BlackFill() {
 
             <Box sx={{ padding: '50px 20px 0px 20px' }}>
                 <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
-                    Black Fill
+                    {cardName}
                 </Box>
                 <Grid container sx={{ paddingTop: '50px' }}>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Food'} description="Food icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Hospital'} description="Hospital icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Animal'} description="Animal icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Language'} description="Language icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Alert'} description="Alert icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Indian Brands'} description="Indian icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Education'} description="Education icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowblue" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-                    <Grid lg={3} md={4} sm={6} xs={12} className='setcontant'>
-                        <Link to="/pack">
-                            <Cardicon name="boxshadowyellow" bannerimg={''} heading={'Business'} description="Business icon set more than 200+" />
-                        </Link>
-                    </Grid>
-
-
-                </Grid>
-                <Grid container paddingTop={{ xs: '20px', md: '45px' }} xs={12} className='center'>
 
                     {
-                        data.map((el, index) => {
-                            return <Grid key={index} xs={6} sm={4} md={2} lg={1} sx={{ padding: '15px' }}  >
-                                <Box onClick={handleOpenDialog} className="card4" id="card4">
-                                    <Box className="content4">
-                                        <img src={el.regular} alt={el.name} title={el.name} width="50px" height="auto" />
-                                    </Box>
-                                </Box>
+                        category.map((el, index) => {
+                            return <Grid key={index} lg={3} md={4} sm={6} xs={12} className='setcontant'>
+                                <Link to={{ pathname: "/pack", state: { categoryName: el.name, id: el._id, popIcon: "popIcon" } }}>
+                                    <Cardicon name="boxshadowyellow" popCard="popCard" categoryName={el.name} bannerimg={''} heading={el.name} description={el.description} />
+                                </Link>
                             </Grid>
-
                         })
                     }
 
-                    <FullScreenDialog open={isDialogOpen} onClose={handleCloseDialog} />
+
+
+
 
                 </Grid>
             </Box>

@@ -1,4 +1,3 @@
-// Dailogicon.js
 import React, { useState, useEffect } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, IconButton, Typography, TextField, Box } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,31 +10,22 @@ function PopularDailog({ addCategory, icon }) {
     const [name, setName] = useState('');
     const [tag, setTag] = useState('');
     const [description, setDescription] = useState('');
-    const [suggestedCategories, setSuggestedCategories] = useState([]);
-
-    useEffect(() => {
-        fetchSuggestedCategories();
-    }, []);
+    const [suggestedCard, setSuggestedCard] = useState(["Hand drawn", "color fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
 
     useEffect(() => {
         if (icon) {
-            setCard({ label: icon.card, id: icon.cardId });
+            setCard({ label: icon.card, id: icon._id });
             setName(icon.name);
             setTag(icon.tag);
             setDescription(icon.description);
+        } else {
+            // Set the initial state to blank
+            setCard(null);
+            setName('');
+            setTag('');
+            setDescription('');
         }
-    }, [icon]);
-
-    const fetchSuggestedCategories = () => {
-        axios.get('http://localhost:3001/popCategory/find')
-            .then((res) => {
-                const categories = res.data.data.map(card => ({ label: card.name, id: card._id }));
-                setSuggestedCategories(categories);
-            })
-            .catch((error) => {
-                console.log(error.response.data);
-            });
-    };
+    }, [icon, suggestedCard]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -52,6 +42,8 @@ function PopularDailog({ addCategory, icon }) {
             console.log('Please select a card, enter a name, enter a tag, and description');
             return;
         }
+
+        console.log('Value:', card);
 
         const value = { card: card.label, name, tag, description };
 
@@ -75,7 +67,8 @@ function PopularDailog({ addCategory, icon }) {
 
             console.log('Response:', response.data.data);
             addCategory();
-            setCard(null);
+            // Update the card state here
+            setCard({ label: value.card, id: icon ? icon._id : null });
             setName("");
             setTag("");
             setDescription("");
@@ -84,6 +77,7 @@ function PopularDailog({ addCategory, icon }) {
             console.error('Error:', error.response.data.message);
         }
     };
+
 
 
     const handleKeyDown = (event) => {
@@ -115,13 +109,18 @@ function PopularDailog({ addCategory, icon }) {
                                 <Autocomplete
                                     disablePortal
                                     id="combo-box-demo"
-                                    options={suggestedCategories}
-                                    value={card}
-                                    onChange={(event, newValue) => setCard(newValue)}
-                                    getOptionLabel={(option) => option.label}
+                                    options={suggestedCard}
+                                    value={card ? card.label : null}
+                                    onChange={(event, newValue) => {
+                                        if (newValue) {
+                                            setCard({ label: newValue, id: null });
+                                        }
+                                    }}
+                                    getOptionLabel={(option) => option}
                                     sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Card" />}
+                                    renderInput={(params) => <TextField {...params} label="card" />}
                                 />
+
                             </Box>
 
                             <Box className="name">

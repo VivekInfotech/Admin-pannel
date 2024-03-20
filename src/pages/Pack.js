@@ -16,13 +16,13 @@ export default function Pack() {
     const [icons, setIcons] = useState([]);
     const [selectedIconId, setSelectedIconId] = useState(null);
     const [categoryName, setCategoryName] = useState('');
-
     const location = useLocation();
+    const popIcon = location.state.popIcon
 
     useEffect(() => {
         if (location.state && location.state.categoryName) {
             setCategoryName(location.state.categoryName);
-            getIcons(location.state.categoryName);
+            getIcons(location.state.categoryName, location.state.popIcon);
         }
     }, [location]);
 
@@ -34,30 +34,68 @@ export default function Pack() {
 
     const handleCloseDialog = async (iconId) => {
         setDialogOpen(false);
-        updateIcons(iconId)
+        // getIcons(location.state.categoryName, location.state.popIcon, iconId);
     };
 
-    const updateIcons = async (iconId) => {
-        await axios.put(`http://localhost:3001/editIcon/update/${iconId}/000000/icon`)
-            .then((res) => {
-                console.log("update Icon color :- ", res.data.data);
-                getIcons(categoryName);
-            })
-            .catch((error) => {
-                console.log(error.response.data.message);
-            });
-    }
+    // const updateIcons = async (updateData) => {
+    //     if (updateData) {
+    //         const allowedProperties = ['regular', 'bold', 'thin', 'solid', 'straight', 'rounded', 'icon'];
+    //         const editedIconsArray = {};
 
+    //         allowedProperties.forEach((el) => {
+    //             if (updateData && updateData[el]) {
+    //                 const colorHex = "#000000"
+    //                 let svgData = updateData[el];
 
-    const getIcons = (categoryName) => {
-        axios.get(`http://localhost:3001/icon/findOne/${categoryName}`)
-            .then((res) => {
-                console.log(res.data.data);
-                setIcons(res.data.data);
-            })
-            .catch((error) => {
-                console.log(error.response.data.message);
-            });
+    //                 // Perform string manipulation operations
+    //                 if (svgData.includes('stroke="currentColor"')) {
+    //                     svgData = svgData.replace(/stroke="currentColor"/g, `stroke="${colorHex}"`);
+    //                     svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s*\/?>/g, `<circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />`);
+    //                     svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, `<path d="$1" fill="${colorHex}" />`);
+    //                 } else {
+    //                     svgData = svgData.replace(/stroke="#[a-zA-Z0-9]+"/g, `stroke="${colorHex}"`);
+    //                     svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s+fill="#[a-zA-Z0-9]+"\s*\/?>/g, `<circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />`);
+    //                     if (svgData.includes('fill="#')) {
+    //                         svgData = svgData.replace(/<path\s+d="([^"]+)"\s+fill="#[a-zA-Z0-9]+"/g, `<path d="$1" fill="${colorHex}" />`);
+    //                     } else {
+    //                         svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, `<path d="$1" fill="${colorHex}" />`);
+    //                     }
+    //                 }
+    //                 editedIconsArray[el] = svgData;
+    //             }
+    //         });
+    //         console.log("svgData :- ", editedIconsArray);
+    //         setIcons(editedIconsArray);
+    //     }
+    // }
+
+    const getIcons = (categoryName, popIcon, iconId) => {
+        if (popIcon) {
+            axios.get(`http://localhost:3001/popular/findOne/${categoryName}`)
+                .then(async(res) => {
+                    console.log(res.data.data);
+                    // if(iconId){
+                    //     await updateIcons(res.data.data)
+                    // }
+                    setIcons(res.data.data);
+                })
+                .catch((error) => {
+                    console.log(error.response.data.message);
+                });
+            }
+            else {
+                axios.get(`http://localhost:3001/icon/findOne/${categoryName}`)
+                .then(async(res) => {
+                    console.log(res.data.data);
+                    // if(iconId){
+                    //     await updateIcons(res.data.data)
+                    // }
+                    setIcons(res.data.data);
+                })
+                .catch((error) => {
+                    console.log(error.response.data.message);
+                });
+        }
     };
 
     return (
@@ -86,7 +124,9 @@ export default function Pack() {
                                             <Box className="card3 wallet">
                                                 <Box className="overlay"></Box>
                                                 <Box className="circle" >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
+                                                    {el.icon ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.icon }}></svg>
+                                                        : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
+                                                    }
                                                 </Box>
                                             </Box>
                                         </Box>
@@ -94,14 +134,16 @@ export default function Pack() {
                                 })
                             }
 
-                            
-                            <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="icon" />
+                            {popIcon ? <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="popular" />
+                                : <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType="icon" />
+                            }
+
                         </Grid>
                     </Container>
                 </Box>
 
             </Box>
 
-        </Box>
-    );
+        </Box>
+    );
 }

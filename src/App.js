@@ -31,6 +31,7 @@ import {
 } from "react-router-dom";
 import PopularIcon from './Pages_admin/PopularIcon';
 import PopularCategory from './Pages_admin/PopularCategory';
+import Searchicons from './pages/Searchicons';
 
 function App() {
   return (
@@ -67,42 +68,50 @@ function App() {
           </Route>
           <Route path="/most-downloads">
             <UserLayout>
-
               <Topicon />
             </UserLayout>
-
           </Route>
+
+          {/* Search */}
+
+          <Route path="/search-icon">
+            <UserLayout>
+              <Searchicons />
+            </UserLayout>
+          </Route>
+
           <Route path="/pack">
             <UserLayout>
-
               <Pack />
             </UserLayout>
-
           </Route>
+
           <Route path="/topanimatedicon">
             <UserLayout>
-
               <Topanimatedicon />
             </UserLayout>
-
           </Route>
+
           <Route path="/contact-us">
             <UserLayout>
               <Contact />
             </UserLayout>
           </Route>
+
           <Route path="/support">
             <UserLayout>
               <Support />
             </UserLayout>
           </Route>
+
           <Route path="/faqs">
             <UserLayout>
               <Faqs />
             </UserLayout>
           </Route>
+
           <Route path="/back-fill">
-          <UserLayout>
+            <UserLayout>
               <BlackFill />
             </UserLayout>
           </Route>

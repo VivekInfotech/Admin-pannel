@@ -1,9 +1,7 @@
-// Icon.js
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
-import Dailodbox from './Dailodbox';
 import Popularaddicon from './Popularaddicon';
 
 const PopularIcon = () => {
@@ -29,12 +27,12 @@ const PopularIcon = () => {
     useEffect(() => {
         fetchIcons()
         getCategories();
-        console.log("card :- ", card[0]);
     }, []);
 
     const getCategories = () => {
         axios.get('http://localhost:3001/popCategory/find')
             .then((res) => {
+                console.log(res.data.data.map(el => el.card));
                 setCategories(res.data.data);
                 getCategoryIcons(res.data.data);
             })
@@ -69,8 +67,10 @@ const PopularIcon = () => {
 
     const getCategoryIcons = (categories) => {
         const iconPromises = categories.map(category => {
+            console.log("category ghjjhj :- ", category.name);
             return axios.get(`http://localhost:3001/popular/findOne/${category.name}`)
                 .then((res) => {
+                    console.log([category.name]);
                     return { [category.name]: res.data.data };
                 })
                 .catch((error) => {
@@ -98,93 +98,49 @@ const PopularIcon = () => {
             <Box className="add">
                 <Box><Popularaddicon fetchIcons={getCategories} targetFile="icon" /></Box>
             </Box>
+
             <div>
-                {card && card.map((card, index) => (
-                    <Accordion key={index}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls={`panel-${index}-content`}
-                            id={`panel-${index}-header`}
-                        >
-                            <Typography>{card}</Typography>
-                        </AccordionSummary>
-                        <div>
-                            {categories && categories.map((category, index) => (
-                                <Accordion key={index}>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls={`panel-${index}-content`}
-                                        id={`panel-${index}-header`}
-                                    >
-                                        <Typography>{category.name}</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <TableContainer component={Box}>
-                                            <Table>
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Icon</TableCell>
-                                                        <TableCell align="right">Actions</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {iconData[category.name] && iconData[category.name].map((icon, iconIndex) => (
-                                                        <TableRow key={iconIndex}>
-                                                            <TableCell>{icon.name}</TableCell>
-                                                            <TableCell align="right">
-                                                                <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
-                                                                <Popularaddicon fetchIcons={getCategories} icon={icon} />
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </AccordionDetails>
-                                </Accordion>
-                            ))}
-                        </div>
-                    </Accordion>
-                ))}
-            </div>
-            {/* <div>
-                {categories && categories.map((category, index) => (
-                    <Accordion key={index}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls={`panel-${index}-content`}
-                            id={`panel-${index}-header`}
-                        >
-                            <Typography>{category.name}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <TableContainer component={Box}>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Icon</TableCell>
-                                            <TableCell align="right">Actions</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {iconData[category.name] && iconData[category.name].map((icon, iconIndex) => (
-                                            <TableRow key={iconIndex}>
-                                                <TableCell>{icon.name}</TableCell>
-                                                <TableCell align="right">
-                                                    <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
-                                                    <Popularaddicon fetchIcons={getCategories} icon={icon} />
-                                                </TableCell>
+                {categories && categories.map((category, categoryIndex) => {
+                    return (
+                        <Accordion key={categoryIndex}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls={`panel-${categoryIndex}-content`}
+                                id={`panel-${categoryIndex}-header`}
+                            >
+                                <Typography>{category.name}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <TableContainer component={Box}>
+                                    <Table>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Icon</TableCell>
+                                                <TableCell align="right">Actions</TableCell>
                                             </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </AccordionDetails>
-                    </Accordion>
-                ))}
-            </div> */}
+                                        </TableHead>
+                                        <TableBody>
+                                            {iconData[category.name] && iconData[category.name].map((icon, iconIndex) => (
+                                                <TableRow key={iconIndex}>
+                                                    <TableCell>{icon.name}</TableCell>
+                                                    <TableCell align="right">
+                                                        <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                        <Popularaddicon fetchIcons={getCategories} icon={icon} />
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </AccordionDetails>
+                        </Accordion>
+                    );
+                })}
+            </div>
+
         </Box>
     );
+
 };
 
 export default PopularIcon;

@@ -1,4 +1,4 @@
-// Dailodbox.js
+// Popularaddicon.js
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -26,10 +26,10 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [tag, setTag] = useState('');
-    const [card, setCard] = useState(null);
     const [category, setCategory] = useState(null);
     const [iconFile, setIconFile] = useState(null);
     const [suggestedCategories, setSuggestedCategories] = useState([]);
+    const [suggestedCard, setSuggestedCard] = useState(["Hand drawn", "color fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -47,7 +47,6 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
         if (icon) {
             setName(icon.name);
             setTag(icon.tag);
-            setCard({ label: icon.card, id: icon.cardId });
             setCategory({ label: icon.category, id: icon.categoryId });
         }
     }, [icon]);
@@ -66,12 +65,11 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
 
-        // Form data setup...
 
+        // Form data setup...
         const formData = new FormData();
         formData.append('name', name);
         formData.append('tag', tag);
-        formData.append('card', card.label);
         formData.append('category', category.label);
         formData.append('icon', iconFile);
 
@@ -97,7 +95,6 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                 // Reset form state variables
                 setName('');
                 setTag('');
-                setCard(null);
                 setCategory(null);
                 setIconFile(null);
 
@@ -109,8 +106,6 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
             console.error('Error:', error.response.data);
         }
     };
-
-
 
     return (
         <React.Fragment>
@@ -142,18 +137,6 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                 <DialogContent dividers>
                     <Typography gutterBottom>
                         <Box className="details">
-                            <Box marginBottom={'10px'} className="selector">
-                                <Autocomplete
-                                    disablePortal
-                                    id="combo-box-demo"
-                                    options={suggestedCategories}
-                                    value={card}
-                                    onChange={(event, newValue) => setCard(newValue)}
-                                    getOptionLabel={(option) => option.label}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Card" />}
-                                />
-                            </Box>
                             <Box className="selector">
                                 <Autocomplete
                                     disablePortal
@@ -194,7 +177,7 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                                     multiple
                                 />
                             </Box>
-                            
+
                         </Box>
                     </Typography>
                 </DialogContent>

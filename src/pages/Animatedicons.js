@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import banner from './brands/animatedbanner.png'
 import FullScreenDialog from './FullScreenDialog';
 import axios from 'axios';
+import Search from './Search';
 
 function Animatedicons() {
 
@@ -51,6 +52,7 @@ function Animatedicons() {
 
   return (
     <Box>
+      <Search />
       <Grid container paddingTop={'46px'}>
         <Grid xs={12}>
           <Box className='home-hero' sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#272727', position: 'relative', alignItems: 'center', display: 'flex' }}>
