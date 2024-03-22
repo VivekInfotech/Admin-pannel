@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { styled, useTheme } from '@mui/material/styles';
@@ -31,6 +31,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Topprops from './Topprops';
 import FullScreenDialog from './FullScreenDialog';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import MenuList from '@mui/material/MenuList';
 
 const drawerWidth = 240;
 
@@ -181,84 +185,194 @@ const category = [
     },
 ];
 
+// const SuggestionMenu = ({ suggestions, searchValue, setSearchValue }) => {
+//     return (
+//         <>
+//             {searchValue && ( // Show suggestions only if there is some input in the search field
+//                 <TextField
+//                     select
+//                     label="Suggestions"
+//                     fullWidth
+//                     variant="outlined"
+//                     size="small"
+//                     value={searchValue}
+//                     onChange={(event) => setSearchValue(event.target.value)}
+//                     InputProps={{
+//                         startAdornment: (
+//                             <MenuItem key={-1} value="">
+//                                 All Suggestions
+//                             </MenuItem>
+//                         ),
+//                     }}
+//                 >
+//                     {suggestions.map((suggestion, index) => (
+//                         <MenuItem key={index} value={suggestion}>
+//                             {suggestion}
+//                         </MenuItem>
+//                     ))}
+//                 </TextField>
+//             )}
+//         </>
+//     );
+// };
+
+const StyledPaper = styled('div')({
+    position: 'absolute',
+    zIndex: 1,
+    mt: 1,
+    width: '100%',
+    maxHeight: '250px',
+    overflowY: 'auto',
+    backgroundColor: '#cccccc90',
+    borderRadius: '10px',
+    boxShadow: '0px 0px 10px #434343de'
+});
+
+
 const Searchicons = () => {
     const [open, setOpen] = React.useState(false);
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(false);
     const [isDialogOpen, setDialogOpen] = useState(false);
     const [selectedIconType, setSelectedIconType] = useState('Regular'); // Initial state is Regular
+    const [selectedIconId, setSelectedIconId] = useState('');
+    const [iconType, setIconType] = useState('all');
+    const [entityType, setEntityType] = useState('');
     const [searchValue, setSearchValue] = useState('');
     const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const theme = useTheme();
     let history = useHistory();
+    const location = useLocation();
+    const inputRef = useRef(null);
 
     // const handleSearchChange = (event) => {
     //     setSearchValue(event.target.value);
     //     // getSearchIcons(event.target.value);
     // };
 
-    const handleSearchChange = (event) => {
-        setSearchValue(event.target.value);
+    const handleOpenDialog = (iconId, entityName) => {
+        setDialogOpen(true);
+        setSelectedIconId(iconId);
+        setEntityType(entityName)
     };
 
+    const handleCloseDialog = async (iconId) => {
+        setDialogOpen(false);
+        // getIcons(location.state.categoryName, location.state.popIcon, iconId);
+    };
+
+    const handleSearchChange = (event) => {
+        const newValue = event.target.value;
+        setSearchValue(newValue);
+        getSuggestTagName(newValue);
+    };
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            handleSearchSubmit(event); // Pass the event object to handleSearchSubmit
+            handleSearchSubmit(event);
             setSearch(searchValue)
         }
     };
 
-
     const handleSearchSubmit = (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-        const inputValue = event.target.value; // Get the value of the input field
-        setSearchValue(inputValue); // Update the searchValue state
-        getSearchIcons(inputValue); // Call the function to fetch search results
+        event.preventDefault();
+        const inputValue = searchValue;
+        getSearchIcons(inputValue);
     };
 
-
-
-
-    const location = useLocation();
     useEffect(() => {
         if (location.state) {
             setSearchValue(location.state.searchValue);
             getSearchIcons(location.state.searchValue);
-            getSuggestTagName()
+            getSuggestTagName(location.state.searchValue);
         }
     }, [location.state]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (inputRef.current && !inputRef.current.contains(event.target)) {
+                setSuggestions([]);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [inputRef]);
+
+    const getIconType = async (event) => {
+        const newValue = event.target.value;
+        setIconType(newValue);
+    };
+
+    useEffect(() => {
+        if (iconType !== '') {
+            getSearchIcons(searchValue);
+        }
+    }, [iconType]);
 
     const getSearchIcons = (searchValue) => {
         if (searchValue) {
             setLoading(true);
-            axios.get(`http://localhost:3001/tag/findByName/${searchValue}`)
+            axios
+                .get(`http://localhost:3001/tag/findByName/${searchValue}`)
                 .then((res) => {
-                    setData(res.data.data);
+
+                    const { animated, icon, interfaceData, popularIcon } = res.data.data;
+                    let concatenatedArray = [];
+
+                    if (iconType === 'interface') {
+                        concatenatedArray = interfaceData.map((el) => ({ ...el, entityType: 'interface' }));
+                    } else if (iconType === 'animated') {
+                        concatenatedArray = animated.map((el) => ({ ...el, entityType: 'animated' }));
+                    } else if (iconType === 'popular') {
+                        concatenatedArray = popularIcon.map((el) => ({ ...el, entityType: 'popular' }));
+                    } else {
+                        concatenatedArray = animated.map((el) => ({ ...el, entityType: 'animated' }))
+                            .concat(icon.map((el) => ({ ...el, entityType: 'icon' })),
+                                interfaceData.map((el) => ({ ...el, entityType: 'interface' })),
+                                popularIcon.map((el) => ({ ...el, entityType: 'popular' })));
+                    }
+
+                    console.log(`Search ${iconType} Icons :- `, concatenatedArray);
+                    setData(concatenatedArray);
+
                     setLoading(false);
                 })
                 .catch((error) => {
                     setData([]);
                     setLoading(false);
-                    console.log(error);
+                    console.log(error.response.data);
                 });
         }
     };
 
-    const getSuggestTagName = () => {
-        axios.get(`http://localhost:3001/tag/find`)
-            .then((res) => {
-                const allTags = res.data.data;
-                // Filter suggestions based on the search input
-                const filteredSuggestions = allTags.filter(tag => tag.includes(searchValue));
-                // setSuggestions(filteredSuggestions);
-                console.log("filteredSuggestions :- ", filteredSuggestions);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const getSuggestTagName = (searchValue) => {
+        if (searchValue) {
+            axios
+                .get(`http://localhost:3001/tag/find`)
+                .then((res) => {
+
+                    const { animated, icon, interfaceData, popularIcon } = res.data.data;
+                    const concatenatedArray = animated.concat(icon, interfaceData, popularIcon);
+
+                    const filteredSuggestions = concatenatedArray.filter((tag) =>
+                        tag.includes(searchValue)
+                    );
+                    setSuggestions(filteredSuggestions);
+                })
+                .catch((error) => {
+                    console.log(error.response.data);
+                });
+        }
+    };
+
+    const handleSuggestionClick = (suggestion) => {
+        setSearchValue(suggestion); // Update search input value
+        setSearch(suggestion); // Update search state
+        setSuggestions([]); // Clear suggestions after selection
     };
 
     return (
@@ -385,35 +499,55 @@ const Searchicons = () => {
 
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 
-                {/* Search box */}
                 <div>
-                    <form className="search-bar" onSubmit={(e) => handleSearchSubmit(e)}>
-                        <select className="settt" value={searchValue}>
-                            <option value="">All icons</option>
-                            <option value="option1">Interface icons</option>
-                            <option value="option2">Animated icons</option>
-                        </select>
-                        <input
-                            type="text"
-                            name="searchInput"
-                            placeholder="Search…"
-                            aria-label="search"
-                            value={searchValue}
-                            onChange={handleSearchChange}
-                            onKeyPress={handleKeyPress}
-                        />
-                        <button type="submit">
-                            Search
-                        </button>
+                    <form className="search-bar" onSubmit={handleSearchSubmit}>
+                        <TextField
+                            select
+                            label="Icon Type"
+                            sx={{ width: '200px' }}
+                            variant="outlined"
+                            size="small"
+                            value={iconType}
+                            // onChange={(event) => setIconType(event.target.value)}
+                            onChange={getIconType}
+                        >
+                            <MenuItem value="all">All Icons</MenuItem>
+                            <MenuItem value="interface">Interface</MenuItem>
+                            <MenuItem value="animated">Animated</MenuItem>
+                            <MenuItem value="popular">Popular</MenuItem>
+                        </TextField>
+
+                        <Box sx={{ position: 'relative', width: '100%' }}>
+                            <TextField
+                                label="Search"
+                                fullWidth
+                                variant="outlined"
+                                size="small"
+                                value={searchValue}
+                                onChange={handleSearchChange}
+                                onKeyPress={handleKeyPress}
+                                inputRef={inputRef}
+                            />
+                            {searchValue && (
+                                <StyledPaper>
+                                    <MenuList>
+                                        {suggestions.map((suggestion, index) => (
+                                            <MenuItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                                                {suggestion}
+                                            </MenuItem>
+                                        ))}
+                                    </MenuList>
+                                </StyledPaper>
+                            )}
+                        </Box>
+                        <button type="submit">Search</button>
                     </form>
-
-
                 </div>
 
                 <DrawerHeader />
 
                 <Container maxWidth="xl">
-                    {isLoading ? ( // If data is being fetched, display loader message
+                    {isLoading ? (
                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
                             <Typography variant="h5">Loading...</Typography>
                         </Box>
@@ -429,15 +563,19 @@ const Searchicons = () => {
                                 {data.length} {search} Icons
                             </Box>
                             <Box className="search" sx={{ paddingTop: '40px' }}>
-                                <Grid container spacing={4} justifyContent="center"> {/* Add justifyContent="center" to center the items */}
+                                <Grid container spacing={4} justifyContent="center">
                                     {data.length > 0 ? (
                                         <>
                                             {data.map((el, index) => (
-                                                <Grid key={index} item lg={2} md={4}> {/* Move display and justifyContent props to the Grid item */}
-                                                    <Topprops image={el[selectedIconType.toLowerCase()]} onClick={() => setDialogOpen(true)} />
+                                                <Grid key={index} item lg={2} md={4} onClick={() => handleOpenDialog(el._id, el.entityType)} >
+                                                    {el.icon ? (
+                                                        <Topprops image={el.icon} />
+                                                    ) : (
+                                                        <Topprops image={el[selectedIconType.toLowerCase()]} />
+                                                    )}
                                                 </Grid>
                                             ))}
-                                            <FullScreenDialog open={isDialogOpen} onClose={() => setDialogOpen(false)} />
+                                            <FullScreenDialog open={isDialogOpen} onClose={() => handleCloseDialog(selectedIconId)} iconId={selectedIconId} entityType={entityType} />
                                         </>
                                     ) : (
                                         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
