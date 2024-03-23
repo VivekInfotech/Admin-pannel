@@ -255,10 +255,10 @@ function WebBody() {
                 <Box sx={{ marginTop: '70px', padding: '0px 24px' }}>
                     <Container maxWidth="xl">
                         <Grid xs={12}>
-                            <Typography sx={{ fontSize: { xs: '18px', sm: '30px' }, fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 }}>
+                            <Typography sx={{ fontSize: { xs: '18px', sm: '30px' }, fontFamily: 'Degular,Inter,Helvetica Neue,Helvetica,Arial,sans-serif', color: '#424242;', fontWeight: 600 ,textAlign:'center' }}>
                                 GICONS, The highly sought-after collection of free SVG user interface icons
                             </Typography>
-                            <Typography sx={{ color: '#777', fontSize: { xs: '12px', sm: '16px' } }}>
+                            <Typography sx={{ color: '#777', fontSize: { xs: '12px', sm: '16px' ,textAlign:'center'} }}>
                                 Explore a collection of over 24,300 free UI icons, presented in 9 distinct styles, fully editable and customizable to uniquely suit your needs.
                             </Typography>
                         </Grid>
