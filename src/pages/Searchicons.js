@@ -185,37 +185,6 @@ const category = [
     },
 ];
 
-// const SuggestionMenu = ({ suggestions, searchValue, setSearchValue }) => {
-//     return (
-//         <>
-//             {searchValue && ( // Show suggestions only if there is some input in the search field
-//                 <TextField
-//                     select
-//                     label="Suggestions"
-//                     fullWidth
-//                     variant="outlined"
-//                     size="small"
-//                     value={searchValue}
-//                     onChange={(event) => setSearchValue(event.target.value)}
-//                     InputProps={{
-//                         startAdornment: (
-//                             <MenuItem key={-1} value="">
-//                                 All Suggestions
-//                             </MenuItem>
-//                         ),
-//                     }}
-//                 >
-//                     {suggestions.map((suggestion, index) => (
-//                         <MenuItem key={index} value={suggestion}>
-//                             {suggestion}
-//                         </MenuItem>
-//                     ))}
-//                 </TextField>
-//             )}
-//         </>
-//     );
-// };
-
 const StyledPaper = styled('div')({
     position: 'absolute',
     zIndex: 1,
@@ -245,11 +214,16 @@ const Searchicons = () => {
     let history = useHistory();
     const location = useLocation();
     const inputRef = useRef(null);
+    const suggestionsRef = useRef(null);
 
-    // const handleSearchChange = (event) => {
-    //     setSearchValue(event.target.value);
-    //     // getSearchIcons(event.target.value);
-    // };
+    useEffect(() => {
+        Gotoup()
+    }, [])
+    const Gotoup = () => {
+
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+
+    }
 
     const handleOpenDialog = (iconId, entityName) => {
         setDialogOpen(true);
@@ -276,7 +250,9 @@ const Searchicons = () => {
     };
 
     const handleSearchSubmit = (event) => {
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
         const inputValue = searchValue;
         getSearchIcons(inputValue);
     };
@@ -291,7 +267,12 @@ const Searchicons = () => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (inputRef.current && !inputRef.current.contains(event.target)) {
+            if (
+                suggestionsRef.current &&
+                !suggestionsRef.current.contains(event.target) &&
+                inputRef.current &&
+                !inputRef.current.contains(event.target)
+            ) {
                 setSuggestions([]);
             }
         };
@@ -300,7 +281,7 @@ const Searchicons = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [inputRef]);
+    }, []);
 
     const getIconType = async (event) => {
         const newValue = event.target.value;
@@ -329,6 +310,8 @@ const Searchicons = () => {
                         concatenatedArray = animated.map((el) => ({ ...el, entityType: 'animated' }));
                     } else if (iconType === 'popular') {
                         concatenatedArray = popularIcon.map((el) => ({ ...el, entityType: 'popular' }));
+                    } else if (iconType === 'icon') {
+                        concatenatedArray = icon.map((el) => ({ ...el, entityType: 'icon' }));
                     } else {
                         concatenatedArray = animated.map((el) => ({ ...el, entityType: 'animated' }))
                             .concat(icon.map((el) => ({ ...el, entityType: 'icon' })),
@@ -354,13 +337,18 @@ const Searchicons = () => {
             axios
                 .get(`http://localhost:3001/tag/find`)
                 .then((res) => {
-
                     const { animated, icon, interfaceData, popularIcon } = res.data.data;
                     const concatenatedArray = animated.concat(icon, interfaceData, popularIcon);
 
-                    const filteredSuggestions = concatenatedArray.filter((tag) =>
-                        tag.includes(searchValue)
-                    );
+                    const filteredSuggestions = concatenatedArray
+                        .filter((tag) => tag.includes(searchValue)) // Filter suggestions that include the search value
+                        .reduce((acc, cur) => { // Reduce to filter out duplicates
+                            if (!acc.includes(cur)) {
+                                acc.push(cur);
+                            }
+                            return acc;
+                        }, []);
+
                     setSuggestions(filteredSuggestions);
                 })
                 .catch((error) => {
@@ -370,9 +358,10 @@ const Searchicons = () => {
     };
 
     const handleSuggestionClick = (suggestion) => {
-        setSearchValue(suggestion); // Update search input value
-        setSearch(suggestion); // Update search state
-        setSuggestions([]); // Clear suggestions after selection
+        setSearchValue(suggestion);
+        setSearch(suggestion);
+        setSuggestions([]);
+        handleSearchSubmit();
     };
 
     return (
@@ -512,6 +501,7 @@ const Searchicons = () => {
                             onChange={getIconType}
                         >
                             <MenuItem value="all">All Icons</MenuItem>
+                            <MenuItem value="icon">Icon</MenuItem>
                             <MenuItem value="interface">Interface</MenuItem>
                             <MenuItem value="animated">Animated</MenuItem>
                             <MenuItem value="popular">Popular</MenuItem>
@@ -549,7 +539,7 @@ const Searchicons = () => {
                 <Container maxWidth="xl">
                     {isLoading ? (
                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-                            <Typography variant="h5">Loading...</Typography>
+                            <span class="loader"></span>
                         </Box>
                     ) : (
                         <>
@@ -607,4 +597,4 @@ const Searchicons = () => {
     );
 }
 
-export default Searchicons;
+export default Searchicons;

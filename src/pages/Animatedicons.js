@@ -37,8 +37,14 @@ function Animatedicons() {
 
   useEffect(() => {
     getAnimatedIcon()
+    Gotoup()
   }, [])
 
+  const Gotoup = () => {
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+
+  }
   const getAnimatedIcon = () => {
     axios.get('http://localhost:3001/animated/find')
       .then((res) => {
@@ -53,7 +59,7 @@ function Animatedicons() {
   return (
     <Box>
       <Search />
-      <Grid container paddingTop={'46px'}>
+      <Grid container paddingTop={'10px'}>
         <Grid xs={12}>
           <Box className='home-hero' sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#272727', position: 'relative', alignItems: 'center', display: 'flex' }}>
             <Grid md={12} sx={{ padding: '20px', textAlign: 'center' }}>
@@ -240,4 +246,4 @@ function Animatedicons() {
   )
 }
 
-export default Animatedicons
+export default Animatedicons

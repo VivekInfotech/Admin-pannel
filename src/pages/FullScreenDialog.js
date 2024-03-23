@@ -337,16 +337,16 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                   </Box>
                 </Box>
                 <Box sx={{ display: 'flex', margin: '24px 25px' }}>
-                  <Grid sm={4} marginRight={'10px'}>
+                  <Grid xs={12} sm={4} marginRight={'10px'}>
                     <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#ffbc06', color: '#272727', padding: '10px 30px' }}
                       onClick={() => copyPngIcon()}
                     >
-                      <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoMdImages fontSize={'20px'} /></Box>
+                      <Box xs={12} sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoMdImages fontSize={'20px'} /></Box>
                       <Tooltip title="Copy PNG to clipboard">Copy PNG</Tooltip>
                     </Box>
 
                   </Grid>
-                  <Grid sm={4} marginRight={'10px'}>
+                  <Grid xs={12} sm={4} marginRight={'10px'}>
                     <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#198754', color: '#fff', padding: '10px 30px' }}>
                       <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosDownload fontSize={'20px'} />
                       </Box>
@@ -354,7 +354,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                       <Tooltip title="Download Pack">Pack</Tooltip>
                     </Box>
                   </Grid>
-                  <Grid sm={4}>
+                  <Grid xs={12}  sm={4}>
                     <div class="bg-box">
                       <div class="share-btn">
                         <span class="text-share-btn"><IoIosShareAlt fontSize={'20px'} />Share</span>

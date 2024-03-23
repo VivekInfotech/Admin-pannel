@@ -40,8 +40,14 @@ function Interfaceicon() {
 
   useEffect(() => {
     getInterfaceIcon()
-  }, [])
+    Gotoup()
 
+  }, [])
+  const Gotoup = () => {
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+
+  }
   const getInterfaceIcon = () => {
     axios.get('http://localhost:3001/interface/find')
       .then((res) => {
@@ -57,7 +63,7 @@ function Interfaceicon() {
   return (
     <Box>
       <Search />
-      <Grid container paddingTop={'46px'}>
+      <Grid container paddingTop={'10px'}>
         <Grid xs={12} className="backgroundInterface">
           <Box sx={{ flexWrap: { xs: 'wrap', md: 'nowrap' }, backgroundColor: '#00000021', alignItems: 'center', display: 'flex' }}>
             <Grid md={12} sx={{ display: 'flex', alignItems: 'center', padding: '20px', justifyContent: 'center' }}>

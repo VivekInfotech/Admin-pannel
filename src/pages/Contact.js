@@ -1,10 +1,17 @@
 
 import { Box, Container, Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaRocketchat } from "react-icons/fa";
 
 function Contact() {
-  
+    useEffect(() => {
+        Gotoup()
+      }, [])
+      const Gotoup = () => {
+    
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    
+      }
     return (
         <Box sx={{ padding: '65px 0px' }}>
             <Box >

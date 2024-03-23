@@ -38,7 +38,15 @@ function Topanimatedicon() {
 
   useEffect(() => {
     getAnimatedIcon()
+    Gotoup()
+
   }, [])
+  
+  const Gotoup = () => {
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+
+  }
 
   const getAnimatedIcon = () => {
     axios.get('http://localhost:3001/animated/find')

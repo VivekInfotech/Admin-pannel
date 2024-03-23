@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import logo from './img/icon-grid.png'
+import favicon from './img/logo.png'
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import MailIcon from '@mui/icons-material/Mail';
@@ -50,23 +51,24 @@ function Navbar() {
             <AppBar sx={{ backgroundColor: '#272727', position: 'fixed', top: 0, zIndex: '99' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                        {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
                         <Typography
                             variant="h6"
                             noWrap
-                            component="a"
-                            href="#app-bar-with-responsive-menu"
+                            // component="a"
+                            // href="#app-bar-with-responsive-menu"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: 'inherit',
+                                color: '#fff',
                                 textDecoration: 'none',
+                                display:'contents'
                             }}
                         >
-                            logo
+                             <span style={{letterSpacing:'initial',fontSize:'28px'}}>Ic</span><img width={'2%'} src={favicon} alt="" srcset="" /><span style={{marginLeft:"1px",fontSize:'28px',letterSpacing:'initial'}}>nGrid</span>
                             {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
                         </Typography>
 
@@ -123,11 +125,11 @@ function Navbar() {
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: 'inherit',
+                                color: '#fff',
                                 textDecoration: 'none',
                             }}
                         >
-                            LOGO
+                            IconGrid
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                             {pages.map((page, i) => (

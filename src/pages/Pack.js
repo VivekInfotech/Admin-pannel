@@ -25,8 +25,14 @@ export default function Pack() {
             getIcons(location.state.categoryName, location.state.popIcon);
         }
     }, [location]);
+    useEffect(()=>{
+        Gotoup()
+    },[])
+    const Gotoup = () => {
 
-
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    
+      }
     const handleOpenDialog = (iconId) => {
         setDialogOpen(true);
         setSelectedIconId(iconId);

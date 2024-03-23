@@ -115,6 +115,14 @@ function WebBody() {
     const handleSearchChange = (event) => {
         setSearchValue(event.target.value);
     };
+    useEffect(() => {
+        Gotoup()
+      }, [])
+      const Gotoup = () => {
+    
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    
+      }
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -402,7 +410,7 @@ function WebBody() {
 
                 {/* responsive */}
 
-                {/* <Box sx={{ marginTop: '50px', position: 'relative' }}>
+                <Box sx={{display:{xs:'none',md:'block'}, marginTop: '50px', position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '52%', zIndex: 9 }}>
                         <img src={lineleft} alt="" srcset="" />
                     </Box>
@@ -490,7 +498,7 @@ function WebBody() {
 
                         </Grid>
                     </Container>
-                </Box> */}
+                </Box>
 
                 {/* responsive */}
 

@@ -28,8 +28,13 @@ function Icons() {
 
   useEffect(() => {
     getCategory()
+    Gotoup()
   }, [])
+  const Gotoup = () => {
 
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+
+  }
   const getCategory = () => {
     axios.get('http://localhost:3001/category/find')
       .then((res) => {
@@ -44,7 +49,7 @@ function Icons() {
   return (
     <Box sx={{ paddingBottom: '150px' }}>
       <Search />
-      <Grid container paddingTop={'18px'}>
+      <Grid container paddingTop={'10px'}>
         <Grid xs={12} >
           <Box className="background" sx={{ flexDirection: { xs: 'column', md: 'row' }, backgroundColor: '#00000021', alignItems: 'center', display: 'flex' }}>
             <Grid md={6} xs={12} sx={{ padding: '20px', maxWidth: '100%' }}>

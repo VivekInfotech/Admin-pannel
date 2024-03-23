@@ -67,17 +67,19 @@ function App() {
 
           </Route>
           <Route path="/most-downloads">
-            <UserLayout>
+          <AdminLayout>
+
               <Topicon />
-            </UserLayout>
+              </AdminLayout >
+
           </Route>
 
           {/* Search */}
 
           <Route path="/search-icon">
-            <UserLayout>
+          <AdminLayout>
               <Searchicons />
-            </UserLayout>
+              </AdminLayout >
           </Route>
 
           <Route path="/pack">

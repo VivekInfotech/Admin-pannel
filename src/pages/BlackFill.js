@@ -14,7 +14,13 @@ function BlackFill() {
 
     useEffect(() => {
         getCategory()
+        Gotoup()
     }, [])
+    const Gotoup = () => {
+
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    
+      }
 
     const getCategory = () => {
         axios.get(`http://localhost:3001/popCategory/findOne/${cardName}`)

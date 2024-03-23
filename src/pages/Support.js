@@ -1,6 +1,6 @@
 import { Search } from '@mui/icons-material'
 import { Box, Button, Container, Grid, Toolbar } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { FormControl, useFormControlContext } from '@mui/base/FormControl';
 import { Input, inputClasses } from '@mui/base/Input';
@@ -112,7 +112,16 @@ const grey = {
     800: '#303740',
     900: '#1C2025',
 };
+
 function Support() {
+    useEffect(() => {
+        Gotoup()
+      }, [])
+      const Gotoup = () => {
+    
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    
+      }
     return (
         <Box>
             <Box sx={{ marginTop: '25px', backgroundColor: '#FFE08A' }}>
