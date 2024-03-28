@@ -11,7 +11,7 @@ function PopularCategory() {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65e41862f553d71c874fabc5',{},{
+        axios.put('https://api-elbg.onrender.com/count/update/65e41862f553d71c874fabc5',{},{
             headers: {
                 admintoken: token
             }
@@ -29,7 +29,7 @@ function PopularCategory() {
     }, []);
 
     const getCategory = () => {
-        axios.get('http://localhost:3001/popCategory/find')
+        axios.get('https://api-elbg.onrender.com/popCategory/find')
             .then((res) => {
                 console.log(res.data.data);
                 setData(res.data.data);
@@ -42,7 +42,7 @@ function PopularCategory() {
 
 
     const remove = (id) => {
-        axios.delete(`http://localhost:3001/popCategory/delete/${id}`,{
+        axios.delete(`https://api-elbg.onrender.com/popCategory/delete/${id}`,{
             headers: {
                 admintoken: token
             }

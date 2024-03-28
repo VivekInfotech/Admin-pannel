@@ -74,9 +74,9 @@ function App() {
           {/* Search */}
 
           <Route path="/search-icon">
-            <UserLayout>
+            <UserLayoutWithout>
               <Searchicons />
-            </UserLayout>
+            </UserLayoutWithout>
           </Route>
 
           <Route path="/pack">

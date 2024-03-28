@@ -281,7 +281,7 @@ const Searchicons = () => {
         if (searchValue) {
             setLoading(true);
             axios
-                .get(`http://localhost:3001/tag/findByName/${searchValue}`)
+                .get(`https://api-elbg.onrender.com/tag/findByName/${searchValue}`)
                 .then((res) => {
                     const { animated, icon, interfaceData, popularIcon } = res.data.data;
                     let concatenatedArray = [];
@@ -317,7 +317,7 @@ const Searchicons = () => {
     const getSuggestTagName = (searchValue) => {
         if (searchValue) {
             axios
-                .get(`http://localhost:3001/tag/find`)
+                .get(`https://api-elbg.onrender.com/tag/find`)
                 .then((res) => {
                     const { animated, icon, interfaceData, popularIcon } = res.data.data;
                     const concatenatedArray = animated.concat(icon, interfaceData, popularIcon);
@@ -340,7 +340,7 @@ const Searchicons = () => {
     };
 
     const getCategory = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('https://api-elbg.onrender.com/category/find')
             .then((res) => {
                 console.log("Demoooo :- ", res.data.data);
                 setCategory(res.data.data)

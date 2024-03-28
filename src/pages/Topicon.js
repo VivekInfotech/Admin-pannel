@@ -215,7 +215,7 @@ const Topicon = () => {
 
   const updateIcons = async (iconId) => {
     await axios
-      .put(`http://localhost:3001/editIcon/update/${iconId}/000000/interface`)
+      .put(`https://api-elbg.onrender.com/editIcon/update/${iconId}/000000/interface`)
       .then((res) => {
         console.log('update Icon color :- ', res.data.data);
         getInterfaceIcon();
@@ -238,7 +238,7 @@ const Topicon = () => {
 
   const getInterfaceIcon = () => {
     axios
-      .get('http://localhost:3001/interface/find')
+      .get('https://api-elbg.onrender.com/interface/find')
       .then((res) => {
         let regularIcon = res.data.data.map((icon) => icon);
         console.log('regularIcon :- ', regularIcon);

@@ -29,7 +29,7 @@ const Dashboard = () => {
     }, []);
 
     const getCountIcon = () => {
-        axios.get('http://localhost:3001/count/find')
+        axios.get('https://api-elbg.onrender.com/count/find')
             .then((res) => {
                 console.log(res.data.data);
                 setData(res.data.data);

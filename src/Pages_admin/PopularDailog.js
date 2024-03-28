@@ -52,13 +52,13 @@ function PopularDailog({ addCategory, icon }) {
         try {
             let response;
             if (icon) {
-                response = await axios.put(`http://localhost:3001/popCategory/update/${icon._id}`, value, {
+                response = await axios.put(`https://api-elbg.onrender.com/popCategory/update/${icon._id}`, value, {
                     headers: {
                         admintoken: token
                     }
                 });
             } else {
-                response = await axios.post('http://localhost:3001/popCategory/create', value, {
+                response = await axios.post('https://api-elbg.onrender.com/popCategory/create', value, {
                     headers: {
                         admintoken: token
                     }

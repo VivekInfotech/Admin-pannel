@@ -45,13 +45,13 @@ function Addcategory({ addCategory, updateCategory }) {
             const value = { name, tag, description };
             let response;
             if (updateCategory) {
-                response = await axios.put(`http://localhost:3001/category/update/${updateCategory._id}`, value, {
+                response = await axios.put(`https://api-elbg.onrender.com/category/update/${updateCategory._id}`, value, {
                     headers: {
                         admintoken: token
                     }
                 });
             } else {
-                response = await axios.post('http://localhost:3001/category/create', value, {
+                response = await axios.post('https://api-elbg.onrender.com/category/create', value, {
                     headers: {
                         admintoken: token
                     }

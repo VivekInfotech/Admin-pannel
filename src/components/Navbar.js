@@ -65,7 +65,7 @@ function Navbar() {
     const history = useHistory();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/save/find`)
+        axios.get(`https://api-elbg.onrender.com/save/find`)
             .then((res) => {
                 const ids = res.data.data.map((el) => el.save);
                 const sId = res.data.data.map((el) => el._id);
@@ -79,7 +79,7 @@ function Navbar() {
 
     const getSaveIcons = async (id,sId) => {
         try {
-            let res = await axios.get(`http://localhost:3001/icon/findById/${id}`);
+            let res = await axios.get(`https://api-elbg.onrender.com/icon/findById/${id}`);
             setSaveIcons(prevState => [...prevState, res.data.data]);
         } catch (error) {
             console.log("Error fetching save icons for id", id, ":", error.response.data);
@@ -88,7 +88,7 @@ function Navbar() {
     
     const removeSave = (id) => {
         console.log("ID ID ID :- ", id);
-        axios.delete(`http://localhost:3001/save/delete/${id}`)
+        axios.delete(`https://api-elbg.onrender.com/save/delete/${id}`)
             .then((res) => {
                 console.log("Save Icon Delete Susseccfully :- ", res.data.data);
             })

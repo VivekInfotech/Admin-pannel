@@ -353,7 +353,7 @@ const Mainbody = (props) => {
 
 
   if (!token) {
-    return <p>Loading...</p>
+    return <span class="loader"></span>
   }
 
   return (

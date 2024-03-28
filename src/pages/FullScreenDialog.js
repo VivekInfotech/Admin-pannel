@@ -49,7 +49,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
   }, [iconId]);
 
   const getIcon = (iconId, color) => {
-    axios.get(`http://localhost:3001/${entityType}/findById/${iconId}`)
+    axios.get(`https://api-elbg.onrender.com/${entityType}/findById/${iconId}`)
       .then((res) => {
         console.log("Demo :- ", res.data.data);
         setIconName(res.data.data.name)
@@ -301,7 +301,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
   };
 
   const save = (data) => {
-    axios.post(`http://localhost:3001/save/create`, { save: data._id })
+    axios.post(`https://api-elbg.onrender.com/save/create`, { save: data._id })
       .then((res) => {
         console.log("save Dataaaaaaa :- ", res.data.data);
       })
@@ -341,7 +341,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
             <Grid container>
               <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', padding: '10px 25px', justifyContent: 'space-between', cursor: 'pointer' }}>
-                  <Box sx={{fontSize:{xs:'10px',sm:'14px'} ,border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }} onClick={() => save(data)}>
+                  <Box sx={{ fontSize: { xs: '10px', sm: '14px' }, border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }} onClick={() => save(data)}>
                     Save
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', fontWeight: '600' }}>
@@ -367,22 +367,22 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
                 {
                   entityType == "popular" ? '' : <Box sx={{ display: 'flex', padding: '12px 0px', justifyContent: 'space-around', overflow: 'hidden' }}>
-                    <Box className='type' onClick={() => selectedIcon(data.regular, "regular")}>
+                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.regular, "regular")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.regular }}></svg>
                     </Box>
-                    <Box className='type' onClick={() => selectedIcon(data.bold, "bold")}>
+                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.bold, "bold")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.bold }}></svg>
                     </Box>
-                    <Box className='type' onClick={() => selectedIcon(data.solid, "solid")}>
+                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.solid, "solid")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.solid }}></svg>
                     </Box>
-                    <Box className='type' onClick={() => selectedIcon(data.thin, "thin")}>
+                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.thin, "thin")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.thin }}></svg>
                     </Box>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.rounded, "rounded")}>
+                    <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.rounded, "rounded")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.rounded }}></svg>
                     </Box>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.straight, "straight")}>
+                    <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.straight, "straight")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.straight }}></svg>
                     </Box>
                   </Box>
@@ -392,7 +392,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                   <Box className="code-editor">
                     <Box className="header">
                       <span className="title">HTML</span>
-                      <span className="title"><FaCopy onClick={copy} /></span>
+                      <span className="title" ><FaCopy onClick={copy} /></span>
                     </Box>
                     <Box className="editor-content">
                       <code className="code">
@@ -506,9 +506,9 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                   </Grid>
                   </Grid>
                 </Box> */}
-                <Box sx={{ display: 'flex', flexDirection: 'column', margin: '24px 25px' }}>
+                <Box sx={{ display: 'flex', margin: '24px 25px' }}>
                   <Grid container spacing={2}>
-                    <Grid item xs={6} md={3} marginBottom={'10px'}>
+                    <Grid item xs={12} sm={6} md={3} marginBottom={'10px'}>
                       <Box sx={{ position: 'relative' }}>
                         <Box
                           className='center'
@@ -518,7 +518,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                             fontWeight: '600',
                             padding: '10px',
                             cursor: 'pointer',
-                            width: '100%',
+
                           }}
                           onClick={handleClick}
                         >
@@ -543,17 +543,17 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                         </Menu>
                       </Box>
                     </Grid>
-                    <Grid item xs={6} md={3} marginBottom={'10px'}>
+                    <Grid item xs={12} sm={6} md={3} marginBottom={'10px'}>
                       <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
                         SVG
                       </Box>
                     </Grid>
-                    <Grid item xs={6} md={3} marginBottom={'10px'}>
+                    <Grid item xs={12} sm={6} md={3} marginBottom={'10px'}>
                       <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
                         Android
                       </Box>
                     </Grid>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                       <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
                         iOS
                       </Box>
@@ -562,7 +562,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                 </Box>
 
 
-                <Box className='center' sx={{ fontSize:{xs:'11px',sm:'14px'},paddingTop: '20px' }}>
+                <Box className='center' sx={{ fontSize: { xs: '11px', sm: '18px' }, paddingTop: '20px' }}>
                   Begin incorporating this icon into your designs.
                 </Box>
               </Grid>

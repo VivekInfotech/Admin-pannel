@@ -107,7 +107,7 @@ const SearchBar = () => {
     const getSuggestTagName = (searchValue) => {
         if (searchValue) {
             axios
-                .get(`http://localhost:3001/tag/find`)
+                .get(`https://api-elbg.onrender.com/tag/find`)
                 .then((res) => {
                     const { animated, icon, interfaceData, popularIcon } = res.data.data;
                     const concatenatedArray = animated.concat(icon, interfaceData, popularIcon);

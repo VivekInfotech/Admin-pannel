@@ -34,7 +34,7 @@ function Icons() {
 
   }
   const getCategory = () => {
-    axios.get('http://localhost:3001/category/find')
+    axios.get('https://api-elbg.onrender.com/category/find')
       .then((res) => {
         console.log(res.data.data);
         setCategory(res.data.data)

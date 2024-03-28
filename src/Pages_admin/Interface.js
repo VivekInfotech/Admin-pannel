@@ -11,7 +11,7 @@ const Interface = () => {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65e41862f553d71c874fabc5', {}, {
+        axios.put('https://api-elbg.onrender.com/count/update/65e41862f553d71c874fabc5', {}, {
             headers: {
                 admintoken: token
             }
@@ -30,7 +30,7 @@ const Interface = () => {
     }, []);
 
     const getCategories = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('https://api-elbg.onrender.com/category/find')
             .then((res) => {
                 setCategories(res.data.data);
                 getCategoryIcons(res.data.data);
@@ -41,7 +41,7 @@ const Interface = () => {
     };
 
     const fetchIcons = () => {
-        axios.get('http://localhost:3001/interface/find')
+        axios.get('https://api-elbg.onrender.com/interface/find')
             .then((res) => {
                 setData(res.data.data);
                 updateCountIcons()
@@ -52,7 +52,7 @@ const Interface = () => {
     };
 
     const removeIcon = (id) => {
-        axios.delete(`http://localhost:3001/interface/delete/${id}`, {
+        axios.delete(`https://api-elbg.onrender.com/interface/delete/${id}`, {
             headers: {
                 admintoken: token
             }
@@ -68,7 +68,7 @@ const Interface = () => {
 
     const getCategoryIcons = (categories) => {
         const iconPromises = categories.map(category => {
-            return axios.get(`http://localhost:3001/interface/findOne/${category.name}`)
+            return axios.get(`https://api-elbg.onrender.com/interface/findOne/${category.name}`)
                 .then((res) => {
                     return { [category.name]: res.data.data };
                 })

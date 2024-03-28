@@ -12,7 +12,7 @@ const PopularIcon = () => {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65e41862f553d71c874fabc5', {}, {
+        axios.put('https://api-elbg.onrender.com/count/update/65e41862f553d71c874fabc5', {}, {
             headers: {
                 admintoken: token
             }
@@ -30,7 +30,7 @@ const PopularIcon = () => {
     }, []);
 
     const getCategories = () => {
-        axios.get('http://localhost:3001/popCategory/find')
+        axios.get('https://api-elbg.onrender.com/popCategory/find')
             .then((res) => {
                 console.log(res.data.data.map(el => el.card));
                 setCategories(res.data.data);
@@ -42,7 +42,7 @@ const PopularIcon = () => {
     };
 
     const fetchIcons = () => {
-        axios.get('http://localhost:3001/popular/find')
+        axios.get('https://api-elbg.onrender.com/popular/find')
             .then((res) => {
                 setIconData(res.data.data);
                 updateCountIcons()
@@ -53,7 +53,7 @@ const PopularIcon = () => {
     };
 
     const removeIcon = (id) => {
-        axios.delete(`http://localhost:3001/popular/delete/${id}`, {
+        axios.delete(`https://api-elbg.onrender.com/popular/delete/${id}`, {
             headers: { admintoken: token }
         })
             .then((res) => {
@@ -68,7 +68,7 @@ const PopularIcon = () => {
     const getCategoryIcons = (categories) => {
         const iconPromises = categories.map(category => {
             console.log("category ghjjhj :- ", category.name);
-            return axios.get(`http://localhost:3001/popular/findOne/${category.name}`)
+            return axios.get(`https://api-elbg.onrender.com/popular/findOne/${category.name}`)
                 .then((res) => {
                     console.log([category.name]);
                     return { [category.name]: res.data.data };

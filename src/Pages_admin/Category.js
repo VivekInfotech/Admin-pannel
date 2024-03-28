@@ -10,7 +10,7 @@ function Category() {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('http://localhost:3001/count/update/65e41862f553d71c874fabc5',{},{
+        axios.put('https://api-elbg.onrender.com/count/update/65e41862f553d71c874fabc5',{},{
             headers: {
                 admintoken: token
             }
@@ -28,7 +28,7 @@ function Category() {
     }, []);
 
     const getCategory = () => {
-        axios.get('http://localhost:3001/category/find')
+        axios.get('https://api-elbg.onrender.com/category/find')
             .then((res) => {
                 setData(res.data.data);
                 updateCountIcons()
@@ -40,7 +40,7 @@ function Category() {
 
 
     const remove = (id) => {
-        axios.delete(`http://localhost:3001/category/delete/${id}`,{
+        axios.delete(`https://api-elbg.onrender.com/category/delete/${id}`,{
             headers: {
                 admintoken: token
             }

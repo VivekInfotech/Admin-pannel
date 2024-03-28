@@ -14,7 +14,7 @@ export default function Cardicon(props) {
 
     const getIcons = (categoryName, popCard) => {
         if (popCard) {
-            axios.get(`http://localhost:3001/popular/findOne/${categoryName}`)
+            axios.get(`https://api-elbg.onrender.com/popular/findOne/${categoryName}`)
                 .then((res) => {
                     console.log(res.data.data);
                     setData(res.data.data)
@@ -24,7 +24,7 @@ export default function Cardicon(props) {
                 })
         }
         else {
-            axios.get(`http://localhost:3001/icon/findOne/${categoryName}`)
+            axios.get(`https://api-elbg.onrender.com/icon/findOne/${categoryName}`)
                 .then((res) => {
                     console.log(res.data.data);
                     setData(res.data.data)
