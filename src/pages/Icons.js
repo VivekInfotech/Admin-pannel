@@ -5,9 +5,7 @@ import React from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import backgroundImg from './brands/app-preview-dark.jpg'
-
 import Cardicon from './Cardicon';
-
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
@@ -111,7 +109,6 @@ function Icons() {
       </Box>
       <Box sx={{ backgroundColor: '#272727', padding: '0px 30px' }}>
         <Grid container sx={{ padding: '70px 0px', justifyContent: 'center' }}>
-          {console.log("fghjk :- ",card[3])}
           {
             card.map((el, index) => {
               return <Grid key={index} className='center' sm={4} lg={2} padding={'10px 0px'}>

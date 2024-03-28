@@ -42,9 +42,6 @@
   background: #aab7cf;
 }
 
-.css-i4bv87-MuiSvgIcon-root {
-  color: #000 !important;
-}
 
 .css-o4bg9w-MuiGrid-root {
 
@@ -136,13 +133,12 @@
 }
 
 /*menuresponsive */
-.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+/* .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
-  box-shadow: 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
   color: #fff !important;
-}
+} */
 
 /* @media (max-width : "400px")
 {
@@ -216,7 +212,6 @@
 .blend0,
 .css-u0quxs-MuiStack-root,
 .css-v4cz06-MuiStack-root,
-.css-i4bv87-MuiSvgIcon-root,
 .css-uc6mlj-MuiButtonBase-root-MuiButton-root,
 .css-1qwzq7g-MuiListItemIcon-root,
 .css-u9vj98-MuiListItemIcon-root {
@@ -604,6 +599,7 @@ a:-webkit-any-link {
   position: relative;
   z-index: 1;
   transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 
 .circle:after {
@@ -1273,6 +1269,11 @@ section span:hover {
   margin-top: 75px;
   padding: 20px;
 }
+.search-bar input{
+  background-color: #fff !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+}
 .css-h4y409-MuiList-root{
   padding: 0 !important;
 }
@@ -1372,4 +1373,20 @@ section span:hover {
 }
 .css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input{
   color: #fff !important;
+}
+
+
+/* saved iteam css */
+
+
+.css-13gzsmf{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .css-13gzsmf:hover{
+  border: 1px solid black;
+} */
+.css-1ivjs6o-MuiButtonBase-root-MuiButton-root:hover , .css-164ezo8-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #ffbc06 !important;
 }

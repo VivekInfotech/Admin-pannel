@@ -137,53 +137,6 @@ const corner = [
         page: 'straight',
     },
 ];
-const category = [
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Alert',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Indian brands',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Cars',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Institute',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Business',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Food',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Animal',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Design',
-    },
-    {
-        path: '',
-        icon: <FaBuffer />,
-        page: 'Art',
-    },
-];
 
 const StyledPaper = styled('div')({
     position: 'absolute',
@@ -199,7 +152,7 @@ const StyledPaper = styled('div')({
 
 
 const Searchicons = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(false);
     const [isDialogOpen, setDialogOpen] = useState(false);
@@ -209,20 +162,21 @@ const Searchicons = () => {
     const [entityType, setEntityType] = useState('');
     const [searchValue, setSearchValue] = useState('');
     const [search, setSearch] = useState('');
+    const [category, setCategory] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const theme = useTheme();
-    let history = useHistory();
+    const history = useHistory();
     const location = useLocation();
     const inputRef = useRef(null);
     const suggestionsRef = useRef(null);
 
     useEffect(() => {
+        console.log("De,dfds");
+        getCategory()
         Gotoup()
     }, [])
     const Gotoup = () => {
-
         window.scrollTo({ top: 0, left: 0, behavior: "auto" })
-
     }
 
     const handleOpenDialog = (iconId, entityName) => {
@@ -233,7 +187,6 @@ const Searchicons = () => {
 
     const handleCloseDialog = async (iconId) => {
         setDialogOpen(false);
-        // getIcons(location.state.categoryName, location.state.popIcon, iconId);
     };
 
     const handleSearchChange = (event) => {
@@ -244,44 +197,74 @@ const Searchicons = () => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            handleSearchSubmit(event);
+            handleSearchSubmit(searchValue, event);
             setSearch(searchValue)
         }
     };
 
-    const handleSearchSubmit = (event) => {
-        if (event) {
+    const handleSearchSubmit = (suggestion, event) => {
+        if (event && event.preventDefault) {
             event.preventDefault();
         }
-        const inputValue = searchValue;
+        let inputValue;
+        if (suggestion) {
+            inputValue = suggestion;
+        } else {
+            inputValue = searchValue;
+        }
         getSearchIcons(inputValue);
     };
 
     useEffect(() => {
         if (location.state) {
             setSearchValue(location.state.searchValue);
+            setSearch(location.state.searchValue);
             getSearchIcons(location.state.searchValue);
             getSuggestTagName(location.state.searchValue);
         }
     }, [location.state]);
 
+
+    const handleSuggestionClick = (suggestion, event) => {
+        if (event) {
+            event.preventDefault();
+        }
+        setSearchValue(suggestion);
+        setSearch(suggestion);
+        setSuggestions([]);
+        handleSearchSubmit(suggestion);
+    };
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
+                inputRef.current &&
+                !inputRef.current.contains(event.target) &&
+                event.target.tagName !== 'BODY' &&
+                !event.target.classList.contains('MuiMenuItem-root')
+            ) {
+                setSuggestions([]);
+            }
+        };
+
+        const handleClickOutsideSuggestion = (event) => {
+            if (
                 suggestionsRef.current &&
                 !suggestionsRef.current.contains(event.target) &&
-                inputRef.current &&
-                !inputRef.current.contains(event.target)
+                event.target.tagName !== 'BODY'
             ) {
                 setSuggestions([]);
             }
         };
 
         document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutsideSuggestion);
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutsideSuggestion);
         };
-    }, []);
+    }, [suggestionsRef, inputRef]);
 
     const getIconType = async (event) => {
         const newValue = event.target.value;
@@ -300,7 +283,6 @@ const Searchicons = () => {
             axios
                 .get(`http://localhost:3001/tag/findByName/${searchValue}`)
                 .then((res) => {
-
                     const { animated, icon, interfaceData, popularIcon } = res.data.data;
                     let concatenatedArray = [];
 
@@ -357,12 +339,17 @@ const Searchicons = () => {
         }
     };
 
-    const handleSuggestionClick = (suggestion) => {
-        setSearchValue(suggestion);
-        setSearch(suggestion);
-        setSuggestions([]);
-        handleSearchSubmit();
-    };
+    const getCategory = () => {
+        axios.get('http://localhost:3001/category/find')
+            .then((res) => {
+                console.log("Demoooo :- ", res.data.data);
+                setCategory(res.data.data)
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            })
+    }
+
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -459,29 +446,31 @@ const Searchicons = () => {
                         </ListItemIcon>
                         <Typography sx={{ color: '#fff', textTransform: 'uppercase', fontSize: '18px', opacity: open ? 1 : 0 }}>Category</Typography>
                     </ListItem>
-
-                    {category.map((component) => (
-                        <ListItem key={component.page} disablePadding onClick={() => history.push(component.path)}>
-                            <ListItemButton
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
-                                }}
-                            >
-                                <ListItemIcon
+                    {console.log("category sgdghfcg :- ", category)}
+                    {category.map((component, index) => (
+                        (index <= 10) ? (
+                            <ListItem key={index} disablePadding onClick={() => history.push(component.path)}>
+                                <ListItemButton
                                     sx={{
-                                        minWidth: 0,
-                                        mr: open ? 3 : 'auto',
-                                        fontSize: '20px',
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
                                     }}
                                 >
-                                    {component.icon}
-                                </ListItemIcon>
-                                <ListItemText primary={component.page} sx={{ opacity: open ? 1 : 0 }} />
-                            </ListItemButton>
-                        </ListItem>
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            fontSize: '20px',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <FaBuffer />
+                                    </ListItemIcon>
+                                    <ListItemText primary={component.name} sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </ListItem>
+                        ) : ('Demo')
                     ))}
                 </List>
             </Drawer>
@@ -497,7 +486,6 @@ const Searchicons = () => {
                             variant="outlined"
                             size="small"
                             value={iconType}
-                            // onChange={(event) => setIconType(event.target.value)}
                             onChange={getIconType}
                         >
                             <MenuItem value="all">All Icons</MenuItem>
@@ -517,7 +505,9 @@ const Searchicons = () => {
                                 onChange={handleSearchChange}
                                 onKeyPress={handleKeyPress}
                                 inputRef={inputRef}
+                                InputProps={{ autocomplete: "off" }}
                             />
+
                             {searchValue && (
                                 <StyledPaper>
                                     <MenuList>
@@ -597,4 +587,4 @@ const Searchicons = () => {
     );
 }
 
-export default Searchicons;
+export default Searchicons;

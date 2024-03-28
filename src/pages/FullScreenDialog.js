@@ -16,6 +16,7 @@ import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import { Menu } from '@mui/material';
 import { toPng } from 'html-to-image';
+import JSZip from 'jszip';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -113,48 +114,59 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
   }, [pngName, data]);
 
   const getPngIcon = (svg) => {
-    console.log(`svg ${pngName} :- `, svg[pngName]);
+    if (!svg || !svg[pngName]) {
+      console.error('SVG data is missing or invalid');
+      return;
+    }
+
     let svgData = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="200" height="200">${svg[pngName]}</svg>`;
+
+    // Trim leading/trailing whitespace
+    svgData = svgData.trim();
+
+    console.log("SVG Data aaaaaaaa :- ", svgData); // Log SVG data for inspection
+
     if (svgData) {
-      // Create a new Image element to load SVG
-      const svgImage = new Image();
+      try {
+        const base64Svg = btoa(svgData);
 
-      // When the SVG image is loaded
-      svgImage.onload = () => {
-        console.log("SVG loaded successfully");
+        const svgImageUrl = `data:image/svg+xml;base64,${base64Svg}`;
 
-        // Create a canvas element to draw the SVG image
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
+        const svgImage = new Image();
 
-        // Set canvas dimensions
-        canvas.width = svgImage.width;
-        canvas.height = svgImage.height;
+        svgImage.onload = () => {
+          console.log("SVG loaded successfully");
 
-        // Draw the SVG image onto the canvas
-        context.drawImage(svgImage, 0, 0);
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
 
-        // Convert canvas content to PNG data
-        canvas.toBlob((blob) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onloadend = () => {
-            const base64data = reader.result;
+          canvas.width = svgImage.width;
+          canvas.height = svgImage.height;
 
-            let pngImg = `<img src="${base64data}">`
+          context.drawImage(svgImage, 0, 0);
 
-            setPng({ pngIcon: { [pngName]: pngImg } });
-            console.log("PNG Data:", pngImg);
-          };
-        }, 'image/png');
-      };
+          canvas.toBlob((blob) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+              const base64data = reader.result;
 
-      svgImage.onerror = (error) => {
-        console.error('Error loading SVG image:', error);
-      };
+              let pngImg = `<img src="${base64data}">`;
 
-      // Set the SVG image source
-      svgImage.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+              setPng({ pngIcon: { [pngName]: pngImg } });
+              console.log("PNG Data:", pngImg);
+            };
+          }, 'image/png');
+        };
+
+        svgImage.onerror = (error) => {
+          console.error('Error loading SVG image:', error);
+        };
+
+        svgImage.src = svgImageUrl;
+      } catch (error) {
+        console.error('Error converting SVG to PNG:', error);
+      }
     } else {
       console.error('Invalid SVG data');
     }
@@ -174,7 +186,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
     }
   };
 
-  const pngDownload = async () => {
+  const pngDownload = async (width) => {
     try {
       const svgElement = document.querySelector('.sizesvg svg');
       if (!svgElement) {
@@ -182,16 +194,36 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
         return;
       }
 
-      // Convert SVG element to PNG image
-      const pngDataUrl = await toPng(svgElement);
+      let scaleFactor = 1; // Default scale factor for PNG
+
+      // Determine scale factor based on width selection
+      if (width === '512px') {
+        scaleFactor = 512 / svgElement.width.baseVal.value;
+      } else if (width === '256px') {
+        scaleFactor = 256 / svgElement.width.baseVal.value;
+      } else if (width === '128px') {
+        scaleFactor = 128 / svgElement.width.baseVal.value;
+      } else if (width === '64px') {
+        scaleFactor = 64 / svgElement.width.baseVal.value;
+      } else if (width === '32px') {
+        scaleFactor = 32 / svgElement.width.baseVal.value;
+      } else if (width === '24px') {
+        scaleFactor = 24 / svgElement.width.baseVal.value;
+      } else if (width === '16px') {
+        scaleFactor = 16 / svgElement.width.baseVal.value;
+      }
+
+      // Convert SVG element to PNG image with the determined scale factor
+      const pngDataUrl = await toPng(svgElement, { pixelRatio: scaleFactor });
 
       // Create a temporary anchor element to trigger download
       const downloadLink = document.createElement('a');
       downloadLink.href = pngDataUrl;
-      downloadLink.download = `${iconName}-${pngName}.png`;
+      downloadLink.download = `${iconName}-${pngName}-${width}.png`; // Add width information to the filename
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
+      setAnchorEl(null);
     } catch (error) {
       console.error('Error downloading PNG:', error);
     }
@@ -208,10 +240,11 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
   const link = () => {
     if (selectedIconUrl) {
-      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>`;
+      const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="65" height="65">${selectedIconUrl}</svg>`;
+      return svgContent;
     }
     return '';
-  }
+  };
 
   const copy = () => {
     const linkContent = link();
@@ -240,6 +273,42 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
       URL.revokeObjectURL(url);
     }
   };
+
+  const pack = async () => {
+    try {
+      const iconVariants = ['regular', 'bold', 'solid', 'thin', 'rounded', 'straight'];
+      const zip = new JSZip();
+
+      iconVariants.forEach((variant) => {
+        const svgData = data[variant];
+        if (svgData) {
+          const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="200" height="200">${svgData}</svg>`;
+          zip.file(`${iconName}-${variant}.svg`, svgContent);
+        }
+      });
+
+      const content = await zip.generateAsync({ type: 'blob' });
+
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(content);
+      downloadLink.download = 'icon_pack.zip';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    } catch (error) {
+      console.error('Error packing icons:', error);
+    }
+  };
+
+  const save = (data) => {
+    axios.post(`http://localhost:3001/save/create`, {save : data._id})
+      .then((res) => {
+        console.log("save Dataaaaaaa :- ",res.data.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      })
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -272,7 +341,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
             <Grid container>
               <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', padding: '10px 25px', justifyContent: 'space-between', cursor: 'pointer' }}>
-                  <Box sx={{ border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }}>
+                  <Box sx={{ border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }} onClick={() => save(data)}>
                     Save
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', fontWeight: '600' }}>
@@ -346,7 +415,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                     </Box>
 
                   </Grid>
-                  <Grid xs={12} sm={4} marginRight={'10px'}>
+                  <Grid xs={12} sm={4} marginRight={'10px'} onClick={pack}>
                     <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#198754', color: '#fff', padding: '10px 30px' }}>
                       <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosDownload fontSize={'20px'} />
                       </Box>
@@ -354,7 +423,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                       <Tooltip title="Download Pack">Pack</Tooltip>
                     </Box>
                   </Grid>
-                  <Grid xs={12}  sm={4}>
+                  <Grid xs={12} sm={4}>
                     <div class="bg-box">
                       <div class="share-btn">
                         <span class="text-share-btn"><IoIosShareAlt fontSize={'20px'} />Share</span>
@@ -383,7 +452,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                         }}
                       // onClick={handleClick}
                       >
-                        <Box onClick={pngDownload}>
+                        <Box>
                           PNG <IoIosArrowDown onClick={handleClick} />
                         </Box>
                       </Box>
@@ -394,13 +463,13 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
                       >
-                        <MenuItem onClick={handleClose}>512px</MenuItem>
-                        <MenuItem onClick={handleClose}>256px</MenuItem>
-                        <MenuItem onClick={handleClose}>128px</MenuItem>
-                        <MenuItem onClick={handleClose}>64px</MenuItem>
-                        <MenuItem onClick={handleClose}>32px</MenuItem>
-                        <MenuItem onClick={handleClose}>24px</MenuItem>
-                        <MenuItem onClick={handleClose}>16px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('512px')}>512px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('256px')}>256px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('128px')}>128px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('64px')}>64px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('32px')}>32px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('24px')}>24px</MenuItem>
+                        <MenuItem onClick={() => pngDownload('16px')}>16px</MenuItem>
                       </Menu>
                     </Box>
                   </Grid>

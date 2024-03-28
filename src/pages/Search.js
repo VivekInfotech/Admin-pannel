@@ -1,10 +1,11 @@
 import { Box, Link } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
+import axios from "axios";
 
 const StyledPaper = styled('div')({
     position: 'absolute',
@@ -20,10 +21,16 @@ const StyledPaper = styled('div')({
 
 const SearchBar = () => {
     const [searchValue, setSearchValue] = useState('');
+    const [iconType, setIconType] = useState('all');
+    const [suggestions, setSuggestions] = useState([]);
     let history = useHistory();
+    const inputRef = useRef(null);
+    const suggestionsRef = useRef(null);
 
     const handleSearchChange = (event) => {
-        setSearchValue(event.target.value);
+        const newValue = event.target.value;
+        setSearchValue(newValue);
+        getSuggestTagName(newValue);
     };
 
     const handleKeyPress = (event) => {
@@ -32,11 +39,94 @@ const SearchBar = () => {
         }
     };
 
-    const handleSearchSubmit = () => {
-        history.push({
-            pathname: '/search-icon',
-            state: { searchValue: searchValue }
-        });
+    const handleSearchSubmit = (suggestion) => {
+        if (suggestion) {
+            history.push({
+                pathname: '/search-icon',
+                state: { searchValue: suggestion }
+            });
+        } else {
+            history.push({
+                pathname: '/search-icon',
+                state: { searchValue: searchValue }
+            });
+        }
+    };
+
+    const getIconType = async (event) => {
+        const newValue = event.target.value;
+        setIconType(newValue);
+    };
+
+    const handleSuggestionClick = (suggestion, event) => {
+        if (event) {
+            event.preventDefault();
+        }
+        setSearchValue(suggestion);
+        setSuggestions([]);
+        handleSearchSubmit(suggestion);
+    };
+
+    useEffect(() => {
+        if (searchValue) {
+            getSuggestTagName(searchValue);
+        }
+    }, [searchValue]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                inputRef.current &&
+                !inputRef.current.contains(event.target) &&
+                event.target.tagName !== 'BODY' &&
+                !event.target.classList.contains('MuiMenuItem-root')
+            ) {
+                setSuggestions([]);
+            }
+        };
+
+        const handleClickOutsideSuggestion = (event) => {
+            if (
+                suggestionsRef.current &&
+                !suggestionsRef.current.contains(event.target) &&
+                event.target.tagName !== 'BODY'
+            ) {
+                setSuggestions([]);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutsideSuggestion);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutsideSuggestion);
+        };
+    }, [suggestionsRef, inputRef]);
+
+    const getSuggestTagName = (searchValue) => {
+        if (searchValue) {
+            axios
+                .get(`http://localhost:3001/tag/find`)
+                .then((res) => {
+                    const { animated, icon, interfaceData, popularIcon } = res.data.data;
+                    const concatenatedArray = animated.concat(icon, interfaceData, popularIcon);
+
+                    const filteredSuggestions = concatenatedArray
+                        .filter((tag) => tag.includes(searchValue)) // Filter suggestions that include the search value
+                        .reduce((acc, cur) => { // Reduce to filter out duplicates
+                            if (!acc.includes(cur)) {
+                                acc.push(cur);
+                            }
+                            return acc;
+                        }, []);
+
+                    setSuggestions(filteredSuggestions);
+                })
+                .catch((error) => {
+                    console.log(error.response.data);
+                });
+        }
     };
 
     return (
@@ -49,9 +139,8 @@ const SearchBar = () => {
                     sx={{ width: '200px' }}
                     variant="outlined"
                     size="small"
-                    // value={iconType}
-                    // onChange={(event) => setIconType(event.target.value)}
-                    // onChange={getIconType}
+                    value={iconType}
+                    onChange={getIconType}
                 >
                     <MenuItem value="all">All Icons</MenuItem>
                     <MenuItem value="icon">Icon</MenuItem>
@@ -66,19 +155,20 @@ const SearchBar = () => {
                         fullWidth
                         variant="outlined"
                         size="small"
-                        // value={searchValue}
-                        // onChange={handleSearchChange}
-                        // onKeyPress={handleKeyPress}
-                        // inputRef={inputRef}
+                        value={searchValue}
+                        onChange={handleSearchChange}
+                        onKeyPress={handleKeyPress}
+                        inputRef={inputRef}
+                        InputProps={{ autocomplete: "off" }}
                     />
                     {searchValue && (
                         <StyledPaper>
                             <MenuList>
-                                {/* {suggestions.map((suggestion, index) => (
+                                {suggestions.map((suggestion, index) => (
                                     <MenuItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
                                         {suggestion}
                                     </MenuItem>
-                                ))} */}
+                                ))}
                             </MenuList>
                         </StyledPaper>
                     )}

@@ -38,30 +38,28 @@ function App() {
     <div>
 
       <Router>
+        <Switch>
 
-        <Switch >
           <Route exact path='/'>
             <UserLayout>
               <WebBody />
             </UserLayout>
           </Route>
+
           <Route path='/icons'>
             <UserLayout>
-
               <Icons />
             </UserLayout>
 
           </Route>
           <Route path='/interface-icons'>
             <UserLayout>
-
               <Interfaceicon />
             </UserLayout>
 
           </Route>
           <Route path='/animated-icons'>
             <UserLayout>
-
               <Animatedicons />
             </UserLayout>
 
@@ -131,11 +129,13 @@ function App() {
               <Icon />
             </AdminLayout>
           </Route>
+
           <Route path="/admin/popular-icon/icon">
             <AdminLayout>
               <PopularIcon />
             </AdminLayout>
           </Route>
+
           <Route path="/admin/popular-icon/category">
             <AdminLayout>
               <PopularCategory />
