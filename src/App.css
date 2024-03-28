@@ -78,7 +78,7 @@
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root,
 .css-78trlr-MuiButtonBase-root-MuiIconButton-root,
-.css-3majze-MuiListItemIcon-root {
+.css-3majze-MuiListItemIcon-root,.css-i4bv87-MuiSvgIcon-root {
 
   color: #fff !important;
 }
@@ -131,7 +131,13 @@
   min-height: 100vh !important;
 
 }
-
+.css-1lss4f-MuiStack-root>:not(style):not(style){
+  display: flex !important;
+  align-items: center !important;
+}
+.css-ptiqhd-MuiSvgIcon-root{
+  color: #fff !important;
+}
 /*menuresponsive */
 /* .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) !important;
@@ -503,7 +509,12 @@ a:-webkit-any-link {
   padding-top: 10%;
 }
 
-
+@media screen and (min-width: 1239px) {
+  .card {
+    width: 163px;
+  }
+  
+}
 
 /* /Text/ */
 .text-title {
@@ -1269,6 +1280,9 @@ section span:hover {
   margin-top: 75px;
   padding: 20px;
 }
+.css-10qkx7n-MuiFormControl-root-MuiTextField-root{
+  margin-right: 10px !important;
+}
 .search-bar input{
   background-color: #fff !important;
   color: #000 !important;
@@ -1297,7 +1311,7 @@ section span:hover {
   background-color: #FFBC06;
   color: #272727;
   font-size: 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   border-width: 5px;
   cursor: pointer;
 }

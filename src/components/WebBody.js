@@ -267,7 +267,7 @@ function WebBody() {
 
                     <Container maxWidth="xl" sx={{ marginTop: '35px' }}>
                         <Grid container xs={12} className='center'>
-                            <Box padding={'0px 20px'} margin={'20px 0px'}>
+                            <Box padding={'0px 8px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#FFE08A' }}>
                                     </Box>
@@ -292,7 +292,7 @@ function WebBody() {
                                     </Box>
                                 </Grid>
                             </Box >
-                            <Box padding={'0px 20px'} margin={'20px 0px'}>
+                            <Box padding={'0px 8px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#AEDBFF' }}>
                                     </Box>
@@ -315,7 +315,7 @@ function WebBody() {
 
                                 </Grid>
                             </Box>
-                            <Box padding={'0px 20px'} margin={'20px 0px'}>
+                            <Box padding={'0px 8px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#CDBBFF' }}>
                                     </Box>
@@ -338,7 +338,7 @@ function WebBody() {
                                     </Box>
                                 </Grid>
                             </Box>
-                            <Box padding={'0px 20px'} margin={'20px 0px'}>
+                            <Box padding={'0px 8px'} margin={'20px 0px'}>
                                 <Grid sx={{ borderRadius: '20px', overflow: 'hidden', width: '269px', border: '1px solid #272727' }}>
                                     <Box sx={{ height: '86px', backgroundColor: '#94FFDE' }}>
                                     </Box>

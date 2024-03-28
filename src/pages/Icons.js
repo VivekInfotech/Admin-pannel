@@ -60,7 +60,7 @@ function Icons() {
               </Box>
               <Link to="/most-downloads">
                 <Box sx={{ padding: { xs: '10px 0px 0px 0px', sm: '10px 0px 0px 20px', lg: '30px 0px 50px 20px' } }}>
-                  <Box sx={{ fontSize: { xs: '12px', sm: '18px', md: '13px', lg: '21px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block', cursor: 'pointer' }}>
+                  <Box sx={{ fontSize: { xs: '12px', sm: '18px', md: '13px', lg: '18px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block', cursor: 'pointer' }}>
                     See Trending Icon
                   </Box>
                 </Box>

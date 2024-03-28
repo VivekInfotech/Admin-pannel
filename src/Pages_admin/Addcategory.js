@@ -80,7 +80,7 @@ function Addcategory({ addCategory, updateCategory }) {
                 </Button>
             ) : (
                 <Button variant="outlined" onClick={handleClickOpen}>
-                    Add Icon
+                    Add Category
                 </Button>
             )}
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} >

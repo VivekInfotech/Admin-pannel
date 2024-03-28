@@ -148,7 +148,7 @@ function Navbar() {
                                 display: 'contents'
                             }}
                         >
-                            <span style={{ letterSpacing: 'initial', fontSize: '28px' }}>Ic</span><img width={'2%'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span>
+                            <span style={{ letterSpacing: 'initial', fontSize: '28px' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span>
                             {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
                         </Typography>
 

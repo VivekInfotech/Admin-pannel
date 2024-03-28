@@ -178,12 +178,12 @@ function Support() {
                 <Box className='center'>
                     <FormControl defaultValue="" >
                         <Label>Subject</Label>
-                        <textarea id="w3review" name="w3review" rows="4" cols="50">At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.</textarea>
+                        <textarea id="w3review" name="w3review" rows="4" cols="50">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam adipisci vel impedit necessitatibus pariatur ratione odit quis autem magnam architecto. Dicta iste ipsum ipsa ducimus eligendi deserunt qui natus eaque!</textarea>
                     </FormControl>
                 </Box>
                 <Box className='center'>
                     <Button variant="contained" type='submit' sx={{ border:'1px solid',margin: '20px 0px 0px 0px', textTransform: "capitalize", fontSize: "16px", backgroundColor: "#fff", color: '#272727', fontWeight: '700' }}>
-                        Login
+                        Send
                     </Button>
                 </Box>
 

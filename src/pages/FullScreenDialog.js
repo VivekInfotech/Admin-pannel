@@ -301,9 +301,9 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
   };
 
   const save = (data) => {
-    axios.post(`http://localhost:3001/save/create`, {save : data._id})
+    axios.post(`http://localhost:3001/save/create`, { save: data._id })
       .then((res) => {
-        console.log("save Dataaaaaaa :- ",res.data.data);
+        console.log("save Dataaaaaaa :- ", res.data.data);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -328,7 +328,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
             </Typography>
             <IconButton
               edge="start"
-              color="inherit"
+              color="black"
               onClick={onClose}
               aria-label="close"
             >
@@ -341,7 +341,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
             <Grid container>
               <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', padding: '10px 25px', justifyContent: 'space-between', cursor: 'pointer' }}>
-                  <Box sx={{ border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }} onClick={() => save(data)}>
+                  <Box sx={{fontSize:{xs:'10px',sm:'14px'} ,border: '1px solid', borderRadius: '7px', fontWeight: '600', padding: '7px 20px' }} onClick={() => save(data)}>
                     Save
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', fontWeight: '600' }}>
@@ -354,7 +354,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                     />
                   </Box>
                 </Box>
-                <Box className='center sizesvg' sx={{ paddingY: '50px', border: '1px solid #dadada', borderRadius: '9px', margin: '10px 25px' }}>
+                <Box className='center sizesvg' sx={{ paddingY: '55px', border: '1px solid #dadada', borderRadius: '9px', margin: '10px 25px' }}>
                   {selectedIconUrl && (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: selectedIconUrl }}></svg>
                   )}
@@ -406,24 +406,39 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                   </Box>
                 </Box>
                 <Box sx={{ display: 'flex', margin: '24px 25px' }}>
-                  <Grid xs={12} sm={4} marginRight={'10px'}>
-                    <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#ffbc06', color: '#272727', padding: '10px 30px' }}
-                      onClick={() => copyPngIcon()}
-                    >
-                      <Box xs={12} sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoMdImages fontSize={'20px'} /></Box>
-                      <Tooltip title="Copy PNG to clipboard">Copy PNG</Tooltip>
-                    </Box>
-
-                  </Grid>
-                  <Grid xs={12} sm={4} marginRight={'10px'} onClick={pack}>
-                    <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#198754', color: '#fff', padding: '10px 30px' }}>
-                      <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosDownload fontSize={'20px'} />
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={4}>
+                      <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#ffbc06', color: '#272727', padding: '10px 30px' }}
+                        onClick={() => copyPngIcon()}
+                      >
+                        <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoMdImages fontSize={'20px'} /></Box>
+                        <Box fontSize={'13px'}>
+                          <Tooltip title="Copy PNG to clipboard">Copy PNG</Tooltip>
+                        </Box>
                       </Box>
-
-                      <Tooltip title="Download Pack">Pack</Tooltip>
-                    </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={4} onClick={pack}>
+                      <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#198754', color: '#fff', padding: '10px 30px' }}>
+                        <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosDownload fontSize={'20px'} />
+                        </Box>
+                        <Box fontSize={'13px'}>
+                          <Tooltip title="Download Pack">Pack</Tooltip>
+                        </Box>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={4} >
+                      <Box className='center' sx={{ borderRadius: '7px', cursor: 'pointer', fontWeight: '600', backgroundColor: '#272727', color: '#fff', padding: '10px 30px' }}>
+                        <Box sx={{ paddingRight: '7px', display: 'flex', alignItems: 'center' }}><IoIosShareAlt fontSize={'20px'} />
+                        </Box>
+                        <Box fontSize={'13px'}>
+                          <Tooltip title="Download Pack">Share</Tooltip>
+                        </Box>
+                      </Box>
+                    </Grid>
                   </Grid>
-                  <Grid xs={12} sm={4}>
+                </Box>
+
+                {/* <Grid xs={12} sm={4}>
                     <div class="bg-box">
                       <div class="share-btn">
                         <span class="text-share-btn"><IoIosShareAlt fontSize={'20px'} />Share</span>
@@ -436,10 +451,11 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                         </ul>
                       </div>
                     </div>
-                  </Grid>
-                </Box>
-                <Box sx={{ display: 'flex', margin: '24px 25px' }}>
-                  <Grid xs={3} marginRight={'10px'}>
+                  </Grid> */}
+
+                {/* <Box sx={{ display: 'flex', margin: '24px 25px' }}>
+                  <Grid container>
+                  <Grid xs={6} sm={3} marginRight={'10px'}>
                     <Box sx={{ position: 'relative' }}>
                       <Box
                         className='center'
@@ -473,24 +489,80 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                       </Menu>
                     </Box>
                   </Grid>
-                  <Grid xs={3} marginRight={'10px'}>
+                  <Grid xs={6} sm={3} marginRight={'10px'}>
                     <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px' }}>
                       SVG
                     </Box>
                   </Grid>
-                  <Grid xs={3} marginRight={'10px'}>
+                  <Grid xs={6} sm={3} marginRight={'10px'}>
                     <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px' }}>
                       Android
                     </Box>
                   </Grid>
-                  <Grid onClick={download} xs={3} >
+                  <Grid onClick={download} xs={6} sm={3} >
                     <Box className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px 30px' }}>
                       iOS
                     </Box>
                   </Grid>
+                  </Grid>
+                </Box> */}
+                <Box sx={{ display: 'flex', flexDirection: 'column', margin: '24px 25px' }}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={6} md={3} marginBottom={'10px'}>
+                      <Box sx={{ position: 'relative' }}>
+                        <Box
+                          className='center'
+                          sx={{
+                            borderRadius: '7px',
+                            backgroundColor: '#f5f5f5',
+                            fontWeight: '600',
+                            padding: '10px',
+                            cursor: 'pointer',
+                            width: '100%',
+                          }}
+                          onClick={handleClick}
+                        >
+                          <Box>
+                            PNG <IoIosArrowDown />
+                          </Box>
+                        </Box>
+                        <Menu
+                          anchorEl={anchorEl}
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                        >
+                          <MenuItem onClick={() => pngDownload('512px')}>512px</MenuItem>
+                          <MenuItem onClick={() => pngDownload('256px')}>256px</MenuItem>
+                          <MenuItem onClick={() => pngDownload('128px')}>128px</MenuItem>
+                          <MenuItem onClick={() => pngDownload('64px')}>64px</MenuItem>
+                          <MenuItem onClick={() => pngDownload('32px')}>32px</MenuItem>
+                          <MenuItem onClick={() => pngDownload('24px')}>24px</MenuItem>
+                          <MenuItem onClick={() => pngDownload('16px')}>16px</MenuItem>
+                        </Menu>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={6} md={3} marginBottom={'10px'}>
+                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
+                        SVG
+                      </Box>
+                    </Grid>
+                    <Grid item xs={6} md={3} marginBottom={'10px'}>
+                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
+                        Android
+                      </Box>
+                    </Grid>
+                    <Grid item xs={6} md={3}>
+                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
+                        iOS
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </Box>
 
-                <Box className='center' sx={{ paddingTop: '20px' }}>
+
+                <Box className='center' sx={{ fontSize:{xs:'11px',sm:'14px'},paddingTop: '20px' }}>
                   Begin incorporating this icon into your designs.
                 </Box>
               </Grid>

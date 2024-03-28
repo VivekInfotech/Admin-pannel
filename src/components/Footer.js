@@ -50,9 +50,10 @@ function Footer() {
                 <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                   {pages.map((page, i) => (
                     <Button
+
                       key={i}
                       onClick={() => handlePageClick(page.path)}
-                      sx={{ my: 1, color: 'white', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
+                      sx={{ my: 1, color: '#fff', display: 'flex', justifyContent: 'flex-start', textTransform: 'capitalize', padding: '0' }}
                     >
                       {page.name}
                     </Button>

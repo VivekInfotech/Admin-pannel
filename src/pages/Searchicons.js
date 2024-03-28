@@ -478,11 +478,12 @@ const Searchicons = () => {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 
                 <div>
+                   
                     <form className="search-bar" onSubmit={handleSearchSubmit}>
                         <TextField
                             select
                             label="Icon Type"
-                            sx={{ width: '200px' }}
+                            sx={{ width: '200px'}}
                             variant="outlined"
                             size="small"
                             value={iconType}
@@ -495,7 +496,7 @@ const Searchicons = () => {
                             <MenuItem value="popular">Popular</MenuItem>
                         </TextField>
 
-                        <Box sx={{ position: 'relative', width: '100%' }}>
+                        <Box sx={{ position: 'relative', width: '100%', marginLeft:'10px'  }}>
                             <TextField
                                 label="Search"
                                 fullWidth

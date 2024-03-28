@@ -32,6 +32,7 @@ import {
 import PopularIcon from './Pages_admin/PopularIcon';
 import PopularCategory from './Pages_admin/PopularCategory';
 import Searchicons from './pages/Searchicons';
+import UserLayoutWithout from './components/UserLayoutWithout';
 
 function App() {
   return (
@@ -65,9 +66,9 @@ function App() {
 
           </Route>
           <Route path="/most-downloads">
-            <UserLayout>
+            <UserLayoutWithout>
               <Topicon />
-            </UserLayout>
+            </UserLayoutWithout>
           </Route>
 
           {/* Search */}

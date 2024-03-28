@@ -70,11 +70,13 @@ function Animatedicons() {
               <Box sx={{ fontSize: { xs: '8px', sm: '14px', md: '18px' }, width: '63%', margin: 'auto', color: '#fff', padding: { md: '10px 0px 0px 0px' } }}>
                 IconGrid offers a robust collection of meticulously designed animated icons, ready for seamless integration into your digital products, presentations, or videos!
               </Box>
+              <Link to="/Topanimatedicon">
               <Box sx={{ padding: { xs: '9px 0px 0px 0px', md: '30px 0px 50px 20px' } }}>
                 <Box sx={{ fontSize: { xs: '10px', md: '16px' }, border: '1px solid #FFBC06', backgroundColor: '#FFBC06', borderRadius: '10px', padding: '10px 15px', display: 'inline-block' }}>
-                  See Trending Icon
+                  See All Icon
                 </Box>
               </Box>
+              </Link>
               <Box sx={{ position: 'absolute', bottom: -8 }} >
 
               </Box>
