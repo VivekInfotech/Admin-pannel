@@ -75,7 +75,9 @@
 .social-icon:hover {
   color: #012970;
 }
-
+.css-79xub{
+  background-color: #272727 !important;
+}
 .css-79xub,
 .css-78trlr-MuiButtonBase-root-MuiIconButton-root,
 .css-3majze-MuiListItemIcon-root,.css-i4bv87-MuiSvgIcon-root {
@@ -108,7 +110,8 @@
 .css-1c35hjw-MuiPaper-root-MuiAccordion-root,
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper,
 .css-quj9j6-MuiTable-root,
-.css-qrqyu6-MuiPaper-root {
+.css-qrqyu6-MuiPaper-root ,
+.css-uhb5lp{
   background-color: #c7c7c7 !important;
 }
 
@@ -220,7 +223,7 @@
 .css-v4cz06-MuiStack-root,
 .css-uc6mlj-MuiButtonBase-root-MuiButton-root,
 .css-1qwzq7g-MuiListItemIcon-root,
-.css-u9vj98-MuiListItemIcon-root {
+.css-19ba777 {
   color: #fff !important;
 }
 
