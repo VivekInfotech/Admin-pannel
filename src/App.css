@@ -1178,7 +1178,7 @@ section span:hover {
   cursor: pointer;
 }
 
-.css-6hp17o-MuiList-root-MuiMenu-list , .css-dlj8zy-MuiPaper-root-MuiAccordion-root.Mui-expanded:first-of-type {
+.css-6hp17o-MuiList-root-MuiMenu-list,.css-u7qq7e ,.css-1ydubmj:first-of-type, .css-1ydubmj,.css-dlj8zy-MuiPaper-root-MuiAccordion-root.Mui-expanded:first-of-type {
   background-color: #272727 !important;
   color: #fff !important;
 }
