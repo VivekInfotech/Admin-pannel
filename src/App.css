@@ -18,7 +18,8 @@
 }
 
 
-.MuiDrawer-root .MuiPaper-root.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+.MuiDrawer-root .MuiPaper-root.css-12i7wg6-MuiPaper-root-MuiDrawer-paper,
+.css-1l8j5k8 {
   top: 47px !important;
 }
 
@@ -223,8 +224,10 @@
 .css-v4cz06-MuiStack-root,
 .css-uc6mlj-MuiButtonBase-root-MuiButton-root,
 .css-1qwzq7g-MuiListItemIcon-root,
-.css-19ba777 {
-  color: #fff !important;
+.css-19ba777,
+.css-1ddbqys,
+.css-1f8bwsm {
+  color: #fff !important; 
 }
 
 .home-hero {
@@ -310,7 +313,7 @@ a:-webkit-any-link {
   padding: 0px 24px;
 }
 
-.css-12i7wg6-MuiPaper-root-MuiDrawer-paper,
+.css-1l8j5k8,
 .css-18sg6k4-MuiPaper-root-MuiDrawer-paper {
   z-index: 98 !important;
 }
@@ -666,7 +669,8 @@ a:-webkit-any-link {
 .css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper,
 .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper,
 .css-4t3x6l-MuiPaper-root-MuiDrawer-paper,
-.css-12i7wg6-MuiPaper-root-MuiDrawer-paper,
+
+.css-bpnhhg,
 .css-80h6ph-MuiTypography-root,
 .css-1kny9v8,
 .css-r8u8y9,
