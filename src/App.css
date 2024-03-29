@@ -115,7 +115,10 @@
 .css-uhb5lp{
   background-color: #c7c7c7 !important;
 }
-
+.color-272727{
+  background-color: #272727 !important;
+  color: #fff !important;
+}
 .css-zrntp1-MuiPaper-root-MuiCard-root {
   background-color: #222222 !important;
 }
@@ -669,7 +672,7 @@ a:-webkit-any-link {
 .css-1hsz34s-MuiDrawer-docked .MuiDrawer-paper,
 .css-2dum1v-MuiDrawer-docked .MuiDrawer-paper,
 .css-4t3x6l-MuiPaper-root-MuiDrawer-paper,
-
+.css-bpnhhg,
 .css-bpnhhg,
 .css-80h6ph-MuiTypography-root,
 .css-1kny9v8,
@@ -874,7 +877,7 @@ a:-webkit-any-link {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.size {
+.size , .css-1ontqvh {
   list-style: none;
   padding: 0 !important;
 }
@@ -1175,7 +1178,7 @@ section span:hover {
   cursor: pointer;
 }
 
-.css-6hp17o-MuiList-root-MuiMenu-list {
+.css-6hp17o-MuiList-root-MuiMenu-list , .css-dlj8zy-MuiPaper-root-MuiAccordion-root.Mui-expanded:first-of-type {
   background-color: #272727 !important;
   color: #fff !important;
 }

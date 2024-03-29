@@ -496,7 +496,7 @@ const Searchicons = () => {
                             <MenuItem value="popular">Popular</MenuItem>
                         </TextField>
 
-                        <Box sx={{ position: 'relative', width: '100%', marginLeft:'10px'  }}>
+                        <Box sx={{ position: 'relative', width: '100%' }}>
                             <TextField
                                 label="Search"
                                 fullWidth
@@ -560,7 +560,7 @@ const Searchicons = () => {
                                         </>
                                     ) : (
                                         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                            <h1>Sorry, we couldn’t find any matches for <span style={{ color: '#ffbc06' }}>{search}</span> icons</h1>
+                                            <Box sx={{fontSize:{xs:'22px',md:'32px' , textAlign:'center' , fontWeight:'600'}}}>Sorry, we couldn’t find any matches for <span style={{ color: '#ffbc06' }}>{search}</span> icons</Box>
                                         </Grid>
                                     )}
                                 </Grid>

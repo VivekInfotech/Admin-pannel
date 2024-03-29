@@ -43,7 +43,7 @@ function Footer() {
         <Container maxWidth="lg">
           <Grid container>
             <Grid container item xs={12} md={9} sx={{ display: { xs: 'none', sm: 'flex' }, color: '#fff', justifyContent: 'space-around' }}>
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} sm={3} className='color-272727'>
                 <Box sx={{ fontSize: '24px', fontWeight: '600' }}>
                   Content
                 </Box>
