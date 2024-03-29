@@ -84,7 +84,7 @@
 }
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root,
-.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root,.css-1sm9su6 .MuiDrawer-paper {
   background-color: #272727 !important;
 }
 
@@ -667,9 +667,11 @@ a:-webkit-any-link {
 .css-80h6ph-MuiTypography-root,
 .css-40vdap-MuiPaper-root-MuiAppBar-root,
 .css-z1ewoe-MuiButtonBase-root-MuiButton-root,
-.css-w2q257-MuiStack-root {
+.css-w2q257-MuiStack-root,
+.css-1sm9su6 .MuiDrawer-paper {
   background-color: #272727 !important;
   color: #fff !important;
+  z-index: 9 !important;
 }
 
 .css-uob957-MuiListSubheader-root,
