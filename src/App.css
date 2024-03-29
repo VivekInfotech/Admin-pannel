@@ -107,7 +107,7 @@
 }
 
 .css-mdhaqv,
-.css-1iji0d4,
+/* .css-1iji0d4, */
 .css-1c35hjw-MuiPaper-root-MuiAccordion-root,
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper,
 .css-quj9j6-MuiTable-root,
@@ -115,7 +115,7 @@
 .css-uhb5lp{
   background-color: #c7c7c7 !important;
 }
-.color-272727{
+.color-272727,.css-1iji0d4{
   background-color: #272727 !important;
   color: #fff !important;
 }
