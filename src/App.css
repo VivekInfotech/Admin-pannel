@@ -216,7 +216,7 @@
 
 }
 
-.css-78tiky-MuiButtonBase-root-MuiButton-root:hover::after {
+.css-pbflbc:hover::after {
   width: 100%;
   border-bottom: 1px solid #ffbc06 !important;
   border-radius: 0px;
@@ -404,8 +404,8 @@ a:-webkit-any-link {
 
 }
 
-.css-xop5mw:hover {
-  background-color: #ffbc06;
+.css-gyxfnk:hover {
+  background-color: #ffbc06 !important;
 
 }
 
