@@ -23,7 +23,7 @@ import Animatedicon from './Pages_admin/Animatedicon';
 import Category from './Pages_admin/Category';
 import Interface from './Pages_admin/Interface';
 import UserLayout from './components/UserLayout';
-
+import { Analytics } from "@vercel/analytics/react"
 import {
   BrowserRouter as Router,
   Switch,
@@ -164,6 +164,7 @@ function App() {
         </Switch>
 
       </Router>
+      <Analytics />
     </div>
   );
 }
