@@ -665,10 +665,10 @@ a:-webkit-any-link {
 .css-4t3x6l-MuiPaper-root-MuiDrawer-paper,
 .css-12i7wg6-MuiPaper-root-MuiDrawer-paper,
 .css-80h6ph-MuiTypography-root,
-.css-40vdap-MuiPaper-root-MuiAppBar-root,
-.css-z1ewoe-MuiButtonBase-root-MuiButton-root,
+.css-1kny9v8,
 .css-w2q257-MuiStack-root,
-.css-1sm9su6 .MuiDrawer-paper {
+.css-1sm9su6 .MuiDrawer-paper,
+.css-kymrqw {
   background-color: #272727 !important;
   color: #fff !important;
   z-index: 9 !important;
