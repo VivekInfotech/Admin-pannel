@@ -115,7 +115,7 @@
 .css-uhb5lp{
   background-color: #c7c7c7 !important;
 }
-.color-272727,.css-1iji0d4 , .css-1l8j5k8 , .css-wf16b5{
+.color-272727,.css-1iji0d4 , .css-1l8j5k8 , .css-wf16b5, .css-q86031{
   background-color: #272727 !important;
   color: #fff !important;
 }
@@ -138,11 +138,11 @@
   min-height: 100vh !important;
 
 }
-.css-1lss4f-MuiStack-root>:not(style):not(style){
+.css-ktq1pv > :not(style):not(style){
   display: flex !important;
   align-items: center !important;
 }
-.css-ptiqhd-MuiSvgIcon-root{
+.css-ptiqhd-MuiSvgIcon-root , .css-vubbuv , .css-1bigob2 , .css-1sgp6db{
   color: #fff !important;
 }
 /*menuresponsive */
