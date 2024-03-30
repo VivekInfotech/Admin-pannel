@@ -245,10 +245,10 @@ function Navbar() {
                                             position: 'absolute',
                                             right: 8,
                                             top: 8,
-                                            color: '#000'
+                                            color: '#000 !important'
                                         }}
                                     >
-                                        <CloseIcon />
+                                        <CloseIcon color='#000' />
                                     </IconButton>
                                     <DialogContent dividers sx={{ backgroundColor: '#fff' }}>
                                         <div>
