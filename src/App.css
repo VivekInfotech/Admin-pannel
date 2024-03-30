@@ -1205,11 +1205,11 @@ section span:hover {
   box-shadow: none !important;
 }
 
-.css-1afbf1i-MuiButtonBase-root-MuiButton-root {
+.css-42fv4z {
   transition: all 0.3s !important;
 }
 
-.css-1afbf1i-MuiButtonBase-root-MuiButton-root:hover {
+.css-42fv4z:hover {
   background-color: #272727 !important;
   color: #ffbc06 !important;
   transform: translate(5%);
