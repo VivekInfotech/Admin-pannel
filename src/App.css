@@ -11,7 +11,9 @@
 .css-zza0ns-MuiBadge-badge {
   background-color: #ffbc06 !important;
 }
-
+.css-gcf7nn:hover{
+  background-color: #ffbc06 !important;
+}
 
 .bg-primary span {
   background-color: #90caf9;
@@ -81,9 +83,15 @@
 }
 .css-79xub,
 .css-78trlr-MuiButtonBase-root-MuiIconButton-root,
-.css-3majze-MuiListItemIcon-root,.css-i4bv87-MuiSvgIcon-root {
+.css-3majze-MuiListItemIcon-root,.css-i4bv87-MuiSvgIcon-root,.css-1tmmlb6 {
 
   color: #fff !important;
+}
+.css-1tz8m30{
+  margin-left: 0px !important;
+}
+.css-1tz8m30{
+  justify-content: center !important;
 }
 
 .css-1rwt2y5-MuiButtonBase-root-MuiButton-root,
@@ -1208,7 +1216,15 @@ section span:hover {
 .css-42fv4z {
   transition: all 0.3s !important;
 }
-
+.css-1d2aflj{
+  transition: all 0.3s !important;
+}
+.css-1d2aflj:hover{
+  background-color: #272727 !important;
+  color: #ffbc06 !important;
+  transform: translate(5%);
+  transition: all 0.3s;
+}
 .css-42fv4z:hover {
   background-color: #272727 !important;
   color: #ffbc06 !important;
