@@ -203,11 +203,10 @@
   justify-content: space-around;
 }
 
-.css-78tiky-MuiButtonBase-root-MuiButton-root:hover {
+.css-pbflbc:hover {
   background-color: #272727 !important;
 }
-
-.css-w0pj6f::after {
+.css-78tiky-MuiButtonBase-root-MuiButton-root::after{
   content: '';
   display: block;
   width: 0;
@@ -217,7 +216,23 @@
 
 }
 
-.css-w0pj6f:hover::after {
+.css-78tiky-MuiButtonBase-root-MuiButton-root:hover::after {
+  width: 100%;
+  border-bottom: 1px solid #ffbc06 !important;
+  border-radius: 0px !important;
+}
+
+.css-pbflbc::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffbc06;
+  transition: .3s;
+
+}
+
+.css-pbflbc:hover::after {
   width: 100%;
   border-bottom: 1px solid #ffbc06 !important;
   border-radius: 0px !important;
