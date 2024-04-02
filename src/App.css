@@ -150,10 +150,12 @@
   display: flex !important;
   align-items: center !important;
 }
-.css-ptiqhd-MuiSvgIcon-root , .css-vubbuv , .css-1sgp6db{
+.css-ptiqhd-MuiSvgIcon-root , .css-vubbuv , .css-1sgp6db , .css-1bigob2{
   color: #fff !important;
 }
-
+.css-1tz8m30{
+  width: 100%;
+}
 /*menuresponsive */
 /* .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) !important;
