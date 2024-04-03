@@ -148,11 +148,9 @@ function Navbar() {
                                 display: 'contents'
                             }}
                         >
-                            <Link to="/">
-                            <span style={{ letterSpacing: 'initial', fontSize: '28px' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span>
                             
-                            </Link>
-                                {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
+                            <a  href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color:'#fff' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span></a>
+                            {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
