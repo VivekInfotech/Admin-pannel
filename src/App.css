@@ -150,7 +150,7 @@
   display: flex !important;
   align-items: center !important;
 }
-.css-ptiqhd-MuiSvgIcon-root , .css-vubbuv , .css-1sgp6db , .css-1bigob2{
+.css-ptiqhd-MuiSvgIcon-root , .css-vubbuv , .css-1sgp6db {
   color: #fff !important;
 }
 .css-1tz8m30{
@@ -448,7 +448,7 @@ a:-webkit-any-link {
   background-color: #ffbc06 !important;
 }
 
-.css-uxa1ks-MuiListItem-root:hover .css-10hburv-MuiTypography-root , .css-q34dxg{
+.css-uxa1ks-MuiListItem-root:hover .css-10hburv-MuiTypography-root {
   color: #272727 !important;
 
 }
