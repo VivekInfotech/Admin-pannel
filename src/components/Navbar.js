@@ -70,14 +70,14 @@ function Navbar() {
                 const ids = res.data.data.map((el) => el.save);
                 const sId = res.data.data.map((el) => el._id);
                 setSaveId(sId);
-                ids.forEach(id => getSaveIcons(id,sId));
+                ids.forEach(id => getSaveIcons(id, sId));
             })
             .catch((error) => {
                 console.log(error.response.data);
             });
     }, []);
 
-    const getSaveIcons = async (id,sId) => {
+    const getSaveIcons = async (id, sId) => {
         try {
             let res = await axios.get(`https://api-elbg.onrender.com/icon/findById/${id}`);
             setSaveIcons(prevState => [...prevState, res.data.data]);
@@ -85,7 +85,7 @@ function Navbar() {
             console.log("Error fetching save icons for id", id, ":", error.response.data);
         }
     };
-    
+
     const removeSave = (id) => {
         console.log("ID ID ID :- ", id);
         axios.delete(`https://api-elbg.onrender.com/save/delete/${id}`)
@@ -96,7 +96,7 @@ function Navbar() {
                 console.log(error.response.data);
             });
     };
-    
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -253,7 +253,7 @@ function Navbar() {
                                     <DialogContent dividers sx={{ backgroundColor: '#fff' }}>
                                         <div>
                                             <Grid container >
-                                                {saveIcons.map((el,index) => (
+                                                {saveIcons.map((el, index) => (
                                                     <Grid
                                                         key={index}
                                                         item
@@ -266,8 +266,14 @@ function Navbar() {
                                                         onMouseLeave={() => setHoveredItem(null)}
                                                     >
                                                         <Box sx={{ width: '50px', height: '50px' }}>
+
+                                                            {console.log("dsdtxfygf save sav e :- ", el)}
                                                             {/* <SaveIcon color="#000" /> */}
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
+                                                            {
+                                                                el == null ? ('')
+                                                                    : (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>)
+                                                            }
+
                                                         </Box>
                                                         {hoveredItem === index && (
                                                             <Box position="absolute" top={0} right={1}>
