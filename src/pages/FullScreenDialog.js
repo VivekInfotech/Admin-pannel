@@ -367,9 +367,12 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
                 {
                   entityType == "popular" ? '' : <Box sx={{ display: 'flex', padding: '12px 0px', justifyContent: 'space-around', overflow: 'hidden' }}>
+                          <Tooltip title="regular">
+
                     <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.regular, "regular")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.regular }}></svg>
                     </Box>
+                    </Tooltip>
                     <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.bold, "bold")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.bold }}></svg>
                     </Box>
