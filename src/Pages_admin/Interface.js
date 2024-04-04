@@ -4,7 +4,7 @@ import { Box, Typography, Button, Link, Breadcrumbs, Accordion, AccordionSummary
 import axios from 'axios';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Dailodbox from './Dailodbox';
-
+import { AiOutlineDelete } from "react-icons/ai";
 const Interface = () => {
     const [data, setData] = useState({});
     const [categories, setCategories] = useState([]);
@@ -131,7 +131,7 @@ const Interface = () => {
                                             <TableRow key={iconIndex}>
                                                 <TableCell>{icon.name}</TableCell>
                                                 <TableCell align="right">
-                                                    <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                    <Button onClick={() => removeIcon(icon._id)}><AiOutlineDelete  fontSize={'20px'}/></Button>
                                                     <Dailodbox fetchIcons={getCategories} icon={icon} targetFile="Interface" />
                                                 </TableCell>
                                             </TableRow>

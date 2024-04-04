@@ -149,7 +149,7 @@ function Navbar() {
                             }}
                         >
                             
-                            <a  href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color:'#fff' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span></a>
+                            <a className='center-logo'  href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color:'#fff',fontWeight:'600' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial', color:'#fff',fontWeight:'600'  }}>nGrid</span></a>
                             {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
                         </Typography>
 

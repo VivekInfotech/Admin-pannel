@@ -232,7 +232,7 @@ const Mainbody = (props) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-     
+
 
       <MenuItem onClick={LogOut} color='#fff'>
         <ListItemIcon >
@@ -378,7 +378,9 @@ const Mainbody = (props) => {
                     display: 'contents'
                   }}
                 >
-                  <span style={{ letterSpacing: 'initial', fontSize: '28px' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span>
+                  <a className='center-logo' href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color: '#fff', fontWeight: '600' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial', color: '#fff', fontWeight: '600' }}>nGrid</span></a>
+
+
                 </Typography>
               </Stack>
               <IconButton
@@ -446,7 +448,7 @@ const Mainbody = (props) => {
         <CssBaseline />
 
         <Drawer
-          sx={{ 
+          sx={{
             width: drawerWidth,
             flexShrink: 0,
             '& .MuiDrawer-paper': {
@@ -478,7 +480,8 @@ const Mainbody = (props) => {
                     textDecoration: 'none',
                   }}
                 >
-                  <span style={{ letterSpacing: 'initial', fontSize: '28px', color:'#fff' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px",color:'#fff', fontSize: '28px', letterSpacing: 'initial' }}>nGrid</span>
+                  <a className='center-logo' href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color: '#fff', fontWeight: '600' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial', color: '#fff', fontWeight: '600' }}>nGrid</span></a>
+
 
                 </Typography>
 

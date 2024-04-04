@@ -347,6 +347,11 @@ a:-webkit-any-link {
   color: #272727 !important;
   font-weight: 500 !important;
 }
+.center-logo{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
 .css-r6ewbb-MuiToolbar-root {
   padding: 0px 24px;
