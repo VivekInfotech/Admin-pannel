@@ -10,17 +10,34 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import Search from './Search';
-
+import Handdrawn from './brands/china.png'
+import Handdrawn1 from './brands/puzzle-game.png'
+import Handdrawn2 from './brands/send-message.png'
+import colorfill from './brands/paris.png'
+import colorfill1 from './brands/skull.png'
+import colorfill2 from './brands/hospital.png'
+import blackoutline from './brands/global-marketing.png'
+import blackoutline1 from './brands/idea.png'
+import blackoutline2 from './brands/avatar.png'
+import BlackFill from './brands/whiteboard.png'
+import BlackFill1 from './brands/artificial-intelligence.png'
+import BlackFill2 from './brands/twitter1.png'
+import LinealColor from './brands/deliver.png'
+import LinealColor1 from './brands/cashless-payment.png'
+import LinealColor2 from './brands/stopwatch.png'
+import Flat from './brands/after-effects.png'
+import Flat1 from './brands/yelp.png'
+import Flat2 from './brands/ireland.png'
 function Icons() {
 
   const [category, setCategory] = useState([])
   const [card, setCard] = useState([
-    { name: "Hand drawn", description: "Iconic Indian brands cover diverse sectors across various industries" },
-    { name: "Color Fill", description: "The 'color fill' icon applies solid colors in graphic design software." },
-    { name: "Black outline", description: "Outline emphasizes visual design edges." },
-    { name: "Black Fill", description: "Black fill enriches design, adding depth and visual contrast." },
-    { name: "Lineal Color", description: "Icon symbolizes identity, individuality, personality." },
-    { name: "Flat", description: "Product description and details" }
+    { name: "Handdrawn",img:Handdrawn ,img1:Handdrawn1,img2:Handdrawn2, description: "Iconic Indian brands cover diverse sectors across various industries" },
+    { name: "Color Fill",img:colorfill1 ,img1:colorfill,img2:colorfill2, description: "The 'color fill' icon applies solid colors in graphic design software." },
+    { name: "Black outline",img:blackoutline2 ,img1:blackoutline1,img2:blackoutline, description: "Outline emphasizes visual design edges." },
+    { name: "Black Fill",img:BlackFill ,img1:BlackFill2,img2:BlackFill1, description: "Black fill enriches design, adding depth and visual contrast." },
+    { name: "Lineal Color",img:LinealColor ,img1:LinealColor2,img2:LinealColor1, description: "Icon symbolizes identity, individuality, personality." },
+    { name: "Flat",img:Flat ,img1:Flat1,img2:Flat2, description: "Product description and details" }
   ])
 
 
@@ -114,7 +131,12 @@ function Icons() {
               return <Grid key={index} className='center' sm={4} lg={2} padding={'10px 0px'}>
                 <Link to={{ pathname: "/back-fill", state: { cardName: el.name} }}>
                   <Box className="card">
-                    <Box className="card-img"></Box>
+                  
+                    <Box className="card-img">
+                      <Box sx={{width:'40px' , height:'40px' }}><img src={el.img} alt="" /></Box>
+                      <Box sx={{width:'40px' , height:'40px' }}><img src={el.img1} alt="" /></Box>
+                      <Box sx={{width:'40px' , height:'40px'}}><img src={el.img2} alt="" /></Box>
+                    </Box>
                     <Box className="card-info">
                       <p className="text-title">{el.name} </p>
                       <p className="text-body">{el.description}</p>

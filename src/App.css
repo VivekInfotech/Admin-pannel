@@ -548,12 +548,22 @@ a:-webkit-any-link {
 }
 
 .card-img {
-  background-color: #ffcaa6;
+  background-color: #AEDBFF;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
   height: 40%;
   width: 100%;
   border-radius: .5rem;
   transition: .3s ease;
 }
+.card-img img{
+  height: 100%;
+  width: 100%;
+  border-radius: .5rem;
+  transition: .3s ease;
+}
+
 
 .card-info {
   padding-top: 10%;
