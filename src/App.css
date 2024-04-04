@@ -647,6 +647,11 @@ a:-webkit-any-link {
   background: #ffbc06;
 }
 
+.card3:hover .circle1 {
+  /* border-color: var(--bg-color-light); */
+  background: #ffbc06;
+}
+
 
 
 
@@ -659,6 +664,20 @@ a:-webkit-any-link {
 }
 
 .circle {
+  width: 131px;
+  height: 131px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ffbc06;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+.circle1 {
   width: 131px;
   height: 131px;
   border-radius: 50%;
@@ -686,11 +705,26 @@ a:-webkit-any-link {
   left: 7px;
   transition: opacity 0.3s ease-out;
 }
+.circle1:after {
+  content: "";
+  width: 118px;
+  height: 118px;
+  display: block;
+  position: absolute;
+  /* background: var(--bg-color); */
+  background: #F5F5F5;
+  border-radius: 50%;
+  top: 5px;
+  left: 5px;
+  transition: opacity 0.3s ease-out;
+}
 
 .circle svg {
   z-index: 10000;
 }
-
+.circle1 svg {
+  z-index: 10000;
+}
 .sizesvg svg {
   height: 300px;
   width: 300px;

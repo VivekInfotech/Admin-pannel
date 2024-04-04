@@ -129,7 +129,7 @@ export default function Pack() {
                                         <Box onClick={() => handleOpenDialog(el._id)}>
                                             <Box className="card3 wallet">
                                                 <Box className="overlay"></Box>
-                                                <Box className="circle" >
+                                                <Box className="circle1" >
                                                     {el.icon ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.icon }}></svg>
                                                         : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="60" height="60" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>
                                                     }
