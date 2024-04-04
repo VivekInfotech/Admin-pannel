@@ -96,7 +96,7 @@ function Interfaceicon() {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Container maxWidth="lg">
           <Box sx={{ padding: { xs: '22px 20px 20px 20px', md: '50px 20px 50px 20px' } }}>
-            <Box sx={{ fontSize: { xs: '23px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
+            <Box sx={{ fontSize: { xs: '23px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
               latest in-demand
             </Box>
             <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
@@ -136,7 +136,7 @@ function Interfaceicon() {
       </Box>
 
       <Box sx={{ padding: { xs: '20px 20px', md: '50px 20px' } }}>
-        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
           Top Icon
         </Box>
         <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>

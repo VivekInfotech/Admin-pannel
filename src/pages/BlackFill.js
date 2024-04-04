@@ -45,7 +45,7 @@ function BlackFill() {
         <Box sx={{ paddingBottom: '150px' }}>
 
             <Box sx={{ padding: '50px 20px 0px 20px' }}>
-                <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
+                <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
                     {cardName}
                 </Box>
                 <Grid container sx={{ paddingTop: '50px' }}>

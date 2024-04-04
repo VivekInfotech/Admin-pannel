@@ -63,7 +63,7 @@ function Topanimatedicon() {
   return (
     <Box>
       <Box sx={{ padding: '100px 20px 0px 20px' }}>
-        <Box sx={{ fontSize: { xs: '34px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '34px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
           Top animated
         </Box>
         <Box sx={{ fontSize: { xs: '34px', sm: '50px', md: '72px' }, marginTop: { xs: '-30px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
