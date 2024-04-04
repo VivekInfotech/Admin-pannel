@@ -141,7 +141,7 @@ function Dailodbox({ fetchIcons, icon, targetFile }) {
                     Update
                 </Button>
             ) : (
-                <Button variant="outlined" sx={{color:'#fff'}} onClick={handleClickOpen}>
+                <Button variant="outlined"  onClick={handleClickOpen}>
                     Add Icon
                 </Button>
             )}

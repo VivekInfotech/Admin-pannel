@@ -114,7 +114,7 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
                     Update
                 </Button>
             ) : (
-                <Button sx={{color:'#fff'}} variant="outlined" onClick={handleClickOpen}>
+                <Button  variant="outlined" onClick={handleClickOpen}>
                     Add Icon
                 </Button>
             )}

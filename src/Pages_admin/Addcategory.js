@@ -79,7 +79,7 @@ function Addcategory({ addCategory, updateCategory }) {
                     Update
                 </Button>
             ) : (
-                <Button variant="outlined" sx={{color:'#fff'}}  onClick={handleClickOpen}>
+                <Button variant="outlined"  onClick={handleClickOpen}>
                     Add Category
                 </Button>
             )}
