@@ -35,8 +35,8 @@ function Icons() {
     { name: "Handdrawn",img:Handdrawn ,img1:Handdrawn1,img2:Handdrawn2, description: "Iconic Indian brands cover diverse sectors across various industries" },
     { name: "Color Fill",img:colorfill1 ,img1:colorfill,img2:colorfill2, description: "The 'color fill' icon applies solid colors in graphic design software." },
     { name: "Black outline",img:blackoutline2 ,img1:blackoutline1,img2:blackoutline, description: "Outline emphasizes visual design edges." },
-    { name: "Black Fill",img:BlackFill ,img1:BlackFill2,img2:BlackFill1, description: "Black fill enriches design, adding depth and visual contrast." },
     { name: "Lineal Color",img:LinealColor ,img1:LinealColor2,img2:LinealColor1, description: "Icon symbolizes identity, individuality, personality." },
+    { name: "Black Fill",img:BlackFill ,img1:BlackFill2,img2:BlackFill1, description: "Black fill enriches design, adding depth and visual contrast." },
     { name: "Flat",img:Flat ,img1:Flat1,img2:Flat2, description: "Product description and details" }
   ])
 
@@ -95,7 +95,7 @@ function Icons() {
       </Grid>
 
       <Box sx={{ padding: '50px 20px 0px 20px' }}>
-        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
           Premium
         </Box>
         <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
@@ -117,7 +117,7 @@ function Icons() {
       </Box>
 
       <Box sx={{ padding: { xs: '20px 20px', md: '50px 20px 50px 20px' } }}>
-        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
           Poular
         </Box>
         <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
@@ -151,7 +151,7 @@ function Icons() {
       </Box>
 
       <Box sx={{ padding: { xs: '20px', md: '50px 20px' } }}>
-        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
           Top Icon
         </Box>
         <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-23px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>

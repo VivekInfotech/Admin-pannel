@@ -113,7 +113,7 @@ function Animatedicons() {
 
         <Grid xs={12}>
           <Box sx={{ padding: { xs: '20px 20px 20px 20px', md: '50px 20px 50px 20px' } }}>
-            <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+            <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
               How to add animated
             </Box>
             <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-22px', sm: '-48px', md: '-65px' }, color: '#272727', textAlign: 'center' }}>
@@ -209,7 +209,7 @@ function Animatedicons() {
 
 
       <Box sx={{ padding: { xs: '20px 20px 20px 20px', md: '50px 20px 50px 20px' } }}>
-        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: 'rgb(255 188 6 / 47%)', textAlign: 'center' }}>
+        <Box sx={{ fontSize: { xs: '22px', sm: '50px', md: '72px' }, textTransform: 'uppercase', fontWeight: '800', color: '#ffbc06', textAlign: 'center' }}>
           Top Icon
         </Box>
         <Box sx={{ fontSize: { xs: '19px', sm: '50px', md: '72px' }, marginTop: { xs: '-22px', sm: '-48px', md: '-65px' }, textTransform: 'uppercase', fontWeight: '600', color: '#272727', textAlign: 'center' }}>
