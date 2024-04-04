@@ -4,6 +4,7 @@ import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead
 import Addcategory from './Addcategory';
 import axios from 'axios';
 import PopularDailog from './PopularDailog';
+import { AiOutlineDelete } from "react-icons/ai";
 
 function PopularCategory() {    
     const [data, setData] = useState([]);
@@ -88,7 +89,7 @@ function PopularCategory() {
                                 </TableCell>
                                 <TableCell align="right" sx={{ display: 'flex' }}>
                                     <PopularDailog addCategory={getCategory} icon={row} />
-                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}>Delete</Button></Box>
+                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}><AiOutlineDelete color='#fff' fontSize={'25px'}/></Button></Box>
                                 </TableCell>
                             </TableRow>
                         ))}

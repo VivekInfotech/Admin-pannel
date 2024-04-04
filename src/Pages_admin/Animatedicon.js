@@ -6,6 +6,7 @@ import Dailodbox from './Dailodbox'; // Assuming you have a dialog box component
 import axios from 'axios';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState, useEffect } from 'react';
+import { AiOutlineDelete } from "react-icons/ai";
 
 const Animatedicon = () => {
     const [data, setData] = useState([]);
@@ -135,7 +136,7 @@ const Animatedicon = () => {
                                             <TableRow key={iconIndex}>
                                                 <TableCell>{icon.name}</TableCell>
                                                 <TableCell align="right">
-                                                    <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                    <Button onClick={() => removeIcon(icon._id)}><AiOutlineDelete color='#fff' fontSize={'25px'}/></Button>
                                                     <Dailodbox fetchIcons={getCategories} icon={icon} targetFile="Animatedicon" />
                                                 </TableCell>
                                             </TableRow>

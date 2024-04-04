@@ -131,7 +131,7 @@ const Interface = () => {
                                             <TableRow key={iconIndex}>
                                                 <TableCell>{icon.name}</TableCell>
                                                 <TableCell align="right">
-                                                    <Button onClick={() => removeIcon(icon._id)}><AiOutlineDelete  fontSize={'20px'}/></Button>
+                                                    <Button onClick={() => removeIcon(icon._id)}><AiOutlineDelete color='#fff' fontSize={'25px'}/></Button>
                                                     <Dailodbox fetchIcons={getCategories} icon={icon} targetFile="Interface" />
                                                 </TableCell>
                                             </TableRow>

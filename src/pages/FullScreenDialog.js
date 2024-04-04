@@ -367,27 +367,42 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
                 {
                   entityType == "popular" ? '' : <Box sx={{ display: 'flex', padding: '12px 0px', justifyContent: 'space-around', overflow: 'hidden' }}>
-                          <Tooltip title="regular">
+                          <Tooltip title="Regular">
 
                     <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.regular, "regular")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.regular }}></svg>
                     </Box>
                     </Tooltip>
+                          <Tooltip title="Bold">
+
                     <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.bold, "bold")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.bold }}></svg>
                     </Box>
+                    </Tooltip>
+                          <Tooltip title="Solid">
+
                     <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.solid, "solid")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.solid }}></svg>
                     </Box>
+                    </Tooltip>
+                          <Tooltip title="Thin">
+
                     <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.thin, "thin")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.thin }}></svg>
                     </Box>
+                    </Tooltip>
+                          <Tooltip title="Rounded">
+
                     <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.rounded, "rounded")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.rounded }}></svg>
                     </Box>
+                    </Tooltip>
+                          <Tooltip title="Straight">
+
                     <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.straight, "straight")}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.straight }}></svg>
                     </Box>
+                    </Tooltip>
                   </Box>
                 }
 

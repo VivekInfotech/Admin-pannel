@@ -349,7 +349,7 @@ function WebBody() {
 
                                     </Box>
                                     <Box className='center' fontSize={'18px'} padding={'20px'}>
-                                        Stroke
+                                        Solid
                                     </Box>
                                     <Box className='center' padding={'0px 28px'} textAlign={"center"}>
                                         "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."

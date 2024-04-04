@@ -75,11 +75,11 @@ function Addcategory({ addCategory, updateCategory }) {
     return (
         <React.Fragment>
             {updateCategory ? (
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="outlined" sx={{color:'#fff'}} onClick={handleClickOpen}>
                     Update
                 </Button>
             ) : (
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="outlined" sx={{color:'#fff'}}  onClick={handleClickOpen}>
                     Add Category
                 </Button>
             )}

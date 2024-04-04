@@ -137,11 +137,11 @@ function Dailodbox({ fetchIcons, icon, targetFile }) {
     return (
         <React.Fragment>
             {icon ? (
-                <Button variant="outlined" onClick={handleClickOpen}>
-                    Edit
+                <Button variant="outlined" sx={{color:'#fff'}} onClick={handleClickOpen}>
+                    Update
                 </Button>
             ) : (
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="outlined" sx={{color:'#fff'}} onClick={handleClickOpen}>
                     Add Icon
                 </Button>
             )}

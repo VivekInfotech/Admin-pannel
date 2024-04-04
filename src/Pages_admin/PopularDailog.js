@@ -89,7 +89,7 @@ function PopularDailog({ addCategory, icon }) {
 
     return (
         <React.Fragment>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button variant="outlined" sx={{color:'#fff'}} onClick={handleClickOpen}>
                 {icon ? 'Update' : 'Add Popular Category'}
             </Button>
 

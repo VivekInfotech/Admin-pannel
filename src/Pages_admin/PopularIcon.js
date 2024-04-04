@@ -3,6 +3,7 @@ import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, TableCo
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import Popularaddicon from './Popularaddicon';
+import { AiOutlineDelete } from "react-icons/ai";
 
 const PopularIcon = () => {
     const [categories, setCategories] = useState([]);
@@ -124,7 +125,7 @@ const PopularIcon = () => {
                                                 <TableRow key={iconIndex}>
                                                     <TableCell>{icon.name}</TableCell>
                                                     <TableCell align="right">
-                                                        <Button onClick={() => removeIcon(icon._id)}>Delete</Button>
+                                                        <Button onClick={() => removeIcon(icon._id)}><AiOutlineDelete color='#fff' fontSize={'25px'}/></Button>
                                                         <Popularaddicon fetchIcons={getCategories} icon={icon} />
                                                     </TableCell>
                                                 </TableRow>
