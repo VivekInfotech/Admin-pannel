@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Breadcrumbs, Link, Button } from '@mui/material';
 import Addcategory from './Addcategory';
 import axios from 'axios';
+import { AiOutlineDelete } from "react-icons/ai";
 
 function Category() {
     const [data, setData] = useState([]);
@@ -86,7 +87,7 @@ function Category() {
                                 </TableCell>
                                 <TableCell align="right" sx={{ display: 'flex' }}>
                                     <Addcategory addCategory={getCategory} updateCategory={row} />
-                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}>Delete</Button></Box>
+                                    <Box sx={{ marginLeft: '5px' }}><Button onClick={() => remove(row._id)}><AiOutlineDelete color='#fff' fontSize={'25px'}/></Button></Box>
                                 </TableCell>
                             </TableRow>
                         ))}
