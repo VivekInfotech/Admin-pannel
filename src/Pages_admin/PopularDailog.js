@@ -10,7 +10,7 @@ function PopularDailog({ addCategory, icon }) {
     const [name, setName] = useState('');
     const [tag, setTag] = useState('');
     const [description, setDescription] = useState('');
-    const [suggestedCard, setSuggestedCard] = useState(["Hand drawn", "color fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
+    const [suggestedCard, setSuggestedCard] = useState(["Handdrawn", "Color Fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
 
     useEffect(() => {
         if (icon) {
