@@ -364,16 +364,16 @@ const Searchicons = () => {
                         edge="start"
                         sx={{
                             margin: 0,
-                            padding: '15px 14px',
+                            padding: '8px 20px',
                             ...(open && { display: 'none' }),
                         }}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <IconButton sx={{ display: open ? 'block' : 'none', padding: '15px 14px' }} onClick={() => setOpen(false)}>
+                    <IconButton sx={{ display: open ? 'block' : 'none', padding: '8px 20px' }} onClick={() => setOpen(false)}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
-                    <ListItem sx={{ padding: '15px 14px' }}>
+                    <ListItem sx={{ padding: '8px 20px' }}>
                         <ListItemIcon sx={{ minWidth: '30px', color: '#fff', fontSize: '18px' }}>
                             <BsGem />
                         </ListItemIcon>
@@ -408,7 +408,7 @@ const Searchicons = () => {
                 </List>
                 <Divider />
                 <List>
-                    <ListItem sx={{ padding: '15px 14px' }}>
+                    <ListItem sx={{ padding: '8px 20px' }}>
                         <ListItemIcon sx={{ minWidth: '30px', color: '#fff', fontSize: '18px' }}>
                             <BsGem />
                         </ListItemIcon>
@@ -440,7 +440,7 @@ const Searchicons = () => {
                 </List>
                 <Divider />
                 <List>
-                    <ListItem sx={{ padding: '15px 14px' }}>
+                    <ListItem sx={{ padding: '8px 20px' }}>
                         <ListItemIcon sx={{ minWidth: '30px', color: '#fff', fontSize: '18px' }}>
                             <BsGem />
                         </ListItemIcon>
