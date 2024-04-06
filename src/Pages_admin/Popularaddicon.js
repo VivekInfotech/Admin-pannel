@@ -29,7 +29,7 @@ function Popularaddicon({ fetchIcons, icon, targetFile }) {
     const [category, setCategory] = useState(null);
     const [iconFile, setIconFile] = useState(null);
     const [suggestedCategories, setSuggestedCategories] = useState([]);
-    const [suggestedCard, setSuggestedCard] = useState(["Hand drawn", "color fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
+    const [suggestedCard, setSuggestedCard] = useState(["Handdrawn", "Color Fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
 
     const handleClickOpen = () => {
         setOpen(true);

@@ -8,7 +8,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 const PopularIcon = () => {
     const [categories, setCategories] = useState([]);
     const [iconData, setIconData] = useState({});
-    const [card, setCard] = useState(["Hand drawn", "color fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
+    const [card, setCard] = useState(["Handdrawn", "Color Fill", "Black outline", "Black Fill", "Lineal Color", "Flat"]);
 
     const token = localStorage.getItem('token');
 
