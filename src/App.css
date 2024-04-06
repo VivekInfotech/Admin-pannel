@@ -134,7 +134,7 @@
 .css-uhb5lp{
   background-color: #c7c7c7 !important;
 }
-.color-272727,.css-1iji0d4 , .css-1l8j5k8 , .css-wf16b5, .css-q86031,.css-1gqug66 , .css-1q1u3t4-MuiTableRow-root{
+.color-272727,.css-1iji0d4 , .css-1l8j5k8 , .css-wf16b5, .css-q86031,.css-1gqug66 , .css-1q1u3t4-MuiTableRow-root,.css-z1ewoe-MuiButtonBase-root-MuiButton-root{
   background-color: #272727 !important;
   color: #fff !important;
 }
@@ -142,7 +142,7 @@
   background-color: #222222 !important;
 }
 
-.css-14b6v47-MuiTypography-root ,.css-1fx8m19 , .css-1obetrp{
+.css-14b6v47-MuiTypography-root ,.css-1fx8m19 , .css-1obetrp,.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
   color: #fff !important;
 }
 
@@ -773,7 +773,7 @@ a:-webkit-any-link {
 .css-1kny9v8,
 .css-r8u8y9,
 .css-w2q257-MuiStack-root,
-.css-hyum1k-MuiToolbar-root,
+
 .css-1sm9su6 .MuiDrawer-paper,
 .css-12i7wg6-MuiPaper-root-MuiDrawer-paper,
 .css-kymrqw {
