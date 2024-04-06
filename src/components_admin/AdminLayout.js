@@ -360,9 +360,9 @@ const Mainbody = (props) => {
     <>
 
 
-      <Box sx={{ flexGrow: 1, position: "sticky", top: 0 }} zIndex={1030}>
+      <Box sx={{ flexGrow: 1, position: "sticky", top: 0 , backgroundColor:'#272727'}} zIndex={1030}>
         <ThemeProvider theme={darkTheme}>
-          <AppBar position="static">
+          <AppBar position="static" sx={{ backgroundColor:'#272727' , color:'#fff'}}>
             <Toolbar>
               <Stack spacing={1} direction="row" alignItems="center" sx={{ width: { xs: "50%", md: "20%" } }}>
                 <Typography
