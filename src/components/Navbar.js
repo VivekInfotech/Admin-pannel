@@ -245,7 +245,9 @@ function Navbar() {
                         <Box sx={{ margin: '0px 20px' }}>
                             <React.Fragment>
                                 <Box sx={{ cursor: 'pointer' }}>
-                                    <Badge badgeContent={4} onClick={handleClickOpen} color="primary">
+                                    <Badge badgeContent={saveIcons
+                                        .filter(el => el !== null)
+                                        .length} onClick={handleClickOpen} color="primary">
                                         <SaveIcon color="#fff" />
                                     </Badge>
                                 </Box>
@@ -351,10 +353,10 @@ function Navbar() {
                             </Menu>
                         </Box>
                     </Toolbar>
-                </Container>
-            </AppBar>
+                </Container >
+            </AppBar >
         </>
     )
 }
 
-export default Navbar
+export default Navbar

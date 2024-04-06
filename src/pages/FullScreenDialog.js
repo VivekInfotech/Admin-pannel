@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({ open, onClose, iconId, entityType, getSaveIcons }) {
+export default function FullScreenDialog({ open, onClose, iconId, entityType }) {
   const [data, setData] = useState();
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [selectedIconUrl, setSelectedIconUrl] = useState(null);
@@ -66,15 +66,15 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType, ge
               // Perform string manipulation operations
               if (svgData.includes('stroke="currentColor"')) {
                 svgData = svgData.replace(/stroke="currentColor"/g, `stroke="${colorHex}"`);
-                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s*\/?>/g, <circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />);
-                svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, <path d="$1" fill="${colorHex}" />);
+                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s*\/?>/g, `<circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />`);
+                svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, `<path d="$1" fill="${colorHex}" />`);
               } else {
                 svgData = svgData.replace(/stroke="#[a-zA-Z0-9]+"/g, `stroke="${colorHex}"`);
-                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s+fill="#[a-zA-Z0-9]+"\s*\/?>/g, <circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />);
+                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s+fill="#[a-zA-Z0-9]+"\s*\/?>/g, `<circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />`);
                 if (svgData.includes('fill="#')) {
                   svgData = svgData.replace(/<path\s+d="([^"]+)"\s+fill="#[a-zA-Z0-9]+"/g, `<path d="$1" fill="${colorHex}" />`);
                 } else {
-                  svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, <path d="$1" fill="${colorHex}" />);
+                  svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, `<path d="$1" fill="${colorHex}" />`);
                 }
               }
               editedIconsArray[el] = svgData;
@@ -304,7 +304,6 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType, ge
     axios.post(`https://api-elbg.onrender.com/save/create`, { save: data._id })
       .then((res) => {
         console.log("save Dataaaaaaa :- ", res.data.data);
-        getSaveIcons()
       })
       .catch((error) => {
         console.log(error.response.data);
