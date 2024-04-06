@@ -1528,3 +1528,9 @@ section span:hover {
 .css-1ivjs6o-MuiButtonBase-root-MuiButton-root:hover , .css-164ezo8-MuiButtonBase-root-MuiButton-root:hover {
   background-color: #ffbc06 !important;
 }
+
+@media screen and (max-width:1024px) {
+  .Hide{
+    display: none;
+  }
+}

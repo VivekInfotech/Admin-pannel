@@ -410,6 +410,7 @@ function WebBody() {
 
                 {/* responsive */}
 
+                <Box className="Hide">
                 <Box sx={{display:{xs:'none',md:'block'}, marginTop: '50px', position: 'relative' }}>
                     <Box sx={{ position: 'absolute', top: '52%', zIndex: 9 }}>
                         <img src={lineleft} alt="" srcset="" />
@@ -498,6 +499,7 @@ function WebBody() {
 
                         </Grid>
                     </Container>
+                </Box>
                 </Box>
 
                 {/* responsive */}

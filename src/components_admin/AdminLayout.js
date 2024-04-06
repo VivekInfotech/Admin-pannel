@@ -407,7 +407,7 @@ const Mainbody = (props) => {
                 >
                   <Tooltip title="Account settings">
                     <Stack direction="row">
-                      <Avatar alt="Profile" src="https://bootstrapmade.com/demo/templates/NiceAdmin/assets/img/profile-img.jpg"></Avatar>
+                      <Avatar alt="Profile" src={favicon}></Avatar>
                       <Button
                         size='small'
                         variant="contained"
@@ -417,7 +417,7 @@ const Mainbody = (props) => {
                         sx={{ textTransform: 'capitalize', fontSize: "16px", paddingRight: "0px" }}
                         className='profileBTN'
                       >
-                        K. Anderson
+                        icongrid
                       </Button>
                     </Stack>
                   </Tooltip>
