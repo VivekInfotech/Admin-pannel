@@ -787,7 +787,11 @@ a:-webkit-any-link {
   background-color: #fff !important;
   color: #272727 !important;
 }
-
+/* ///full screen ///// */
+.css-1hyl1h2{
+  max-width: 90% !important;
+  width: 90% !important;
+}
 .css-1k7rjh0-MuiButtonBase-root-MuiIconButton-root,
 .css-1qqpd8d-MuiButtonBase-root-MuiIconButton-root {
   margin: 0 !important;
