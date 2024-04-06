@@ -173,7 +173,7 @@ function Footer() {
               <Box sx={{ width: '100%', fontSize: '24px', fontWeight: '600', display: 'flex', justifyContent: 'center' }}>Socials</Box>
               <Box sx={{ fontSize: '35px', display: 'flex', justifyContent: 'space-around', paddingTop: '10px' }}>
                 <FaFacebook />
-                <a href="https://www.instagram.com/icongrid_/?next=%2F">
+                <a target='_blank' href="https://www.instagram.com/icongrid_/?next=%2F">
                 <FaInstagram  color='#fff'/>
                 </a>
                 <FaTwitter />

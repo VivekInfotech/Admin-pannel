@@ -13,7 +13,7 @@ const Icon = () => {
     const token = localStorage.getItem('token');
 
     const updateCountIcons = () => {
-        axios.put('https://api-elbg.onrender.com/count/update/65e41862f553d71c874fabc5', {}, {
+        axios.put('https://api-elbg.onrender.com/count/update/6607a4f9931baf7b7ccfbf05', {}, {
             headers: {
                 admintoken: token
             }

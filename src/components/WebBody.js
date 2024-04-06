@@ -303,10 +303,10 @@ function WebBody() {
 
                                     </Box>
                                     <Box className='center' fontSize={'18px'} padding={'20px'}>
-                                        Solid
+                                        Bold
                                     </Box>
                                     <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                        "Explore our free solid icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."                                    </Box>
+                                        "Explore our free bold icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."                                    </Box>
                                     <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
                                         <Link to="/most-downloads">
                                             <Box sx={{ border: '1px solid #AEDBFF', padding: '5px 60px', borderRadius: '7px', backgroundColor: '#AEDBFF' }}>Explore</Box>
@@ -329,7 +329,7 @@ function WebBody() {
                                         Thin
                                     </Box>
                                     <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                        "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
+                                        "Explore our free thin icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
                                     </Box>
                                     <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
                                         <Link to="/most-downloads">
@@ -352,7 +352,7 @@ function WebBody() {
                                         Solid
                                     </Box>
                                     <Box className='center' padding={'0px 28px'} textAlign={"center"}>
-                                        "Explore our free regular icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
+                                        "Explore our free solid icons for versatile design solutions. From simple outlines to detailed illustrations, find the perfect icon to enhance your projects effortlessly."
                                     </Box>
                                     <Box className='center' sx={{ padding: '20px 28px', textAlign: 'center' }} >
                                         <Link to="/most-downloads">

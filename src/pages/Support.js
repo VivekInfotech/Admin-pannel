@@ -177,8 +177,8 @@ function Support() {
                 </Box>
                 <Box className='center'>
                     <FormControl defaultValue="" >
-                        <Label>Subject</Label>
-                        <textarea id="w3review" name="w3review" rows="4" cols="50">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam adipisci vel impedit necessitatibus pariatur ratione odit quis autem magnam architecto. Dicta iste ipsum ipsa ducimus eligendi deserunt qui natus eaque!</textarea>
+                        <Label>Description</Label>
+                        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
                     </FormControl>
                 </Box>
                 <Box className='center'>
