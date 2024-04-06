@@ -562,17 +562,17 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3} marginBottom={'10px'}>
-                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
+                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%', cursor:'pointer' }}>
                         SVG
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3} marginBottom={'10px'}>
-                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
+                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%', cursor:'pointer' }}>
                         Android
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%' }}>
+                      <Box onClick={download} className='center' sx={{ borderRadius: '7px', backgroundColor: '#f5f5f5', fontWeight: '600', padding: '10px', width: '100%', cursor:'pointer' }}>
                         iOS
                       </Box>
                     </Grid>
