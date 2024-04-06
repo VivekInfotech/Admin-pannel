@@ -30,6 +30,9 @@ import { MdOutlineCancel } from "react-icons/md";
 import { IoMdImages, IoIosShareAlt, IoIosDownload, IoIosArrowDown, IoLogoFacebook, IoLogoTwitter, IoLogoInstagram, IoLogoPlaystation, IoLogoWhatsapp } from "react-icons/io";
 import { useEffect } from 'react';
 import axios from 'axios';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -143,6 +146,28 @@ function Navbar() {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const svgDownload = () => {
+        let demo = saveIcons.filter(el => el !== null);
+
+        const zip = new JSZip();
+
+        // Add each SVG to the zip file
+        demo.forEach((el, index) => {
+            // Assuming el.icon or el.regular contains SVG string
+            zip.file(`icon_${index}.svg`, el.icon || el.regular);
+        });
+
+        // Generate the zip file
+        zip.generateAsync({ type: 'blob' })
+            .then(blob => {
+                // Save the zip file
+                saveAs(blob, 'icons.zip');
+            })
+            .catch(error => {
+                console.error('Error generating zip file:', error);
+            });
     };
 
     return (
@@ -310,10 +335,10 @@ function Navbar() {
                                             </Button>
                                         </Box>
                                         <Box>
-                                            <Button sx={{ backgroundColor: '#ededed', color: '#000', fontWeight: '600', fontSize: '16px', marginRight: '5px' }} autoFocus >
+                                            <Button sx={{ backgroundColor: '#ededed', color: '#000', fontWeight: '600', fontSize: '16px', marginRight: '5px' }} autoFocus onClick={svgDownload} >
                                                 SVG <IoIosDownload fontSize={'20px'} />
                                             </Button>
-                                            <Button sx={{ backgroundColor: '#ededed', color: '#000', fontWeight: '600', fontSize: '16px' }} autoFocus >
+                                            <Button sx={{ backgroundColor: '#ededed', color: '#000', fontWeight: '600', fontSize: '16px' }} autoFocus onClick={svgDownload} >
                                                 PNG <IoIosDownload fontSize={'20px'} />
                                             </Button>
                                         </Box>
