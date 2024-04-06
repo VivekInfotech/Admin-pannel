@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({ open, onClose, iconId, entityType }) {
+export default function FullScreenDialog({ open, onClose, iconId, entityType, getSaveIcons }) {
   const [data, setData] = useState();
   const [selectedColor, setSelectedColor] = useState('#000000');
   const [selectedIconUrl, setSelectedIconUrl] = useState(null);
@@ -66,15 +66,15 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
               // Perform string manipulation operations
               if (svgData.includes('stroke="currentColor"')) {
                 svgData = svgData.replace(/stroke="currentColor"/g, `stroke="${colorHex}"`);
-                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s*\/?>/g, `<circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />`);
-                svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, `<path d="$1" fill="${colorHex}" />`);
+                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s*\/?>/g, <circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />);
+                svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, <path d="$1" fill="${colorHex}" />);
               } else {
                 svgData = svgData.replace(/stroke="#[a-zA-Z0-9]+"/g, `stroke="${colorHex}"`);
-                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s+fill="#[a-zA-Z0-9]+"\s*\/?>/g, `<circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />`);
+                svgData = svgData.replace(/<circle\s+cx="(\d+)"\s+cy="(\d+)"\s+r="(\d+)"\s+fill="#[a-zA-Z0-9]+"\s*\/?>/g, <circle cx="$1" cy="$2" r="$3" fill="${colorHex}" />);
                 if (svgData.includes('fill="#')) {
                   svgData = svgData.replace(/<path\s+d="([^"]+)"\s+fill="#[a-zA-Z0-9]+"/g, `<path d="$1" fill="${colorHex}" />`);
                 } else {
-                  svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, `<path d="$1" fill="${colorHex}" />`);
+                  svgData = svgData.replace(/<path\s+d="([^"]+)"\s*\/?>/g, <path d="$1" fill="${colorHex}" />);
                 }
               }
               editedIconsArray[el] = svgData;
@@ -304,6 +304,7 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
     axios.post(`https://api-elbg.onrender.com/save/create`, { save: data._id })
       .then((res) => {
         console.log("save Dataaaaaaa :- ", res.data.data);
+        getSaveIcons()
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -367,41 +368,41 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
 
                 {
                   entityType == "popular" ? '' : <Box sx={{ display: 'flex', padding: '12px 0px', justifyContent: 'space-around', overflow: 'hidden' }}>
-                          <Tooltip title="Regular">
+                    <Tooltip title="Regular">
 
-                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.regular, "regular")}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.regular }}></svg>
-                    </Box>
+                      <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.regular, "regular")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.regular }}></svg>
+                      </Box>
                     </Tooltip>
-                          <Tooltip title="Bold">
+                    <Tooltip title="Bold">
 
-                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.bold, "bold")}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.bold }}></svg>
-                    </Box>
+                      <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.bold, "bold")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.bold }}></svg>
+                      </Box>
                     </Tooltip>
-                          <Tooltip title="Solid">
+                    <Tooltip title="Solid">
 
-                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.solid, "solid")}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.solid }}></svg>
-                    </Box>
+                      <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.solid, "solid")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.solid }}></svg>
+                      </Box>
                     </Tooltip>
-                          <Tooltip title="Thin">
+                    <Tooltip title="Thin">
 
-                    <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.thin, "thin")}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.thin }}></svg>
-                    </Box>
+                      <Box sx={{ cursor: 'pointer' }} className='type' onClick={() => selectedIcon(data.thin, "thin")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.thin }}></svg>
+                      </Box>
                     </Tooltip>
-                          <Tooltip title="Rounded">
+                    <Tooltip title="Rounded">
 
-                    <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.rounded, "rounded")}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.rounded }}></svg>
-                    </Box>
+                      <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.rounded, "rounded")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.rounded }}></svg>
+                      </Box>
                     </Tooltip>
-                          <Tooltip title="Straight">
+                    <Tooltip title="Straight">
 
-                    <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.straight, "straight")}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.straight }}></svg>
-                    </Box>
+                      <Box sx={{ cursor: 'pointer', display: { xs: 'none', sm: 'block' } }} className='type' onClick={() => selectedIcon(data.straight, "straight")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: data.straight }}></svg>
+                      </Box>
                     </Tooltip>
                   </Box>
                 }
@@ -594,5 +595,5 @@ export default function FullScreenDialog({ open, onClose, iconId, entityType }) 
         </Box>
       </Dialog>
     </React.Fragment>
-  );
+  );
 }

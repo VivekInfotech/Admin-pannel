@@ -61,36 +61,55 @@ function Navbar() {
     const [hoveredItem, setHoveredItem] = useState(null);
     const [saveIcons, setSaveIcons] = useState([]);
     const [saveId, setSaveId] = useState([]);
+    const [nonNullIndices, setNonNullIndices] = useState([]);
 
     const history = useHistory();
 
     useEffect(() => {
+        getSaveIcons()
+    }, []);
+
+    const getSaveIcons = () => {
         axios.get(`https://api-elbg.onrender.com/save/find`)
             .then((res) => {
                 const ids = res.data.data.map((el) => el.save);
                 const sId = res.data.data.map((el) => el._id);
+                console.log("ids :- ", res.data.data.map((el) => el));
+                console.log("sId :- ", sId);
                 setSaveId(sId);
-                ids.forEach(id => getSaveIcons(id, sId));
+
+                let entitype = ["icon", "animated", "interface", "popular"]
+                Promise.all(ids.map(id => Promise.all(entitype.map(type => axios.get(`https://api-elbg.onrender.com/${type}/findById/${id}`)))))
+                    .then(responses => {
+                        const saveIconsData = responses.flat().map(response => response.data.data);
+                        setSaveIcons(saveIconsData);
+                    })
+                    .catch((error) => {
+                        console.log("Error fetching save icons:", error.response.data);
+                    });
             })
             .catch((error) => {
-                console.log(error.response.data);
+                console.log("Error fetching save icons:", error.response.data);
             });
-    }, []);
+    }
 
-    const getSaveIcons = async (id, sId) => {
-        try {
-            let res = await axios.get(`https://api-elbg.onrender.com/icon/findById/${id}`);
-            setSaveIcons(prevState => [...prevState, res.data.data]);
-        } catch (error) {
-            console.log("Error fetching save icons for id", id, ":", error.response.data);
-        }
-    };
+    useEffect(() => {
+        // Filter out null elements and store their indices
+        const indices = saveIcons.map((_, index) => index).filter(index => saveIcons[index] !== null);
+        setNonNullIndices(indices);
+    }, [saveIcons]);
 
-    const removeSave = (id) => {
-        console.log("ID ID ID :- ", id);
-        axios.delete(`https://api-elbg.onrender.com/save/delete/${id}`)
+
+    const removeSave = (index) => {
+        const idToRemove = saveId[index];
+        console.log("id ID :- ", saveId);
+        console.log("id ID Index :- ", index);
+        axios.delete(`https://api-elbg.onrender.com/save/delete/${idToRemove}`)
             .then((res) => {
-                console.log("Save Icon Delete Susseccfully :- ", res.data.data);
+                console.log("Save Icon Delete Successfully :- ", res.data.data);
+                const updatedSaveIcons = saveIcons.filter((_, i) => i !== index);
+                setSaveIcons(updatedSaveIcons);
+                getSaveIcons()
             })
             .catch((error) => {
                 console.log(error.response.data);
@@ -148,8 +167,8 @@ function Navbar() {
                                 display: 'contents'
                             }}
                         >
-                            
-                            <Link to="/" className='center-logo'  href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color:'#fff',fontWeight:'600' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial', color:'#fff',fontWeight:'600'  }}>nGrid</span></Link>
+
+                            <Link to="/" className='center-logo' href=""><span style={{ letterSpacing: 'initial', fontSize: '28px', color: '#fff', fontWeight: '600' }}>Ic</span><img width={'25px'} src={favicon} alt="" srcset="" /><span style={{ marginLeft: "1px", fontSize: '28px', letterSpacing: 'initial', color: '#fff', fontWeight: '600' }}>nGrid</span></Link>
                             {/* <img src={logo1} width={'10%'} alt="" srcset="" /> */}
                         </Typography>
 
@@ -249,41 +268,36 @@ function Navbar() {
                                             color: '#000'
                                         }}
                                     >
-                                        <CloseIcon sx={{color:'#000'}}  />
+                                        <CloseIcon sx={{ color: '#000' }} />
                                     </IconButton>
                                     <DialogContent dividers sx={{ backgroundColor: '#fff' }}>
                                         <div>
                                             <Grid container >
-                                                {saveIcons.map((el, index) => (
-                                                    <Grid
-                                                        key={index}
-                                                        item
-                                                        xs={2}
-                                                        sx={{
-                                                            position: 'relative',
-                                                            '&:hover': { border: '1px solid black', borderRadius: '5px' },
-                                                        }}
-                                                        onMouseEnter={() => setHoveredItem(index)}
-                                                        onMouseLeave={() => setHoveredItem(null)}
-                                                    >
-                                                        <Box sx={{ width: '50px', height: '50px' }}>
-
-                                                            {console.log("dsdtxfygf save sav e :- ", el)}
-                                                            {/* <SaveIcon color="#000" /> */}
-                                                            {
-                                                                el == null ? ('')
-                                                                    : (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: el.regular }}></svg>)
-                                                            }
-
-                                                        </Box>
-                                                        {hoveredItem === index && (
-                                                            <Box position="absolute" top={0} right={1}>
-                                                                {console.log("sdfbdgf :- ", el)}
-                                                                <MdOutlineCancel onClick={() => removeSave(el._id)} />
+                                                {saveIcons
+                                                    .filter(el => el !== null)
+                                                    .map((el, index) => (
+                                                        <Grid
+                                                            key={index}
+                                                            item
+                                                            xs={2}
+                                                            sx={{
+                                                                position: 'relative',
+                                                                '&:hover': { border: '1px solid black', borderRadius: '5px' },
+                                                            }}
+                                                            onMouseEnter={() => setHoveredItem(index)}
+                                                            onMouseLeave={() => setHoveredItem(null)}
+                                                        >
+                                                            <Box sx={{ width: '40px', height: '40px', padding: '10px' }}>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" dangerouslySetInnerHTML={{ __html: el.icon || el.regular }}></svg>
                                                             </Box>
-                                                        )}
-                                                    </Grid>
-                                                ))}
+                                                            {hoveredItem === index && (
+                                                                <Box position="absolute" top={0} right={1}>
+                                                                    <MdOutlineCancel onClick={() => removeSave(index)} />
+                                                                </Box>
+                                                            )}
+                                                        </Grid>
+                                                    ))
+                                                }
                                             </Grid>
                                         </div>
                                     </DialogContent>
@@ -343,4 +357,4 @@ function Navbar() {
     )
 }
 
-export default Navbar
+export default Navbar
